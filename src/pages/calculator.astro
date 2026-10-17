@@ -172,13 +172,19 @@ const toItem = byId.get(DEFAULT_TO)!;
     font-family: var(--font-display);
     font-size: 1.5rem;
     margin: 0 0 0.6rem;
-    color: var(--aqua);
-    text-shadow: 0 0 24px rgba(79, 216, 232, 0.5);
+    color: var(--ink-dim);
   }
 
+  /* Le chiffre en creme, sans halo : l'ancien cyan lumineux se lisait mal. */
+  /* Les chiffres de Pixelify sont des traits fins : delaves a cette taille.
+     Le nombre passe donc dans la police de texte, en gras. */
   :global(.result__big strong) {
-    font-size: 2.6rem;
-    font-weight: 400;
+    font-family: var(--font-body);
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: #ffe6ad;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
 
   :global(.result__big--fail) {

@@ -13,6 +13,9 @@ const {
   description = 'A free, ad-free fan encyclopedia for The Binding of Isaac: Repentance+, built around the Spindown Dice chain.',
 } = Astro.props;
 
+// La tuile de fond passe par url() : le chemin reste juste sous /Spindown-codex/.
+const tileStyle = `--tile:url('${url('/bg/cellar.png')}')`;
+
 const path = Astro.url.pathname.startsWith(BASE) ? Astro.url.pathname.slice(BASE.length) || '/' : Astro.url.pathname;
 const nav = [
   { href: '/items', label: 'nav.items' },
@@ -45,7 +48,7 @@ const fonts = `
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
   </head>
-  <body>
+  <body style={tileStyle}>
     <a class="skip-link" href="#main" data-i18n="common.skip">Skip to content</a>
 
     <header class="site-header">

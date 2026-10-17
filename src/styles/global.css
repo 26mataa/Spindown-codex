@@ -91,13 +91,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--deep);
+  background-color: #0a0709;
+  /* Le carrelage de cave sous un voile profond : la texture se devine,
+     elle ne dispute pas la lecture au texte. */
   background-image:
-    radial-gradient(1100px 720px at 12% -8%, rgba(79, 216, 232, 0.22), transparent 62%),
-    radial-gradient(900px 620px at 88% 2%, rgba(155, 227, 86, 0.12), transparent 60%),
-    radial-gradient(1200px 900px at 50% 108%, rgba(208, 69, 60, 0.14), transparent 62%),
-    linear-gradient(180deg, #08232e 0%, #05161e 55%, #04121a 100%);
+    radial-gradient(900px 620px at 50% -14%, rgba(79, 216, 232, 0.16), transparent 62%),
+    linear-gradient(180deg, rgba(6, 18, 24, 0.74) 0%, rgba(5, 14, 19, 0.8) 55%, rgba(4, 11, 15, 0.88) 100%),
+    var(--tile, none);
+  background-size: auto, auto, 96px 96px;
+  background-repeat: no-repeat, no-repeat, repeat;
   background-attachment: fixed;
+  image-rendering: pixelated;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -468,7 +472,7 @@ main {
 
 .spine__id {
   font-size: 0.74rem;
-  color: var(--ink-faint);
+  color: #c9a86a;
   transition: color var(--dur) var(--ease);
 }
 

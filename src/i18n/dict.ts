@@ -654,4 +654,8 @@ Object.assign(dicts.de, { 'item.counterTail': '/ {n} Collectibles', 'calc.batter
 Object.assign(dicts.es, { 'item.counterTail': '/ {n} coleccionables', 'calc.batteryShort': 'Car Battery' });
 Object.assign(dicts.it, { 'item.counterTail': '/ {n} collezionabili', 'calc.batteryShort': 'Car Battery' });
 
-
+Object.assign(dicts.en, { 'calc.search': 'Search an item…' });
+Object.assign(dicts.fr, { 'calc.search': 'Chercher un item…' });
+Object.assign(dicts.de, { 'calc.search': 'Item suchen…' });
+Object.assign(dicts.es, { 'calc.search': 'Buscar un objeto…' });
+Object.assign(dicts.it, { 'calc.search': 'Cerca un oggetto…' });

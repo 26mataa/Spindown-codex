@@ -1,0 +1,159 @@
+---
+/**
+ * Champ de recherche d'item avec suggestions — le même index que l'accueil.
+ * Remplace le <select> à 717 options, illisible et impossible à parcourir.
+ */
+interface Props {
+  id: string;
+  labelKey: string;
+  initialId: number;
+  initialName: string;
+  initialIcon: string;
+}
+
+const { id, labelKey, initialId, initialName, initialIcon } = Astro.props;
+---
+
+<div class="picker" id={`picker-${id}`} data-picker data-side={id}>
+  <label for={`${id}-input`} data-i18n={labelKey}>{labelKey}</label>
+
+  <div class="picker__field">
+    <img class="picker__icon" src={initialIcon} alt="" width="24" height="24" decoding="async" data-picker-icon />
+    <input
+      id={`${id}-input`}
+      type="text"
+      value={initialName}
+      placeholder="Search an item…"
+      autocomplete="off"
+      spellcheck="false"
+      role="combobox"
+      aria-expanded="false"
+      aria-autocomplete="list"
+      aria-controls={`${id}-list`}
+      data-picker-input
+      data-i18n-placeholder="calc.search"
+    />
+    <span class="picker__id mono" data-picker-id>#{String(initialId).padStart(3, '0')}</span>
+  </div>
+
+  <ul class="picker__list" id={`${id}-list`} role="listbox" hidden data-picker-list></ul>
+  <input type="hidden" value={String(initialId)} data-picker-value name={id} />
+</div>
+
+<script>
+  import { initPicker } from '../lib/picker';
+
+  for (const el of document.querySelectorAll<HTMLElement>('[data-picker]')) {
+    initPicker(el);
+  }
+</script>
+
+<style>
+  .picker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .picker > label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+
+  .picker__field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 9px;
+    background: linear-gradient(180deg, rgba(2, 14, 20, 0.72), rgba(2, 14, 20, 0.5));
+    border: 1px solid var(--edge-soft);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .picker__field:focus-within {
+    border-color: rgba(79, 216, 232, 0.65);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(79, 216, 232, 0.35);
+  }
+
+  .picker__icon {
+    image-rendering: pixelated;
+    flex: none;
+  }
+
+  .picker input[type='text'] {
+    flex: 1;
+    min-width: 0;
+    font: inherit;
+    font-size: 0.92rem;
+    padding: 0.22rem 0;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    outline: none;
+  }
+
+  .picker__id {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    flex: none;
+  }
+
+  .picker__list {
+    position: absolute;
+    z-index: 40;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.3rem;
+    list-style: none;
+    max-height: 17rem;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(11, 47, 60, 0.99), rgba(4, 20, 27, 0.99));
+    border: 1px solid var(--edge);
+    box-shadow: 0 24px 48px -20px #000, inset 0 1px 0 var(--spec);
+  }
+
+  .picker__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.38rem 0.45rem;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  .picker__list li img {
+    image-rendering: pixelated;
+    flex: none;
+  }
+
+  .picker__list li span:nth-child(2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .picker__list li .mono {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+  }
+
+  .picker__list li[aria-selected='true'],
+  .picker__list li:hover {
+    background: rgba(79, 216, 232, 0.16);
+    color: var(--ink);
+    box-shadow: inset 0 0 0 1px rgba(79, 216, 232, 0.35);
+  }
+</style>

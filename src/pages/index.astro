@@ -1,4 +1,4 @@
-﻿---
+---
 import Base from '../layouts/Base.astro';
 import { formatId, spindownTarget, visibleItems, byId } from '../lib/chain';
 import { url } from '../lib/urls';
@@ -243,6 +243,7 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
     padding: 0.5rem 0;
     font: inherit;
     font-size: 1.02rem;
+    text-overflow: ellipsis;
     color: var(--ink);
     background: transparent;
     border: 0;
@@ -414,6 +415,12 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
     margin-left: auto;
     font-size: 0.7rem;
     color: var(--ink-faint);
+  }
+
+  @media (max-width: 420px) {
+    .search__field input {
+      font-size: 0.9rem;
+    }
   }
 
   @media (max-width: 900px) {

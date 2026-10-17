@@ -1,10 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
-import { visibleItems } from '../lib/chain';
+import ItemPicker from '../components/ItemPicker.astro';
+import { byId, visibleItems } from '../lib/chain';
 
 // Donnees compactes envoyees au client : [id, cible].
 const pairs = visibleItems.map((i) => [i.id, i.spindown.target] as const);
 const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
+
+const DEFAULT_FROM = 723;
+const DEFAULT_TO = 722;
+const fromItem = byId.get(DEFAULT_FROM)!;
+const toItem = byId.get(DEFAULT_TO)!;
 ---
 
 <Base title="Distance calculator — Spindown Codex" description="How many Spindown Dice uses to turn any collectible into any other.">
@@ -17,19 +23,25 @@ const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
       </p>
     </header>
 
-    <form class="calc glass" data-calc>
+    <form class="calc glass" data-calc onsubmit="return false">
       <div class="calc__row">
-        <div class="field">
-          <label for="from" data-i18n="calc.from">From</label>
-          <select id="from" data-from></select>
-        </div>
+        <ItemPicker
+          id="from"
+          labelKey="calc.from"
+          initialId={fromItem.id}
+          initialName={fromItem.name}
+          initialIcon={fromItem.icon}
+        />
 
         <span class="arrow" aria-hidden="true">→</span>
 
-        <div class="field">
-          <label for="to" data-i18n="calc.to">To</label>
-          <select id="to" data-to></select>
-        </div>
+        <ItemPicker
+          id="to"
+          labelKey="calc.to"
+          initialId={toItem.id}
+          initialName={toItem.name}
+          initialIcon={toItem.icon}
+        />
       </div>
 
       <label class="check">
@@ -60,30 +72,20 @@ const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
   const chain = new Map<number, number | null>(pairs);
   const nameOf = new Map(items.map((i) => [i.id, i.name]));
 
-  const from = document.querySelector<HTMLSelectElement>('[data-from]')!;
-  const to = document.querySelector<HTMLSelectElement>('[data-to]')!;
+  const fromEl = document.querySelector<HTMLInputElement>('[data-picker-value][name="from"]')!;
+  const toEl = document.querySelector<HTMLInputElement>('[data-picker-value][name="to"]')!;
   const battery = document.querySelector<HTMLInputElement>('[data-battery]')!;
   const result = document.querySelector<HTMLElement>('[data-result]')!;
-
-  const params = new URLSearchParams(location.search);
-
-  for (const sel of [from, to]) {
-    sel.innerHTML = items
-      .map((i) => `<option value="${i.id}">${i.name} (#${String(i.id).padStart(3, '0')})</option>`)
-      .join('');
-  }
-
-  from.value = params.get('from') ?? '723';
-  to.value = params.get('to') ?? '1';
 
   const icon = (id: number) =>
     `<img src="${url(`/icons/${id}.png`)}" alt="" width="28" height="28" loading="lazy" style="image-rendering:pixelated">`;
 
-  const label = (id: number) => `${nameOf.get(id) ?? '?'} <span class="mono">#${String(id).padStart(3, '0')}</span>`;
+  const label = (id: number) =>
+    `${nameOf.get(id) ?? '?'} <span class="mono">#${String(id).padStart(3, '0')}</span>`;
 
   function render() {
-    const fromId = Number(from.value);
-    const toId = Number(to.value);
+    const fromId = Number(fromEl.value);
+    const toId = Number(toEl.value);
     const r = distanceWithMap(chain, fromId, toId, { carBattery: battery.checked });
 
     const pageUrl = new URL(location.href);
@@ -120,8 +122,7 @@ const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
       ${pathHtml}`;
   }
 
-  from.addEventListener('change', render);
-  to.addEventListener('change', render);
+  document.addEventListener('picker:change', render);
   battery.addEventListener('change', render);
   document.addEventListener('langchange', render);
   render();
@@ -147,43 +148,10 @@ const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
     gap: 0.6rem;
   }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .field label {
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-faint);
-  }
-
-  .field select {
-    font: inherit;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.55rem;
-    border-radius: 9px;
-    color: var(--ink);
-    background: linear-gradient(180deg, rgba(2, 14, 20, 0.72), rgba(2, 14, 20, 0.5));
-    border: 1px solid var(--edge-soft);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
-    width: 100%;
-  }
-
-  .field select:focus {
-    outline: none;
-    border-color: rgba(79, 216, 232, 0.65);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(79, 216, 232, 0.35);
-  }
-
   .arrow {
     font-size: 1.15rem;
     color: var(--aqua);
-    padding-bottom: 0.55rem;
+    padding-bottom: 0.75rem;
     opacity: 0.75;
   }
 
@@ -254,5 +222,17 @@ const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
     font-family: ui-monospace, monospace;
     font-size: 0.68rem;
     color: var(--ink-faint);
+  }
+
+  @media (max-width: 620px) {
+    .calc__row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .arrow {
+      align-self: center;
+      padding: 0;
+      transform: rotate(90deg);
+    }
   }
 </style>

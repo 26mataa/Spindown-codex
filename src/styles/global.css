@@ -47,7 +47,7 @@
   /* texte */
   --ink: #e9f7fb;
   --ink-dim: #a9c9d4;
-  --ink-faint: #6d94a2;
+  --ink-faint: #7ea6b4;
 
   /* accents */
   --aqua: #4fd8e8;
@@ -484,4 +484,19 @@ main {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Les popups natifs de <select> ignorént le fond du site : sans cela, le texte
+   sombre s'affiche sur un popup clair, illisible (voir audit). */
+select,
+option,
+optgroup {
+  background-color: #0b2f3c;
+  color: var(--ink);
+}
+
+option:checked,
+option:hover {
+  background-color: #16505f;
+  color: #ffffff;
 }

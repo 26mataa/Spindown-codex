@@ -168,7 +168,7 @@ const qColor = item.quality !== null ? QUALITY_COLORS[item.quality] : undefined;
         <h2 id="chain-title" data-i18n="item.chainContext">Chain context</h2>
         <a class="context__all" href={url(`/chain?focus=${item.id}`)} data-i18n="item.seeChain">See the whole chain →</a>
       </div>
-      <ChainLadder id={item.id} depth={6} />
+      <ChainLadder id={item.id} depth={40} />
     </section>
 
     <nav class="pager" aria-label="Previous and next item" data-i18n-aria="item.prevNextAria">

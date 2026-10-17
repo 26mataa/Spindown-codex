@@ -659,3 +659,19 @@ Object.assign(dicts.fr, { 'calc.search': 'Chercher un item…' });
 Object.assign(dicts.de, { 'calc.search': 'Item suchen…' });
 Object.assign(dicts.es, { 'calc.search': 'Buscar un objeto…' });
 Object.assign(dicts.it, { 'calc.search': 'Cerca un oggetto…' });
+
+Object.assign(dicts.en, {
+  'item.chainDir': 'Spindown flows down: each item becomes the one below it.',
+});
+Object.assign(dicts.fr, {
+  'item.chainDir': 'Le Spindown va vers le bas : chaque item devient celui du dessous.',
+});
+Object.assign(dicts.de, {
+  'item.chainDir': 'Spindown läuft nach unten: aus jedem Item wird das darunter.',
+});
+Object.assign(dicts.es, {
+  'item.chainDir': 'El Spindown va hacia abajo: cada objeto se convierte en el de abajo.',
+});
+Object.assign(dicts.it, {
+  'item.chainDir': 'Lo Spindown scorre verso il basso: ogni oggetto diventa quello sotto.',
+});

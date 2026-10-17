@@ -4,70 +4,83 @@ import { url } from '../lib/urls';
 
 export interface Props {
   id: number;
-  /** Nombre de voisins affiches de chaque cote. */
+  /** Nombre de voisins rendus de chaque côté (le bloc défile). */
   depth?: number;
 }
 
-const { id, depth = 5 } = Astro.props;
+const { id, depth = 30 } = Astro.props;
 
-const up = ancestorsOf(id, depth).reverse(); // du plus eloigne au plus proche
+const up = ancestorsOf(id, depth).reverse(); // du plus éloigné au plus proche
 const down = descendantsOf(id, depth);
+
+const current = byId.get(id)!;
+const next = spindownTarget(id);
+const chainEndsHere = next === null && !!current.spindown.blocked;
+const isTop = up.length === 0;
 
 const rows = [
   ...up.map((nid, i) => ({ nid, distance: up.length - i, dir: 'up' as const })),
   ...down.map((nid, i) => ({ nid, distance: i + 1, dir: 'down' as const })),
 ];
-
-const current = byId.get(id)!;
-const next = spindownTarget(id);
-const chainEndsHere = next === null && !!current.spindown.blocked;
-const isTop = !up.length;
 ---
 
-<nav class="ladder" aria-label={`Items around ${current.name} in the Spindown chain`}>
-  <ol class="ladder__list">
-    {
-      rows
-        .filter((r) => r.dir === 'up')
-        .map((r) => {
-          const it = byId.get(r.nid)!;
-          return (
-            <li class="ladder__row ladder__row--up" style={`--dist:${r.distance}`}>
-              <a href={url(`/items/${it.id}`)} class="ladder__link">
-                <img src={it.icon} alt="" width="32" height="32" loading="lazy" decoding="async" />
-                <span class="ladder__name">{it.name}</span>
-                <span class="ladder__id mono">{formatId(it.id)}</span>
-              </a>
-            </li>
-          );
-        })
-    }
+<div class="ladder">
+  <p class="ladder__legend">
+    <span class="ladder__arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M12 4v15" />
+        <path d="m5 12 7 7 7-7" />
+      </svg>
+    </span>
+    <span data-i18n="item.chainDir">Spindown flows down: each item becomes the one below it.</span>
+    <span class="ladder__hint mono" aria-hidden="true">↕</span>
+  </p>
 
-    <li class="ladder__row ladder__row--current" aria-current="true">
-      <span class="ladder__link ladder__link--current">
-        <img src={current.icon} alt="" width="32" height="32" decoding="async" />
-        <span class="ladder__name">{current.name}</span>
-        <span class="ladder__id mono">{formatId(current.id)}</span>
-      </span>
-    </li>
+  <div class="ladder__scroll" data-ladder-scroll tabindex="0" role="group" aria-label="Spindown chain">
+    <ol class="ladder__list">
+      {
+        rows
+          .filter((r) => r.dir === 'up')
+          .map((r) => {
+            const it = byId.get(r.nid)!;
+            return (
+              <li class="ladder__row" style={`--dist:${r.distance}`} data-id={it.id}>
+                <a href={url(`/items/${it.id}`)} class="ladder__link">
+                  <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
+                  <span class="ladder__name">{it.name}</span>
+                  <span class="ladder__id mono">{formatId(it.id)}</span>
+                </a>
+              </li>
+            );
+          })
+      }
 
-    {
-      rows
-        .filter((r) => r.dir === 'down')
-        .map((r) => {
-          const it = byId.get(r.nid)!;
-          return (
-            <li class="ladder__row ladder__row--down" style={`--dist:${r.distance}`}>
-              <a href={url(`/items/${it.id}`)} class="ladder__link">
-                <img src={it.icon} alt="" width="32" height="32" loading="lazy" decoding="async" />
-                <span class="ladder__name">{it.name}</span>
-                <span class="ladder__id mono">{formatId(it.id)}</span>
-              </a>
-            </li>
-          );
-        })
-    }
-  </ol>
+      <li class="ladder__row ladder__row--current" aria-current="true" data-current>
+        <span class="ladder__link ladder__link--current">
+          <img src={current.icon} alt="" width="30" height="30" decoding="async" />
+          <span class="ladder__name">{current.name}</span>
+          <span class="ladder__id mono">{formatId(current.id)}</span>
+        </span>
+      </li>
+
+      {
+        rows
+          .filter((r) => r.dir === 'down')
+          .map((r) => {
+            const it = byId.get(r.nid)!;
+            return (
+              <li class="ladder__row" style={`--dist:${r.distance}`} data-id={it.id}>
+                <a href={url(`/items/${it.id}`)} class="ladder__link">
+                  <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
+                  <span class="ladder__name">{it.name}</span>
+                  <span class="ladder__id mono">{formatId(it.id)}</span>
+                </a>
+              </li>
+            );
+          })
+      }
+    </ol>
+  </div>
 
   {
     chainEndsHere && (
@@ -82,7 +95,7 @@ const isTop = !up.length;
   }
 
   {
-    isTop && (
+    isTop && !chainEndsHere && (
       <p
         class="ladder__stop ladder__stop--calm"
         data-i18n="item.chainTop"
@@ -92,63 +105,133 @@ const isTop = !up.length;
       </p>
     )
   }
-</nav>
+</div>
+
+<script>
+  // Centre le bloc sur l'item courant : sans cela, une fiche du bas de la
+  // chaîne s'ouvrirait sur une liste défilée n'importe où.
+  for (const box of document.querySelectorAll<HTMLElement>('[data-ladder-scroll]')) {
+    const current = box.querySelector<HTMLElement>('[data-current]');
+    if (!current) continue;
+    box.scrollTop = current.offsetTop - box.clientHeight / 2 + current.offsetHeight / 2;
+  }
+</script>
 
 <style>
   .ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .ladder__legend {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+  }
+
+  .ladder__hint {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: rgba(79, 216, 232, 0.8);
+    letter-spacing: -0.05em;
+  }
+
+  .ladder__arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    flex: none;
+    border-radius: 50%;
+    color: #04212b;
+    background: linear-gradient(180deg, #c8f7ff, #55cfe4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 12px rgba(79, 216, 232, 0.5);
+  }
+
+  /* La fenêtre sur la chaîne : elle défile, la page non. */
+  .ladder__scroll {
     position: relative;
-    padding-left: 1.2rem;
+    max-height: 21rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.35rem 0;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(2, 14, 20, 0.45), rgba(2, 14, 20, 0.2));
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(190, 240, 250, 0.08);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(79, 216, 232, 0.75) rgba(255, 255, 255, 0.07);
+  }
+
+  .ladder__scroll:focus-visible {
+    outline: 2px solid var(--aqua);
+    outline-offset: 2px;
   }
 
   .ladder__list {
     list-style: none;
     margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
+    padding: 0.2rem 0.55rem 0.2rem 1.85rem;
     position: relative;
   }
 
+  /* le fil de la chaîne */
   .ladder__list::before {
     content: '';
     position: absolute;
-    left: -1.1rem;
-    top: 0.6rem;
-    bottom: 0.6rem;
+    left: 0.95rem;
+    top: 0;
+    bottom: 0;
     width: 2px;
     border-radius: 2px;
     background: linear-gradient(
       to bottom,
-      transparent,
-      rgba(79, 216, 232, 0.5) 14%,
+      rgba(79, 216, 232, 0.1),
+      rgba(79, 216, 232, 0.55) 22%,
       rgba(79, 216, 232, 0.7) 50%,
-      rgba(79, 216, 232, 0.4) 86%,
-      transparent
+      rgba(79, 216, 232, 0.55) 78%,
+      rgba(79, 216, 232, 0.1)
     );
   }
 
   .ladder__row {
     position: relative;
-    opacity: max(0.4, calc(1 - (var(--dist, 0) * 0.1)));
+    opacity: max(0.42, calc(1 - (var(--dist, 0) * 0.035)));
   }
 
   .ladder__row::before {
     content: '';
     position: absolute;
-    left: -1.1rem;
+    left: -0.9rem;
     top: 50%;
-    width: 0.85rem;
+    width: 0.72rem;
     height: 1px;
     background: rgba(79, 216, 232, 0.28);
+  }
+
+  .ladder__row::after {
+    content: '';
+    position: absolute;
+    left: -1.02rem;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: #7fe6f4;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 8px rgba(79, 216, 232, 0.7);
   }
 
   .ladder__link {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    padding: 0.28rem 0.55rem;
-    border-radius: 10px;
+    gap: 0.6rem;
+    height: 2.4rem;
+    padding: 0 0.5rem;
+    border-radius: 9px;
     border: 1px solid transparent;
     color: var(--ink-dim);
     text-decoration: none;
@@ -159,7 +242,7 @@ const isTop = !up.length;
   .ladder__link img {
     image-rendering: pixelated;
     flex: none;
-    border-radius: 6px;
+    border-radius: 5px;
     background: radial-gradient(circle at 50% 32%, #10404e, #04141c 78%);
   }
 
@@ -178,39 +261,42 @@ const isTop = !up.length;
 
   .ladder__id {
     margin-left: auto;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--ink-faint);
   }
 
+  /* l'item courant : le point d'ancrage du bloc */
   .ladder__row--current {
     opacity: 1;
-    margin-block: 0.3rem;
   }
 
   .ladder__row--current::before {
-    content: '';
-    position: absolute;
-    left: -1.1rem;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    height: auto;
-    background: linear-gradient(180deg, #9beeff, #2aa8c4);
-    box-shadow: 0 0 12px rgba(79, 216, 232, 0.8);
+    background: rgba(79, 216, 232, 0.85);
+    width: 0.85rem;
+  }
+
+  .ladder__row--current::after {
+    width: 9px;
+    height: 9px;
+    margin-top: -4.5px;
+    left: -1.13rem;
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.95), 0 0 14px rgba(79, 216, 232, 1);
   }
 
   .ladder__link--current {
-    background: linear-gradient(180deg, rgba(79, 216, 232, 0.2), rgba(79, 216, 232, 0.05));
-    border-color: rgba(79, 216, 232, 0.55);
+    height: 2.7rem;
+    background: linear-gradient(180deg, rgba(79, 216, 232, 0.22), rgba(79, 216, 232, 0.05));
+    border-color: rgba(79, 216, 232, 0.6);
     color: var(--ink);
     font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px -14px rgba(79, 216, 232, 0.9);
   }
 
   .ladder__stop {
-    margin: 0.9rem 0 0;
+    margin: 0;
     padding: 0.5rem 0.75rem;
-    font-size: 0.83rem;
+    font-size: 0.82rem;
     border-radius: 10px;
     color: #ffc9c3;
     border: 1px solid rgba(208, 69, 60, 0.45);

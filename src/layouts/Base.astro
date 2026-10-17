@@ -87,7 +87,6 @@ const fonts = `
           <p data-i18n="footer.disclaimer">
             Unofficial fan project, not affiliated with Edmund McMillen, Nicalis or Valve.
           </p>
-          <p data-i18n="footer.free">Free site, no ads, no monetization, no accounts, no tracking.</p>
         </div>
         <div>
           <p><a href={url('/credits')} data-i18n="footer.credits">Credits &amp; legal</a></p>
@@ -111,20 +110,17 @@ const fonts = `
 
   .lang select {
     font: inherit;
-    font-size: 0.76rem;
-    padding: 0.3rem 0.55rem;
-    border-radius: var(--r-pill);
-    color: var(--ink-dim);
-    background: linear-gradient(180deg, rgba(190, 240, 250, 0.14), rgba(190, 240, 250, 0.04));
-    border: 1px solid var(--edge-soft);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.1rem;
+    color: var(--ink-faint);
+    background: transparent;
+    border: 0;
     cursor: pointer;
-    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    transition: color var(--dur) var(--ease);
   }
 
   .lang select:hover {
     color: var(--ink);
-    border-color: var(--edge);
   }
 
   .lang select:focus-visible {

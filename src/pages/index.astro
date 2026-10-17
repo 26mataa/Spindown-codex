@@ -1,96 +1,76 @@
 ---
 import Base from '../layouts/Base.astro';
-import { formatId, spindownTarget, visibleItems, byId } from '../lib/chain';
+import { formatId, visibleItems } from '../lib/chain';
 import { url } from '../lib/urls';
 
-const day = Math.floor(Date.now() / 86_400_000);
-const candidates = visibleItems.filter((i) => i.spindown.target !== null);
-const itemOfTheDay = candidates[day % candidates.length];
-const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
+// Le haut de la chaîne : c'est le point d'entrée, pas une sélection arbitraire.
+const preview = [...visibleItems].reverse().slice(0, 12);
 ---
 
-<Base title="Spindown Codex â€” The Binding of Isaac item chain">
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__main">
-        <p class="eyebrow mono" data-i18n="home.eyebrow">unofficial Â· free Â· no ads</p>
+<Base title="Spindown Codex — The Binding of Isaac item chain">
+  <section class="opening">
+    <div class="wrap">
+      <h1 class="wordmark">Spindown <span>Codex</span></h1>
 
-        <h1>
-          <span data-i18n="home.title1">The item chain,</span><br />
-          <span class="grad" data-i18n="home.title2">end to end.</span>
-        </h1>
+      <p class="tagline" data-i18n-html="home.lede">
+        Every collectible in <em>Repentance+</em>, and what each one becomes with a Spindown Dice.
+      </p>
 
-        <p class="lede" data-i18n-html="home.lede">
-          Every collectible in <em>Repentance+</em>, with the one thing the other wikis won't show you:
-          what each item <strong>becomes</strong> when you hit it with a Spindown Dice â€” and what it took to get there.
-        </p>
-
-        <div class="search glass" data-search-root>
-          <div class="search__field">
-            <span class="search__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m16.5 16.5 4 4" />
-              </svg>
-            </span>
-            <label class="visually-hidden" for="q" data-i18n="home.searchPlaceholder"
-              >Search any item, in any language</label
-            >
-            <input
-              id="q"
-              type="search"
-              name="q"
-              placeholder="Search an item â€” in any of 20 languagesâ€¦"
-              autocomplete="off"
-              spellcheck="false"
-              data-search-input
-              data-i18n-placeholder="home.searchPlaceholder"
-            />
-            <ul class="results" data-search-results hidden></ul>
-          </div>
-          <p class="hint faint" data-i18n="home.searchHint">
-            Try â€œBrimâ€, â€œOignon Tristeâ€, â€œæ‚²ã—ã¿ã‚ªãƒ‹ã‚ªãƒ³â€, â€œÐšÑƒÐ±Ð¸Ðº Ñ Ð²Ñ‹Ñ‡ÐµÑ‚Ð¾Ð¼â€.
-          </p>
-        </div>
-
-        <div class="cta">
-          <a class="btn" href={url('/items')} data-i18n="home.browse" data-i18n-args={JSON.stringify({ n: visibleItems.length })}
-            >Browse all {visibleItems.length} items</a
-          >
-          <a class="btn btn--ghost" href={url('/chain')} data-i18n="home.openChain">Open the chain</a>
-        </div>
+      <div class="find" data-search-root>
+        <label class="visually-hidden" for="q" data-i18n="home.searchPlaceholder">
+          Search any item, in any language
+        </label>
+        <input
+          id="q"
+          type="search"
+          name="q"
+          placeholder="Search an item — in any of 20 languages…"
+          autocomplete="off"
+          spellcheck="false"
+          data-search-input
+          data-i18n-placeholder="home.searchPlaceholder"
+        />
+        <ul class="results" data-search-results hidden></ul>
       </div>
 
-      <aside class="otd glass" aria-labelledby="otd-label">
-        <span class="otd__glow" aria-hidden="true"></span>
-        <p class="otd__label mono" id="otd-label" data-i18n="home.itemOfDay">item of the day</p>
-
-        <a class="otd__item" href={url(`/items/${itemOfTheDay.id}`)}>
-          <span class="otd__art">
-            <img src={itemOfTheDay.icon} alt="" width="128" height="128" decoding="async" />
-          </span>
-          <span class="otd__text">
-            <span class="otd__name">{itemOfTheDay.name}</span>
-            <span class="otd__id mono">{formatId(itemOfTheDay.id)}</span>
-          </span>
-        </a>
-
-        <p class="otd__next">
-          <span class="faint" data-i18n="item.becomes">With a Spindown, becomes</span>
-          <a href={url(`/items/${nextItem.id}`)}>
-            <img src={nextItem.icon} alt="" width="22" height="22" decoding="async" />
-            {nextItem.name}
-          </a>
-        </p>
-      </aside>
+      <p class="hint" data-i18n="home.searchHint">
+        Try “Brim”, “Oignon Triste”, “悲しみオニオン”, “Кубик с вычетом”.
+      </p>
     </div>
+  </section>
+
+  <section class="wrap down" aria-labelledby="down-title">
+    <div class="down__head">
+      <h2 id="down-title" data-i18n="chain.title">The chain</h2>
+      <a class="down__link" href={url('/chain')} data-i18n="item.seeChain">See the whole chain →</a>
+    </div>
+
+    <ol class="spine">
+      {
+        preview.map((item) => (
+          <li class="spine__row">
+            <a class="spine__link" href={url(`/items/${item.id}`)}>
+              <span class="spine__id mono">{formatId(item.id)}</span>
+              <span class="spine__art">
+                <img src={item.icon} alt="" width="26" height="26" loading="lazy" decoding="async" />
+              </span>
+              <span class="spine__name">{item.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="down__more">
+      <a href={url('/items')} data-i18n="chain.footBrowse" data-i18n-args={JSON.stringify({ n: visibleItems.length })}
+        >Browse all {visibleItems.length} items</a
+      >
+    </p>
   </section>
 </Base>
 
 <script>
   import { url } from '../lib/urls';
-
-  // Recherche multilingue : chargement paresseux de l'index au premier focus.
   import { buildIndex, search, type Row, type SearchEntry } from '../lib/search';
 
   const root = document.querySelector<HTMLElement>('[data-search-root]');
@@ -154,7 +134,6 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
       if (!root?.contains(e.target as Node)) render([]);
     });
 
-    // Recherche partageable : /?q=Oignon+Triste
     const initial = new URLSearchParams(location.search).get('q');
     if (initial) {
       input.value = initial;
@@ -164,226 +143,123 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
 </script>
 
 <style>
-  .hero {
-    display: flex;
-    align-items: center;
-    min-height: min(74vh, 720px);
-    padding-block: clamp(1.5rem, 4vh, 3rem) clamp(1.5rem, 4vh, 3rem);
+  .opening {
+    padding-block: clamp(3rem, 12vh, 7rem) clamp(2.5rem, 7vh, 4rem);
   }
 
-  .hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: center;
+  .wordmark {
+    font-size: clamp(2.6rem, 7.5vw, 4.8rem);
+    line-height: 0.98;
+    margin: 0 0 1.1rem;
+    letter-spacing: -0.01em;
   }
 
-  .eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 1rem;
-    opacity: 0.85;
-  }
-
-  h1 {
-    font-size: clamp(2.4rem, 6.2vw, 4.3rem);
-    margin-bottom: 0.9rem;
-  }
-
-  .grad {
-    background: linear-gradient(180deg, #ffffff 8%, #a9eefa 42%, #38bcd6 96%);
+  .wordmark span {
+    background: linear-gradient(180deg, #ffffff 5%, #a9eefa 45%, #38bcd6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 4px 12px rgba(79, 216, 232, 0.35));
   }
 
-  .lede {
-    font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  .tagline {
+    max-width: 44ch;
+    margin: 0 0 2.4rem;
+    font-size: clamp(1rem, 1.5vw, 1.12rem);
     color: var(--ink-dim);
-    max-width: 54ch;
-    margin-bottom: 1.6rem;
   }
 
-  .lede :global(strong) {
+  .tagline :global(em) {
     color: var(--ink);
+    font-style: italic;
   }
 
-  /* --- champ de recherche en plaque de verre --- */
-
-  .search {
-    padding: 0.55rem 0.55rem 0.65rem;
-    max-width: 34rem;
-    margin-bottom: 1.3rem;
-  }
-
-  .search__field {
+  /* Le champ de recherche : une ligne, pas un widget. */
+  .find {
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.35rem 0.9rem;
-    border-radius: 10px;
-    background: linear-gradient(180deg, rgba(2, 14, 20, 0.62), rgba(2, 14, 20, 0.42));
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(190, 240, 250, 0.08);
+    max-width: 34rem;
   }
 
-  .search__icon {
-    color: var(--aqua);
-    display: grid;
-    place-items: center;
-    opacity: 0.8;
-  }
-
-  .search__field input {
-    flex: 1;
-    min-width: 0;
-    padding: 0.5rem 0;
+  .find input {
+    width: 100%;
+    padding: 0.55rem 0 0.6rem;
     font: inherit;
-    font-size: 1.02rem;
-    text-overflow: ellipsis;
+    font-size: clamp(1.05rem, 2.3vw, 1.4rem);
     color: var(--ink);
     background: transparent;
     border: 0;
+    border-bottom: 1px solid rgba(190, 240, 250, 0.25);
     outline: none;
+    transition: border-color var(--dur) var(--ease);
   }
 
-  .search__field input::placeholder {
+  .find input::placeholder {
     color: var(--ink-faint);
   }
 
-  .search__field:focus-within {
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55), 0 0 0 2px rgba(79, 216, 232, 0.55),
-      0 0 24px -6px rgba(79, 216, 232, 0.8);
+  .find input:focus {
+    border-bottom-color: var(--aqua);
   }
 
   .hint {
-    margin: 0.6rem 0 0;
-    padding-left: 0.85rem;
+    margin: 0.75rem 0 0;
     font-size: 0.76rem;
-  }
-
-  .cta {
-    display: flex;
-    gap: 0.7rem;
-    flex-wrap: wrap;
-  }
-
-  /* --- carte Â« item du jour Â» --- */
-
-  .otd {
-    position: relative;
-    padding: 1.1rem 1.15rem 1.2rem;
-    overflow: hidden;
-  }
-
-  .otd__glow {
-    position: absolute;
-    inset: -40% -20% auto;
-    height: 90%;
-    background: radial-gradient(circle at 50% 40%, rgba(79, 216, 232, 0.35), transparent 62%);
-    pointer-events: none;
-  }
-
-  .otd__label {
-    position: relative;
-    margin: 0 0 0.9rem;
-    font-size: 0.64rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
     color: var(--ink-faint);
   }
 
-  .otd__item {
-    position: relative;
+  /* --- la descente --- */
+
+  .down {
+    padding-bottom: 3rem;
+  }
+
+  .down__head {
     display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    text-decoration: none;
-    color: var(--ink);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
   }
 
-  .otd__art {
-    display: grid;
-    place-items: center;
-    width: 5.4rem;
-    height: 5.4rem;
-    flex: none;
-    border-radius: 14px;
-    background: radial-gradient(circle at 50% 32%, #12414f, #04141c 74%);
-    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(190, 240, 250, 0.12);
+  .down__head h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--ink-dim);
   }
 
-  .otd__art img {
-    image-rendering: pixelated;
-    width: 72%;
-    height: auto;
-    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
-    transition: transform var(--dur) var(--ease);
-  }
-
-  .otd__item:hover .otd__art img {
-    transform: scale(1.08) translateY(-2px);
-  }
-
-  .otd__text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    min-width: 0;
-  }
-
-  .otd__name {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    line-height: 1.1;
-  }
-
-  .otd__id {
-    font-size: 0.72rem;
+  .down__link {
+    font-size: 0.82rem;
     color: var(--ink-faint);
-  }
-
-  .otd__next {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    margin: 1rem 0 0;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--edge-soft);
-    font-size: 0.72rem;
-  }
-
-  .otd__next a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--ink);
     text-decoration: none;
+    white-space: nowrap;
   }
 
-  .otd__next a:hover {
+  .down__link:hover {
     color: var(--aqua);
   }
 
-  .otd__next img {
-    image-rendering: pixelated;
+  .down__more {
+    margin: 1rem 0 0;
+    font-size: 0.82rem;
   }
 
-  /* --- rÃ©sultats de recherche --- */
+  .down__more a {
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+
+  .down__more a:hover {
+    color: var(--aqua);
+  }
+
+  /* --- résultats --- */
 
   .results {
     position: absolute;
     z-index: 30;
     inset-inline: 0;
-    top: calc(100% + 0.45rem);
+    top: calc(100% + 0.4rem);
     margin: 0;
-    padding: 0.35rem;
+    padding: 0.3rem;
     list-style: none;
     border-radius: var(--r-sm);
     background: linear-gradient(180deg, rgba(11, 47, 60, 0.98), rgba(4, 20, 27, 0.98));
@@ -404,7 +280,7 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
 
   :global(.results a:hover),
   :global(.results a:focus-visible) {
-    background: rgba(176, 233, 246, 0.1);
+    background: rgba(79, 216, 232, 0.14);
   }
 
   :global(.results img) {
@@ -417,18 +293,10 @@ const nextItem = byId.get(spindownTarget(itemOfTheDay.id)!)!;
     color: var(--ink-faint);
   }
 
-  @media (max-width: 420px) {
-    .search__field input {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 900px) {
-    .hero__grid {
-      grid-template-columns: 1fr;
-    }
-    .otd {
-      max-width: 26rem;
+  @media (max-width: 720px) {
+    .down__head {
+      flex-direction: column;
+      gap: 0.2rem;
     }
   }
 </style>

@@ -40,11 +40,7 @@ const en: Record<string, string> = {
   'home.searchHint': 'Try “Brim”, “Oignon Triste”, “悲しみオニオン”, “Кубик с вычетом”.',
   'home.browse': 'Browse all {n} items',
   'home.openChain': 'Open the chain',
-  'home.howTitle': 'What a Spindown actually does',
   'home.itemOfDay': 'item of the day',
-  'home.topOfChain': 'top of the chain',
-  'home.startSomewhere': 'Start somewhere',
-  'home.startSub': 'Three items that show how the chain reads.',
 
   'items.title': 'All items',
   'items.lede': '{n} collectibles, sorted by internal ID. Every card opens the item, and every item shows what it Spindowns into.',
@@ -146,11 +142,7 @@ const fr: Record<string, string> = {
   'home.searchHint': 'Essayez « Brim », « Oignon Triste », « 悲しみオニオン », « Кубик с вычетом ».',
   'home.browse': 'Parcourir les {n} items',
   'home.openChain': 'Ouvrir la chaîne',
-  'home.howTitle': 'Ce que fait vraiment un Spindown',
   'home.itemOfDay': 'item du jour',
-  'home.topOfChain': 'sommet de la chaîne',
-  'home.startSomewhere': 'Commencer quelque part',
-  'home.startSub': 'Trois items qui montrent comment se lit la chaîne.',
 
   'items.title': 'Tous les items',
   'items.lede':
@@ -254,11 +246,7 @@ const de: Record<string, string> = {
   'home.searchHint': 'Zum Beispiel „Brim“, „Oignon Triste“, „悲しみオニオン“, „Кубик с вычетом“.',
   'home.browse': 'Alle {n} Items ansehen',
   'home.openChain': 'Die Kette öffnen',
-  'home.howTitle': 'Was ein Spindown wirklich macht',
   'home.itemOfDay': 'Item des Tages',
-  'home.topOfChain': 'Spitze der Kette',
-  'home.startSomewhere': 'Irgendwo anfangen',
-  'home.startSub': 'Drei Items, die zeigen, wie die Kette gelesen wird.',
 
   'items.title': 'Alle Items',
   'items.lede':
@@ -362,11 +350,7 @@ const es: Record<string, string> = {
   'home.searchHint': 'Prueba «Brim», «Oignon Triste», «悲しみオニオン», «Кубик с вычетом».',
   'home.browse': 'Ver los {n} objetos',
   'home.openChain': 'Abrir la cadena',
-  'home.howTitle': 'Qué hace realmente un Spindown',
   'home.itemOfDay': 'objeto del día',
-  'home.topOfChain': 'cima de la cadena',
-  'home.startSomewhere': 'Empieza por algún sitio',
-  'home.startSub': 'Tres objetos que muestran cómo se lee la cadena.',
 
   'items.title': 'Todos los objetos',
   'items.lede':
@@ -469,11 +453,7 @@ const it: Record<string, string> = {
   'home.searchHint': 'Prova «Brim», «Oignon Triste», «悲しみオニオン», «Кубик с вычетом».',
   'home.browse': 'Sfoglia i {n} oggetti',
   'home.openChain': 'Apri la catena',
-  'home.howTitle': 'Cosa fa davvero uno Spindown',
   'home.itemOfDay': 'oggetto del giorno',
-  'home.topOfChain': 'cima della catena',
-  'home.startSomewhere': 'Parti da qualche parte',
-  'home.startSub': 'Tre oggetti che mostrano come si legge la catena.',
 
   'items.title': 'Tutti gli oggetti',
   'items.lede':
@@ -569,77 +549,27 @@ const extra: Record<Lang, Record<string, string>> = {
   en: {
     'common.skip': 'Skip to content',
     'home.lede':
-      "Every collectible in <em>Repentance+</em>, with the one thing the other wikis won't show you: what each item <strong>becomes</strong> when you hit it with a Spindown Dice — and what it took to get there.",
-    'home.step1Title': 'It goes down one ID',
-    'home.step1Body':
-      'Every collectible has an internal number. Spindown Dice turns the item into the collectible whose number is <strong>one lower</strong>.',
-    'home.step2Title': 'It skips the gaps',
-    'home.step2Body':
-      'Hidden items and unused ID slots are jumped over, so <span class="mono">#716 → #713</span> is one single use, not four.',
-    'home.step3Title': "It stops dead at Dad's Note",
-    'home.step3Body':
-      '<span class="mono">#668</span> cannot be rerolled by anything. Everything below it — including Strawman — is unreachable by Spindown.',
-    'home.topMeta': 'nothing above it',
+    "Every collectible in <em>Repentance+</em>, and what each one becomes with a Spindown Dice.",
   },
   fr: {
     'common.skip': 'Aller au contenu',
     'home.lede':
-      "Tous les collectibles de <em>Repentance+</em>, avec ce que les autres wikis ne montrent pas : ce que chaque item <strong>devient</strong> quand on lui applique un Spindown Dice — et par quel chemin on y arrive.",
-    'home.step1Title': "Il descend d'un ID",
-    'home.step1Body':
-      "Chaque collectible a un numéro interne. Le Spindown Dice transforme l'item en celui dont le numéro est <strong>un cran plus bas</strong>.",
-    'home.step2Title': 'Il saute les trous',
-    'home.step2Body':
-      "Les items cachés et les slots d'ID inutilisés sont traversés : <span class=\"mono\">#716 → #713</span> ne coûte qu'une seule utilisation, pas quatre.",
-    'home.step3Title': "Il s'arrête net à Dad's Note",
-    'home.step3Body':
-      "<span class=\"mono\">#668</span> ne peut être rerollé par rien. Tout ce qui est en dessous — Strawman compris — est inatteignable par Spindown.",
-    'home.topMeta': 'rien au-dessus',
+    "Tous les collectibles de <em>Repentance+</em>, et ce que chacun devient avec un Spindown Dice.",
   },
   de: {
     'common.skip': 'Zum Inhalt springen',
     'home.lede':
-      'Alle Collectibles aus <em>Repentance+</em>, mit dem, was andere Wikis nicht zeigen: was jedes Item <strong>wird</strong>, wenn man ein Spindown Dice darauf anwendet — und über welchen Weg.',
-    'home.step1Title': 'Eine ID nach unten',
-    'home.step1Body':
-      'Jedes Collectible hat eine interne Nummer. Spindown Dice verwandelt das Item in das Collectible mit der <strong>nächstniedrigeren</strong> Nummer.',
-    'home.step2Title': 'Lücken werden übersprungen',
-    'home.step2Body':
-      'Versteckte Items und ungenutzte ID-Slots werden übersprungen: <span class="mono">#716 → #713</span> kostet nur eine Nutzung, nicht vier.',
-    'home.step3Title': "Endstation bei Dad's Note",
-    'home.step3Body':
-      '<span class="mono">#668</span> kann durch nichts gererollt werden. Alles darunter — auch Strawman — ist per Spindown unerreichbar.',
-    'home.topMeta': 'nichts darüber',
+    "Alle Collectibles aus <em>Repentance+</em> — und was aus jedem mit einem Spindown Dice wird.",
   },
   es: {
     'common.skip': 'Saltar al contenido',
     'home.lede':
-      'Todos los coleccionables de <em>Repentance+</em>, con lo que otros wikis no muestran: en qué <strong>se convierte</strong> cada objeto al aplicarle un Spindown Dice — y por qué camino.',
-    'home.step1Title': 'Baja una ID',
-    'home.step1Body':
-      'Cada coleccionable tiene un número interno. Spindown Dice convierte el objeto en el coleccionable con el número <strong>inmediatamente inferior</strong>.',
-    'home.step2Title': 'Se salta los huecos',
-    'home.step2Body':
-      'Los objetos ocultos y los slots de ID sin usar se saltan: <span class="mono">#716 → #713</span> cuesta un solo uso, no cuatro.',
-    'home.step3Title': "Se detiene en seco en Dad's Note",
-    'home.step3Body':
-      '<span class="mono">#668</span> no puede ser rerolado por nada. Todo lo que hay debajo —incluido Strawman— es inalcanzable por Spindown.',
-    'home.topMeta': 'nada por encima',
+    "Todos los coleccionables de <em>Repentance+</em>, y en qué se convierte cada uno con un Spindown Dice.",
   },
   it: {
     'common.skip': 'Vai al contenuto',
     'home.lede':
-      "Tutti i collezionabili di <em>Repentance+</em>, con quello che gli altri wiki non mostrano: in cosa <strong>si trasforma</strong> ogni oggetto quando ci applichi uno Spindown Dice — e attraverso quale percorso.",
-    'home.step1Title': 'Scende di un ID',
-    'home.step1Body':
-      "Ogni collezionabile ha un numero interno. Spindown Dice trasforma l'oggetto in quello con il numero <strong>immediatamente inferiore</strong>.",
-    'home.step2Title': 'Salta i vuoti',
-    'home.step2Body':
-      'Gli oggetti nascosti e gli slot di ID inutilizzati vengono saltati: <span class="mono">#716 → #713</span> costa un solo uso, non quattro.',
-    'home.step3Title': "Si ferma di colpo su Dad's Note",
-    'home.step3Body':
-      '<span class="mono">#668</span> non può essere rerollato da nulla. Tutto ciò che sta sotto — Strawman compreso — è irraggiungibile con lo Spindown.',
-    'home.topMeta': 'niente sopra',
+    "Tutti i collezionabili di <em>Repentance+</em>, e in cosa si trasforma ognuno con uno Spindown Dice.",
   },
 };
 

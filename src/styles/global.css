@@ -254,41 +254,33 @@ a:hover {
   color: var(--aqua);
 }
 
-/* Navigation en capsule de verre. */
+/* Navigation : des mots, pas des boutons. */
 .nav {
   display: flex;
-  gap: 0.15rem;
+  align-items: center;
+  gap: 1.5rem;
   margin-left: auto;
-  padding: 0.22rem;
-  border-radius: var(--r-pill);
-  background: rgba(4, 20, 27, 0.55);
-  border: 1px solid var(--edge-soft);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 -6px 12px -10px #000;
 }
 
 .nav a {
-  position: relative;
-  padding: 0.32rem 0.85rem;
-  border-radius: var(--r-pill);
-  color: var(--ink-dim);
+  padding: 0;
+  color: var(--ink-faint);
   text-decoration: none;
-  font-size: 0.86rem;
+  font-size: 0.87rem;
   letter-spacing: 0.01em;
-  transition: color var(--dur) var(--ease), background var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
+  transition: color var(--dur) var(--ease);
 }
 
 .nav a:hover {
   color: var(--ink);
-  background: rgba(176, 233, 246, 0.08);
 }
 
 .nav a[aria-current='page'] {
-  color: #04212b;
-  background: linear-gradient(180deg, #b6f2fb, #55cfe4 55%, #2aa3bd);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 6px rgba(0, 0, 0, 0.22),
-    0 4px 14px -6px rgba(79, 216, 232, 0.8);
-  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--aqua);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
 }
 
 main {
@@ -425,54 +417,98 @@ main {
   top: 0.75rem;
 }
 
-/* --------------------------------------------------------------- boutons */
-
+/* Un seul bouton dans tout le site : discret, jamais criard. */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.62rem 1.25rem;
+  padding: 0.5rem 1.05rem;
   border-radius: var(--r-pill);
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #04212b;
+  font-size: 0.9rem;
+  color: var(--ink);
   text-decoration: none;
-  background: linear-gradient(180deg, #c8f7ff 0%, #6fdcf0 42%, #2aa8c4 100%);
-  border: 1px solid #a9f0f9;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -10px 16px -10px rgba(0, 0, 0, 0.55),
-    0 10px 24px -12px rgba(79, 216, 232, 0.9);
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
-    filter var(--dur) var(--ease);
-  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--edge);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -10px 16px -10px rgba(0, 0, 0, 0.55),
-    0 14px 30px -12px rgba(79, 216, 232, 1);
-  color: #04212b;
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn--ghost {
-  background: linear-gradient(180deg, rgba(190, 240, 250, 0.16), rgba(190, 240, 250, 0.05));
-  border-color: var(--edge);
+  border-color: var(--aqua);
   color: var(--ink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 20px -14px #000;
 }
 
-.btn--ghost:hover {
+
+/* -------------------------------------------------------------------------
+   La chaîne. C'est le motif du site : une suite de lignes, pas de cartes.
+   L'ID à gauche, le sprite dans sa colonne, le nom qui glisse au survol.
+   ------------------------------------------------------------------------- */
+
+.spine {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(190, 240, 250, 0.12);
+}
+
+.spine__row {
+  border-bottom: 1px solid rgba(190, 240, 250, 0.07);
+}
+
+.spine__link {
+  display: grid;
+  grid-template-columns: 4.3rem 2.1rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem 0.15rem;
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+
+.spine__id {
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+  transition: color var(--dur) var(--ease);
+}
+
+.spine__art img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  image-rendering: pixelated;
+  opacity: 0.92;
+}
+
+.spine__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: transform 180ms var(--ease);
+}
+
+.spine__link:hover {
   color: var(--ink);
-  background: linear-gradient(180deg, rgba(190, 240, 250, 0.24), rgba(190, 240, 250, 0.08));
+}
+
+.spine__link:hover .spine__name {
+  transform: translateX(5px);
+}
+
+.spine__link:hover .spine__id {
+  color: var(--aqua);
+}
+
+.spine__flag {
+  margin-left: 0.5rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffb2ac;
+  border: 1px solid rgba(208, 69, 60, 0.45);
+  border-radius: 999px;
+  padding: 0.04rem 0.4rem;
+  white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -484,19 +520,8 @@ main {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-}
 
-/* Les popups natifs de <select> ignorént le fond du site : sans cela, le texte
-   sombre s'affiche sur un popup clair, illisible (voir audit). */
-select,
-option,
-optgroup {
-  background-color: #0b2f3c;
-  color: var(--ink);
-}
-
-option:checked,
-option:hover {
-  background-color: #16505f;
-  color: #ffffff;
+  .spine__link:hover .spine__name {
+    transform: none;
+  }
 }

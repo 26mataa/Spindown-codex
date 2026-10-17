@@ -1,0 +1,258 @@
+---
+import Base from '../layouts/Base.astro';
+import { visibleItems } from '../lib/chain';
+
+// Donnees compactes envoyees au client : [id, cible].
+const pairs = visibleItems.map((i) => [i.id, i.spindown.target] as const);
+const options = visibleItems.map((i) => ({ id: i.id, name: i.name }));
+---
+
+<Base title="Distance calculator — Spindown Codex" description="How many Spindown Dice uses to turn any collectible into any other.">
+  <div class="wrap wrap--narrow">
+    <header class="head">
+      <h1 data-i18n="calc.title">How many Spindowns?</h1>
+      <p class="muted" data-i18n="calc.lede">
+        Pick where you are and where you want to end up. The calculator walks the real chain —
+        hidden IDs are skipped, and Dad's Note stops everything dead.
+      </p>
+    </header>
+
+    <form class="calc" data-calc>
+      <div class="calc__row">
+        <div class="field">
+          <label for="from" data-i18n="calc.from">From</label>
+          <select id="from" data-from></select>
+        </div>
+
+        <span class="arrow" aria-hidden="true">→</span>
+
+        <div class="field">
+          <label for="to" data-i18n="calc.to">To</label>
+          <select id="to" data-to></select>
+        </div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" data-battery />
+        <span data-i18n="calc.battery">Car Battery (two rerolls per use)</span>
+      </label>
+    </form>
+
+    <section class="result" data-result aria-live="polite">
+      <p class="result__placeholder muted" data-i18n="calc.placeholder">
+        Choose two items to see the path.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<script type="application/json" id="chain-data" set:html={JSON.stringify(pairs)}></script>
+<script type="application/json" id="item-data" set:html={JSON.stringify(options)}></script>
+
+<script>
+  import { distanceWithMap } from '../lib/distance';
+  import { t } from '../i18n/runtime';
+  import { url } from '../lib/urls';
+
+  const pairs = JSON.parse(document.getElementById('chain-data')!.textContent!) as [number, number | null][];
+  const items = JSON.parse(document.getElementById('item-data')!.textContent!) as { id: number; name: string }[];
+
+  const chain = new Map<number, number | null>(pairs);
+  const nameOf = new Map(items.map((i) => [i.id, i.name]));
+
+  const from = document.querySelector<HTMLSelectElement>('[data-from]')!;
+  const to = document.querySelector<HTMLSelectElement>('[data-to]')!;
+  const battery = document.querySelector<HTMLInputElement>('[data-battery]')!;
+  const result = document.querySelector<HTMLElement>('[data-result]')!;
+
+  const params = new URLSearchParams(location.search);
+
+  for (const sel of [from, to]) {
+    sel.innerHTML = items
+      .map((i) => `<option value="${i.id}">${i.name} (#${String(i.id).padStart(3, '0')})</option>`)
+      .join('');
+  }
+
+  from.value = params.get('from') ?? '723';
+  to.value = params.get('to') ?? '1';
+
+  const icon = (id: number) =>
+    `<img src="${url(`/icons/${id}.png`)}" alt="" width="28" height="28" loading="lazy" style="image-rendering:pixelated">`;
+
+  const label = (id: number) => `${nameOf.get(id) ?? '?'} <span class="mono">#${String(id).padStart(3, '0')}</span>`;
+
+  function render() {
+    const fromId = Number(from.value);
+    const toId = Number(to.value);
+    const r = distanceWithMap(chain, fromId, toId, { carBattery: battery.checked });
+
+    const pageUrl = new URL(location.href);
+    pageUrl.searchParams.set('from', String(fromId));
+    pageUrl.searchParams.set('to', String(toId));
+    history.replaceState(null, '', pageUrl);
+
+    const pathHtml = `<ol class="path">
+        ${r.path.map((id) => `<li><a href="${url(`/items/${id}`)}">${icon(id)}${label(id)}</a></li>`).join('')}
+      </ol>`;
+
+    if (r.possible) {
+      const count = t(r.uses === 1 ? 'calc.use' : 'calc.uses', { n: r.uses });
+      // Le nombre est mis en avant sans perdre la traduction de l'unite.
+      const big = count.replace(/^(\D*?)(\d+)/, '$1<strong>$2</strong>');
+      result.innerHTML = `
+        <p class="result__big">
+          ${big}
+          ${battery.checked ? `<span class="muted">(${t('calc.batteryShort')})</span>` : ''}
+        </p>
+        ${pathHtml}`;
+      return;
+    }
+
+    const why = t(`calc.reason.${r.reason ?? 'unknown-item'}`);
+    const stop = r.stoppedAt
+      ? `<p class="muted">${t('calc.stopped', { item: `${nameOf.get(r.stoppedAt) ?? '?'} #${String(r.stoppedAt).padStart(3, '0')}` })}</p>`
+      : '';
+
+    result.innerHTML = `
+      <p class="result__big result__big--fail">${t('calc.impossible')}</p>
+      <p>${why}</p>
+      ${stop}
+      ${pathHtml}`;
+  }
+
+  from.addEventListener('change', render);
+  to.addEventListener('change', render);
+  battery.addEventListener('change', render);
+  document.addEventListener('langchange', render);
+  render();
+</script>
+
+<style>
+  .head {
+    padding-block: 1rem 1.5rem;
+  }
+
+  .head p {
+    margin: 0;
+  }
+
+  .calc {
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-warm);
+    margin-bottom: 1.2rem;
+  }
+
+  .calc__row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .field label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+
+  .field select {
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.5rem;
+    color: var(--ink);
+    background: var(--bg-raised);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    width: 100%;
+  }
+
+  .field select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .arrow {
+    font-size: 1.2rem;
+    color: var(--gold-dim);
+    padding-bottom: 0.45rem;
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  /* Le contenu du résultat est injecté par JS : les styles scopés par Astro ne
+     l'atteignent pas, il faut donc passer par :global(). */
+  :global(.result__big) {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin: 0 0 0.6rem;
+    color: var(--gold);
+  }
+
+  :global(.result__big strong) {
+    font-size: 2.6rem;
+    font-weight: 400;
+  }
+
+  :global(.result__big--fail) {
+    color: var(--blood);
+  }
+
+  :global(.path) {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.8rem 0 0;
+    padding: 0;
+  }
+
+  :global(.path li) {
+    display: block;
+  }
+
+  :global(.path a) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.25rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 0.78rem;
+  }
+
+  :global(.path a:hover) {
+    border-color: var(--gold-dim);
+    color: var(--ink);
+  }
+
+  :global(.path img) {
+    image-rendering: pixelated;
+  }
+
+  :global(.path .mono) {
+    font-family: ui-monospace, monospace;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+  }
+</style>

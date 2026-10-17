@@ -1,0 +1,29 @@
+{
+  "name": "spindown-codex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Projet fan non officiel : encyclopedie The Binding of Isaac: Repentance+ et navigation dans la chaine du Spindown Dice.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "fetch:assets": "node scripts/fetch-assets.mjs",
+    "fetch:fonts": "node scripts/fetch-fonts.mjs",
+    "build:data": "node scripts/build-data.mjs",
+    "check-data": "node scripts/build-data.mjs --check",
+    "check-links": "node scripts/check-links.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "astro": "^7.4.0",
+    "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/d3": "^7.4.3",
+    "@types/node": "^26.6.5",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,455 @@
+---
+import Base from '../layouts/Base.astro';
+import { formatId, visibleItems } from '../lib/chain';
+import { url } from '../lib/urls';
+
+const day = Math.floor(Date.now() / 86_400_000);
+const itemOfTheDay = visibleItems[day % visibleItems.length];
+
+const topOfChain = visibleItems[visibleItems.length - 1];
+---
+
+<Base title="Spindown Codex — The Binding of Isaac item chain">
+  <section class="hero wrap">
+    <p class="eyebrow mono" data-i18n="home.eyebrow">unofficial · free · no ads</p>
+    <h1>
+      <span data-i18n="home.title1">The item chain,</span><br />
+      <span class="gold" data-i18n="home.title2">end to end.</span>
+    </h1>
+    <p class="lede" data-i18n-html="home.lede">
+      Every collectible in <em>Repentance+</em>, with the one thing the other wikis won't show you:
+      what each item <strong>becomes</strong> when you hit it with a Spindown Dice — and what it took to get there.
+    </p>
+
+    <div class="search-slot" data-search-root>
+      <div class="search-slot__field">
+        <label class="visually-hidden" for="q" data-i18n="home.searchPlaceholder"
+          >Search any item, in any language</label
+        >
+        <input
+          id="q"
+          type="search"
+          name="q"
+          placeholder="Search an item — in any of 20 languages…"
+          autocomplete="off"
+          spellcheck="false"
+          data-search-input
+          data-i18n-placeholder="home.searchPlaceholder"
+        />
+        <ul class="results" data-search-results hidden></ul>
+      </div>
+      <p class="hint faint" data-i18n="home.searchHint">
+        Try “Brim”, “Oignon Triste”, “悲しみオニオン”, “Кубик с вычетом”.
+      </p>
+    </div>
+
+    <div class="cta">
+      <a
+        class="btn"
+        href={url('/items')}
+        data-i18n="home.browse"
+        data-i18n-args={JSON.stringify({ n: visibleItems.length })}>Browse all {visibleItems.length} items</a
+      >
+      <a class="btn btn--ghost" href={url('/chain')} data-i18n="home.openChain">Open the chain</a>
+    </div>
+  </section>
+
+  <section class="wrap steps" aria-labelledby="how">
+    <h2 id="how" data-i18n="home.howTitle">What a Spindown actually does</h2>
+    <ol class="steps__list">
+      <li>
+        <span class="steps__num mono">1</span>
+        <h3 data-i18n="home.step1Title">It goes down one ID</h3>
+        <p data-i18n-html="home.step1Body">
+          Every collectible has an internal number. Spindown Dice turns the item into the collectible whose number is <strong>one lower</strong>.
+        </p>
+      </li>
+      <li>
+        <span class="steps__num mono">2</span>
+        <h3 data-i18n="home.step2Title">It skips the gaps</h3>
+        <p data-i18n-html="home.step2Body">
+          Hidden items and unused ID slots are jumped over, so <span class="mono">#716 → #713</span> is one single use, not four.
+        </p>
+      </li>
+      <li>
+        <span class="steps__num mono">3</span>
+        <h3 data-i18n="home.step3Title">It stops dead at Dad's Note</h3>
+        <p data-i18n-html="home.step3Body">
+          <span class="mono">#668</span> cannot be rerolled by anything. Everything below it — including Strawman — is unreachable by Spindown.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap featured" aria-labelledby="featured">
+    <div class="featured__head">
+      <h2 id="featured" data-i18n="home.startSomewhere">Start somewhere</h2>
+      <p class="faint" data-i18n="home.startSub">Three items that show how the chain reads.</p>
+    </div>
+
+    <div class="featured__grid">
+      <a class="otd" href={url(`/items/${itemOfTheDay.id}`)}>
+        <span class="otd__label mono" data-i18n="home.itemOfDay">item of the day</span>
+        <span class="otd__body">
+          <img src={itemOfTheDay.icon} alt="" width="72" height="72" decoding="async" />
+          <span>
+            <span class="otd__name">{itemOfTheDay.name}</span>
+            <span class="otd__meta mono">{formatId(itemOfTheDay.id)} · {itemOfTheDay.type}</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="top" href={url(`/items/${topOfChain.id}`)}>
+        <span class="otd__label mono" data-i18n="home.topOfChain">top of the chain</span>
+        <span class="otd__body">
+          <img src={topOfChain.icon} alt="" width="72" height="72" decoding="async" />
+          <span>
+            <span class="otd__name">{topOfChain.name}</span>
+            <span class="otd__meta mono">
+              {formatId(topOfChain.id)} · <span data-i18n="home.topMeta">nothing above it</span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { url } from '../lib/urls';
+
+  // Recherche multilingue : chargement paresseux de l'index au premier focus.
+  const root = document.querySelector<HTMLElement>('[data-search-root]');
+  const input = root?.querySelector<HTMLInputElement>('[data-search-input]');
+  const list = root?.querySelector<HTMLUListElement>('[data-search-results]');
+
+  import { buildIndex, search, type Row, type SearchEntry } from '../lib/search';
+
+  let index: SearchEntry[] | null = null;
+  let loading: Promise<void> | null = null;
+
+  async function load() {
+    if (index) return;
+    loading ??= fetch(url('/search.json'))
+      .then((r) => r.json())
+      .then((rows: Row[]) => {
+        index = buildIndex(rows);
+      });
+    await loading;
+  }
+
+  function lookup(q: string) {
+    return index ? search(index, q) : [];
+  }
+
+  function render(results: { id: number; name: string }[]) {
+    if (!list) return;
+    if (!results.length) {
+      list.hidden = true;
+      list.innerHTML = '';
+      return;
+    }
+    list.innerHTML = results
+      .map(
+        (r) =>
+          `<li><a href="/items/${r.id}"><img src="/icons/${r.id}.png" alt="" width="24" height="24" loading="lazy"><span>${r.name}</span><span class="mono">#${String(r.id).padStart(3, '0')}</span></a></li>`
+      )
+      .join('');
+    list.hidden = false;
+  }
+
+  if (input && list) {
+    input.addEventListener('focus', () => void load());
+    input.addEventListener('input', () => {
+      if (!index) {
+        void load().then(() => render(lookup(input.value)));
+        return;
+      }
+      render(lookup(input.value));
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { input.blur(); render([]); }
+      if (e.key === 'Enter') {
+        const first = list.querySelector('a');
+        if (first) location.href = first.getAttribute('href')!;
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (!root?.contains(e.target as Node)) render([]);
+    });
+
+    // Recherche partageable : /?q=Oignon+Triste
+    const initial = new URLSearchParams(location.search).get('q');
+    if (initial) {
+      input.value = initial;
+      void load().then(() => render(lookup(initial)));
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    padding-block: 3rem 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blood);
+    margin: 0 0 0.8rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    line-height: 1.02;
+    margin-bottom: 1rem;
+  }
+
+  .gold {
+    color: var(--gold);
+  }
+
+  .lede {
+    font-size: clamp(1rem, 1.6vw, 1.18rem);
+    color: var(--ink-dim);
+    max-width: 52ch;
+    margin-bottom: 2rem;
+  }
+
+  .lede strong {
+    color: var(--ink);
+  }
+
+  .search-slot {
+    position: relative;
+    max-width: 34rem;
+  }
+
+  .search-slot__field {
+    position: relative;
+  }
+
+  .search-slot input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font: inherit;
+    font-size: 1.05rem;
+    color: var(--ink);
+    background: var(--bg-card);
+    border: 2px solid var(--line-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-warm);
+    transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .search-slot input::placeholder {
+    color: var(--ink-faint);
+  }
+
+  .search-slot input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: var(--glow-gold);
+  }
+
+  .results {
+    position: absolute;
+    z-index: 30;
+    inset-inline: 0;
+    top: calc(100% + 0.4rem);
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--bg-card);
+    border: 2px solid var(--line-strong);
+    border-radius: var(--radius);
+    box-shadow: 0 18px 40px -18px #000;
+  }
+
+  /* Résultats injectés par JS : hors du scope Astro. */
+  :global(.results a) {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  :global(.results a:hover),
+  :global(.results a:focus-visible) {
+    background: var(--bg-card-hover);
+  }
+
+  :global(.results img) {
+    image-rendering: pixelated;
+  }
+
+  :global(.results .mono) {
+    margin-left: auto;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .hint {
+    margin: 0.6rem 0 0;
+    font-size: 0.78rem;
+  }
+
+  .cta {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.6rem 1.1rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: #1a1205;
+    background: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-gold);
+    color: #1a1205;
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+
+  .btn--ghost:hover {
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .steps {
+    padding-block: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .steps__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    list-style: none;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .steps__num {
+    display: inline-grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 2px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .steps h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .steps p {
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+  }
+
+  .featured {
+    padding-top: 1rem;
+  }
+
+  .featured__head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .featured__head h2 {
+    margin: 0;
+  }
+
+  .featured__head p {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .featured__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .otd,
+  .top {
+    display: block;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-warm);
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+  }
+
+  .otd:hover,
+  .top:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-gold);
+  }
+
+  .otd__label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .otd__body {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .otd__body img {
+    image-rendering: pixelated;
+    background: #0d0808;
+    border: 2px solid var(--line);
+    padding: 0.2rem;
+  }
+
+  .otd__name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+
+  .otd__meta {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+</style>

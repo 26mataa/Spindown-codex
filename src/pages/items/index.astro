@@ -1,0 +1,305 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatId, QUALITY_COLORS, visibleItems } from '../../lib/chain';
+import { url } from '../../lib/urls';
+
+const pools = [...new Set(visibleItems.flatMap((i) => i.pools))].sort();
+const types = ['passive', 'active', 'familiar'];
+const qualities = [0, 1, 2, 3, 4];
+---
+
+<Base title="All items — Spindown Codex" description={`Every one of the ${visibleItems.length} collectibles in The Binding of Isaac: Repentance+.`}>
+  <div class="wrap">
+    <header class="head">
+      <h1 data-i18n="items.title">All items</h1>
+      <p class="muted" data-i18n="items.lede" data-i18n-args={JSON.stringify({ n: visibleItems.length })}>
+        {visibleItems.length} collectibles, sorted by internal ID. Every card opens the item,
+        and every item shows what it Spindowns into.
+      </p>
+    </header>
+
+    <form class="filters" data-filters onsubmit="return false">
+      <div class="field field--grow">
+        <label for="f-name" data-i18n="items.name">Name</label>
+        <input
+          id="f-name"
+          type="search"
+          placeholder="Filter by English name…"
+          autocomplete="off"
+          data-f-name
+          data-i18n-placeholder="items.namePlaceholder"
+        />
+      </div>
+
+      <div class="field">
+        <label for="f-type" data-i18n="items.type">Type</label>
+        <select id="f-type" data-f-type>
+          <option value="" data-i18n="items.all">all</option>
+          {types.map((ty) => <option value={ty} data-i18n={`type.${ty}`}>{ty}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-quality" data-i18n="items.quality">Quality</label>
+        <select id="f-quality" data-f-quality>
+          <option value="" data-i18n="items.all">all</option>
+          {qualities.map((q) => <option value={q}>{q}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-pool" data-i18n="items.pool">Pool</label>
+        <select id="f-pool" data-f-pool>
+          <option value="" data-i18n="items.all">all</option>
+          {pools.map((p) => <option value={p}>{p}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="f-sort" data-i18n="items.sort">Sort</label>
+        <select id="f-sort" data-f-sort>
+          <option value="id" data-i18n="items.byId">ID</option>
+          <option value="name" data-i18n="items.byName">Name</option>
+          <option value="quality" data-i18n="items.byQuality">Quality</option>
+        </select>
+      </div>
+    </form>
+
+    <p class="count mono" data-count aria-live="polite">{visibleItems.length} items</p>
+
+    <ul class="grid" data-grid>
+      {
+        visibleItems.map((item) => (
+          <li
+            class="cell"
+            data-id={item.id}
+            data-name={item.name.toLowerCase()}
+            data-type={item.type}
+            data-quality={item.quality ?? ''}
+            data-pools={item.pools.join(' ')}
+          >
+            <a class="tile" href={url(`/items/${item.id}`)}>
+              <span class="tile__art">
+                <img src={item.icon} alt="" width="48" height="48" loading="lazy" decoding="async" />
+              </span>
+              <span class="tile__name">{item.name}</span>
+              <span class="tile__meta mono">
+                {formatId(item.id)}
+                {item.quality !== null && (
+                  <em style={`color:${QUALITY_COLORS[item.quality]}`}>Q{item.quality}</em>
+                )}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="empty" hidden data-empty data-i18n="items.empty">No item matches these filters.</p>
+  </div>
+</Base>
+
+<script>
+  import { t } from '../../i18n/runtime';
+
+  const form = document.querySelector<HTMLFormElement>('[data-filters]');
+  const grid = document.querySelector<HTMLUListElement>('[data-grid]');
+  const count = document.querySelector<HTMLElement>('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  if (form && grid) {
+    const name = form.querySelector<HTMLInputElement>('[data-f-name]')!;
+    const type = form.querySelector<HTMLSelectElement>('[data-f-type]')!;
+    const quality = form.querySelector<HTMLSelectElement>('[data-f-quality]')!;
+    const pool = form.querySelector<HTMLSelectElement>('[data-f-pool]')!;
+    const sort = form.querySelector<HTMLSelectElement>('[data-f-sort]')!;
+
+    const cells = [...grid.querySelectorAll<HTMLLIElement>('.cell')];
+    const total = cells.length;
+
+    const apply = () => {
+      const q = name.value.trim().toLowerCase();
+      const typeValue = type.value;
+      const ql = quality.value;
+      const p = pool.value;
+
+      let shown = 0;
+      for (const cell of cells) {
+        const okName = !q || (cell.dataset.name ?? '').includes(q);
+        const okType = !typeValue || cell.dataset.type === typeValue;
+        const okQuality = ql === '' || cell.dataset.quality === ql;
+        const okPool = !p || (cell.dataset.pools ?? '').split(' ').includes(p);
+        const ok = okName && okType && okQuality && okPool;
+        cell.hidden = !ok;
+        if (ok) shown++;
+      }
+
+      if (count) {
+        count.textContent =
+          shown === total
+            ? t('items.count', { n: total })
+            : t('items.countFiltered', { shown, total });
+      }
+      if (empty) empty.hidden = shown !== 0;
+    };
+
+    const reorder = () => {
+      const mode = sort.value;
+      const sorted = [...cells].sort((a, b) => {
+        if (mode === 'name') return (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '');
+        if (mode === 'quality') {
+          const qa = Number(a.dataset.quality || -1);
+          const qb = Number(b.dataset.quality || -1);
+          return qb - qa || Number(a.dataset.id) - Number(b.dataset.id);
+        }
+        return Number(a.dataset.id) - Number(b.dataset.id);
+      });
+      for (const cell of sorted) grid.appendChild(cell);
+    };
+
+    form.addEventListener('input', apply);
+    form.addEventListener('change', apply);
+    sort.addEventListener('change', reorder);
+    document.addEventListener('langchange', apply);
+    apply();
+  }
+</script>
+
+<style>
+  .head {
+    padding-block: 1rem 1.5rem;
+  }
+
+  .head p {
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .filters {
+    position: sticky;
+    top: 3.6rem;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    padding: 0.8rem;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 7rem;
+  }
+
+  .field--grow {
+    flex: 1 1 14rem;
+  }
+
+  .field label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+
+  .field input,
+  .field select {
+    font: inherit;
+    font-size: 0.88rem;
+    padding: 0.35rem 0.5rem;
+    color: var(--ink);
+    background: var(--bg-card);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .count {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.8rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    height: 100%;
+    padding: 0.6rem;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
+      transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .tile:hover,
+  .tile:focus-visible {
+    border-color: var(--gold-dim);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-gold);
+  }
+
+  .tile__art {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #0d0808;
+    border: 1px solid var(--line);
+  }
+
+  .tile__art img {
+    image-rendering: pixelated;
+    width: 64px;
+    height: 64px;
+  }
+
+  .tile__name {
+    font-size: 0.84rem;
+    line-height: 1.25;
+    min-height: 2.1em;
+  }
+
+  .tile__meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    font-style: normal;
+  }
+
+  .tile__meta em {
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--ink-faint);
+    padding: 3rem 0;
+  }
+</style>

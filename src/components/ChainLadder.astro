@@ -1,0 +1,223 @@
+---
+import { ancestorsOf, byId, descendantsOf, formatId, spindownTarget } from '../lib/chain';
+import { url } from '../lib/urls';
+
+export interface Props {
+  id: number;
+  /** Nombre de voisins affiches de chaque cote. */
+  depth?: number;
+}
+
+const { id, depth = 5 } = Astro.props;
+
+const up = ancestorsOf(id, depth).reverse(); // du plus eloigne au plus proche
+const down = descendantsOf(id, depth);
+
+const rows = [
+  ...up.map((nid, i) => ({ nid, distance: up.length - i, dir: 'up' as const })),
+  ...down.map((nid, i) => ({ nid, distance: i + 1, dir: 'down' as const })),
+];
+
+const current = byId.get(id)!;
+const next = spindownTarget(id);
+const chainEndsHere = next === null && !!current.spindown.blocked;
+const isTop = !up.length;
+---
+
+<nav class="ladder" aria-label={`Items around ${current.name} in the Spindown chain`}>
+  <ol class="ladder__list">
+    {
+      rows
+        .filter((r) => r.dir === 'up')
+        .map((r) => {
+          const it = byId.get(r.nid)!;
+          return (
+            <li class="ladder__row ladder__row--up" style={`--dist:${r.distance}`}>
+              <a href={url(`/items/${it.id}`)} class="ladder__link">
+                <img src={it.icon} alt="" width="32" height="32" loading="lazy" decoding="async" />
+                <span class="ladder__name">{it.name}</span>
+                <span class="ladder__id mono">{formatId(it.id)}</span>
+              </a>
+            </li>
+          );
+        })
+    }
+
+    <li class="ladder__row ladder__row--current" aria-current="true">
+      <span class="ladder__link ladder__link--current">
+        <img src={current.icon} alt="" width="32" height="32" decoding="async" />
+        <span class="ladder__name">{current.name}</span>
+        <span class="ladder__id mono">{formatId(current.id)}</span>
+      </span>
+    </li>
+
+    {
+      rows
+        .filter((r) => r.dir === 'down')
+        .map((r) => {
+          const it = byId.get(r.nid)!;
+          return (
+            <li class="ladder__row ladder__row--down" style={`--dist:${r.distance}`}>
+              <a href={url(`/items/${it.id}`)} class="ladder__link">
+                <img src={it.icon} alt="" width="32" height="32" loading="lazy" decoding="async" />
+                <span class="ladder__name">{it.name}</span>
+                <span class="ladder__id mono">{formatId(it.id)}</span>
+              </a>
+            </li>
+          );
+        })
+    }
+  </ol>
+
+  {
+    chainEndsHere && (
+      <p class="ladder__stop">
+        <span aria-hidden="true">✖</span>{' '}
+        <span
+          data-i18n="item.chainStops"
+          data-i18n-args={JSON.stringify({ name: current.name })}>The chain stops here — {current.name} cannot be rerolled.</span
+        >
+      </p>
+    )
+  }
+
+  {
+    isTop && (
+      <p
+        class="ladder__stop ladder__stop--calm"
+        data-i18n="item.chainTop"
+        data-i18n-args={JSON.stringify({ id: formatId(current.id) })}
+      >
+        Top of the chain: nothing can Spindown into {formatId(current.id)}.
+      </p>
+    )
+  }
+</nav>
+
+<style>
+  .ladder {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .ladder__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    position: relative;
+  }
+
+  /* le "fil" de la chaine */
+  .ladder__list::before {
+    content: '';
+    position: absolute;
+    left: -1.05rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--line-strong) 12%,
+      var(--gold-dim) 50%,
+      var(--line-strong) 88%,
+      transparent
+    );
+  }
+
+  .ladder__row {
+    position: relative;
+    opacity: max(0.34, calc(1 - (var(--dist, 0) * 0.12)));
+  }
+
+  .ladder__row::before {
+    content: '';
+    position: absolute;
+    left: -1.05rem;
+    top: 50%;
+    width: 0.8rem;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  .ladder__link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.3rem 0.55rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+
+  .ladder__link img {
+    image-rendering: pixelated;
+    flex: none;
+    background: #0d0808;
+  }
+
+  .ladder__link:hover,
+  .ladder__link:focus-visible {
+    background: var(--bg-card-hover);
+    border-color: var(--line-strong);
+    color: var(--ink);
+  }
+
+  .ladder__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ladder__id {
+    margin-left: auto;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .ladder__row--current {
+    opacity: 1;
+    margin-block: 0.35rem;
+  }
+
+  .ladder__row--current::before {
+    content: '';
+    position: absolute;
+    left: -1.05rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    background: var(--gold);
+    opacity: 0.9;
+  }
+
+  .ladder__link--current {
+    background: color-mix(in srgb, var(--gold) 8%, var(--bg-card));
+    border-color: var(--gold-dim);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .ladder__stop {
+    margin: 0.85rem 0 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    color: #e0a8a8;
+    border: 1px solid var(--blood-dim);
+    background: color-mix(in srgb, var(--blood) 10%, transparent);
+    border-radius: var(--radius);
+  }
+
+  .ladder__stop--calm {
+    color: var(--ink-dim);
+    border-color: var(--line-strong);
+    background: transparent;
+  }
+</style>

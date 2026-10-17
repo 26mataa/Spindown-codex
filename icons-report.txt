@@ -1,0 +1,8 @@
+ICONS REPORT
+============
+Icônes présentes       : 720
+Items visibles         : 717
+Items visibles sans icône : 0
+Icônes orphelines (id sans item visible) : 648, 714, 715
+
+IDs sans icône :

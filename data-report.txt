@@ -1,0 +1,16 @@
+DATA REPORT
+===========
+Items collectibles      : 721
+  dont visibles         : 717
+  dont hidden (sautés)  : 4 -> 59 The Book of Belial, 656 Damocles, 714 Recall, 715 Hold
+IDs min/max             : 1 / 732
+Trous dans la séquence  : 43, 61, 235, 587, 613, 620, 630, 648, 662, 666, 718
+Qualité manquante       : 0
+Pool manquant           : 24
+Sauts de chaîne (hidden) : 42 -> 44, 58 -> 60, 60 -> 62, 234 -> 236, 586 -> 588, 612 -> 614, 619 -> 621, 629 -> 631, 647 -> 649, 655 -> 657, 661 -> 663, 665 -> 667, 713 -> 716, 717 -> 719
+Items non rerollables   : 668 Dad's Note cannot be rerolled by any effect.
+
+Avertissements :
+  aucun
+Erreurs :
+  aucune

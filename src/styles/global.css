@@ -1,0 +1,383 @@
+/* =========================================================================
+   Spindown Codex — design system
+   Ambiance TBOI : brun-noir, parchemin, or, sang, olive.
+   Le pixel-art est reserve aux titres, icones et bordures.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Les @font-face sont declares dans src/layouts/Base.astro : leurs URL doivent
+   passer par la base du site (GitHub Pages peut servir sous /<depot>/).
+   ------------------------------------------------------------------------- */
+
+:root {
+  --bg: #120c0c;
+  --bg-raised: #1a1111;
+  --bg-card: #1e1413;
+  --bg-card-hover: #251818;
+
+  --ink: #e8d8b0;
+  --ink-dim: #b6a487;
+  --ink-faint: #847660;
+
+  --blood: #b33a3a;
+  --blood-dim: #7d2a2a;
+  --gold: #d4af37;
+  --gold-dim: #8f7524;
+  --olive: #6b8e23;
+
+  --line: #3a2b26;
+  --line-strong: #55403a;
+
+  --q0: #6f6f6f;
+  --q1: #8d8055;
+  --q2: #7f9448;
+  --q3: #4f8fa8;
+  --q4: #c9922b;
+
+  --font-display: 'Pixelify Sans', 'VT323', ui-monospace, 'Cascadia Mono', monospace;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --frame: 2px;
+  --radius: 3px;
+  --shadow-warm: 0 8px 24px -12px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 220, 170, 0.04) inset;
+  --glow-gold: 0 0 0 1px rgba(212, 175, 55, 0.55), 0 0 22px -6px rgba(212, 175, 55, 0.45);
+
+  --dur: 220ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-color: var(--line-strong) var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(179, 58, 58, 0.08), transparent 55%),
+    radial-gradient(ellipse at 50% 120%, rgba(0, 0, 0, 0.55), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* vignette globale, tres legere */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.5em;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+h2 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+}
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--gold);
+  text-decoration-color: color-mix(in srgb, var(--gold) 40%, transparent);
+  text-underline-offset: 3px;
+  transition: color var(--dur) var(--ease);
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--gold) 70%, white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--blood) 60%, transparent);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------- layout */
+
+.wrap {
+  width: min(1180px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.wrap--narrow {
+  width: min(760px, 100% - 2.5rem);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom: var(--frame) solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.65rem 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.brand span {
+  color: var(--gold);
+}
+
+.nav {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius);
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.nav a:hover {
+  background: var(--bg-card-hover);
+  color: var(--ink);
+}
+
+.nav a[aria-current='page'] {
+  color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+}
+
+main {
+  flex: 1 0 auto;
+  padding-block: 2.5rem 4rem;
+}
+
+.site-footer {
+  border-top: var(--frame) solid var(--line);
+  padding-block: 2rem;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.site-footer p {
+  margin: 0 0 0.4em;
+  max-width: 62ch;
+}
+
+/* ---------------------------------------------------------------- pieces */
+
+.pixel-frame {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  background: var(--bg-card);
+  border: var(--frame) solid var(--line-strong);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-warm);
+}
+
+.pixel-frame::before,
+.pixel-frame::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--gold-dim);
+}
+
+.pixel-frame::before {
+  top: -3px;
+  left: -3px;
+}
+.pixel-frame::after {
+  bottom: -3px;
+  right: -3px;
+}
+
+.pixel-frame img {
+  image-rendering: pixelated;
+  display: block;
+}
+
+.card {
+  display: block;
+  background: var(--bg-card);
+  border: var(--frame) solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow-warm);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
+    transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--gold-dim);
+  background: var(--bg-card-hover);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-2px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-dim);
+  background: color-mix(in srgb, var(--gold) 5%, transparent);
+  white-space: nowrap;
+}
+
+.badge--quality {
+  border-color: currentColor;
+  color: var(--q-color, var(--gold));
+  font-weight: 600;
+}
+
+.badge--active {
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
+
+.badge--passive {
+  border-color: color-mix(in srgb, var(--olive) 55%, transparent);
+}
+
+.badge--familiar {
+  border-color: color-mix(in srgb, var(--blood) 55%, transparent);
+}
+
+.badge--warn {
+  border-color: var(--blood);
+  color: #e8a0a0;
+}
+
+.muted {
+  color: var(--ink-dim);
+}
+
+.faint {
+  color: var(--ink-faint);
+}
+
+.mono {
+  font-family: ui-monospace, 'Cascadia Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--gold);
+  color: #241a00;
+  padding: 0.5rem 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top var(--dur) var(--ease);
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

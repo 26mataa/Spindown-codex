@@ -1,0 +1,486 @@
+---
+import Base from '../../layouts/Base.astro';
+import ChainLadder from '../../components/ChainLadder.astro';
+import {
+  byId,
+  formatId,
+  isReachableBySpindown,
+  QUALITY_COLORS,
+  spindownSources,
+  spindownTarget,
+  visibleItems,
+} from '../../lib/chain';
+import { url } from '../../lib/urls';
+
+export function getStaticPaths() {
+  return visibleItems.map((item, index) => ({
+    params: { id: String(item.id) },
+    props: {
+      item,
+      prevByNumber: index > 0 ? visibleItems[index - 1].id : null,
+      nextByNumber: index < visibleItems.length - 1 ? visibleItems[index + 1].id : null,
+    },
+  }));
+}
+
+const { item, prevByNumber, nextByNumber } = Astro.props;
+
+const targetId = spindownTarget(item.id);
+const targetItem = targetId !== null ? byId.get(targetId) : null;
+const [sourceId] = spindownSources(item.id);
+const sourceItem = sourceId !== undefined ? byId.get(sourceId) : null;
+
+const reachable = isReachableBySpindown(item.id);
+
+const LANG_ORDER = ['fr', 'de', 'es' in item.names ? 'es' : 'spa', 'it', 'ru', 'ja_jp', 'ko_kr', 'zh_cn'];
+const otherNames = LANG_ORDER.map((code) => ({ code, name: item.names[code] }))
+  .filter((n) => n.name && n.name !== item.name)
+  .slice(0, 6);
+
+const LANG_LABEL: Record<string, string> = {
+  fr: 'FR', de: 'DE', spa: 'ES', es: 'ES', it: 'IT', ru: 'RU',
+  ja_jp: 'JA', ko_kr: 'KO', zh_cn: 'ZH', pt: 'PT', pl: 'PL', nl_nl: 'NL',
+  tr_tr: 'TR', uk_ua: 'UK', vi: 'VI', cs_cz: 'CS', el_gr: 'EL', bul: 'BG', ro_ro: 'RO',
+};
+
+const qColor = item.quality !== null ? QUALITY_COLORS[item.quality] : undefined;
+---
+
+<Base
+  title={`${item.name} — ${formatId(item.id)} — Spindown Codex`}
+  description={`${item.name} (${formatId(item.id)}) in The Binding of Isaac: Repentance+. ${
+    targetItem ? `Spindowns into ${targetItem.name}.` : 'Cannot be reached or cannot be rerolled.'
+  }`}
+>
+  <div class="wrap item" data-nav-prev={prevByNumber ? url(`/items/${prevByNumber}`) : ''} data-nav-next={nextByNumber ? url(`/items/${nextByNumber}`) : ''}>
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href={url('/items')} data-i18n="item.breadcrumb">Items</a>
+      <span aria-hidden="true">/</span>
+      <span class="mono">{formatId(item.id)}</span>
+    </nav>
+
+    <header class="hero">
+      <div class="pixel-frame hero__frame">
+        <img src={item.icon} alt={`${item.name} sprite`} width="128" height="128" decoding="async" />
+      </div>
+
+      <div class="hero__text">
+        <p class="hero__id mono">
+          {formatId(item.id)}
+          <span
+            class="faint"
+            data-i18n="item.counterTail"
+            data-i18n-args={JSON.stringify({ n: visibleItems.length })}>/ {visibleItems.length} collectibles</span
+          >
+        </p>
+        <h1>{item.name}</h1>
+
+        <ul class="badges">
+          <li class="badge badge--{item.type}" data-i18n={`type.${item.type}`}>{item.type}</li>
+          {item.quality !== null && (
+            <li
+              class="badge badge--quality"
+              style={`--q-color:${qColor}`}
+              data-i18n="item.badgeQuality"
+              data-i18n-args={JSON.stringify({ q: item.quality })}>quality {item.quality}</li
+            >
+          )}
+          {item.pools.map((p) => <li class="badge">{p}</li>)}
+          {!reachable && (
+            <li class="badge badge--warn" data-i18n="item.notReachable">not reachable by Spindown</li>
+          )}
+          {item.spindown.blocked && (
+            <li class="badge badge--warn" data-i18n="item.noReroll">cannot be rerolled</li>
+          )}
+        </ul>
+
+        {otherNames.length > 0 && (
+          <p class="aka">
+            <span class="aka__label" data-i18n="item.alsoKnownAs">also known as</span>
+            {otherNames.map((n) => (
+              <span class="aka__item"><b>{LANG_LABEL[n.code] ?? n.code.toUpperCase()}</b> {n.name}</span>
+            ))}
+          </p>
+        )}
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="desc-title">
+        <h2 id="desc-title" data-i18n="item.effect">Effect</h2>
+        {item.description ? (
+          <p class="description">{item.description}</p>
+        ) : (
+          <p class="muted" data-i18n="item.noDescription">
+            No effect text for this item in the community data this site is built from.
+            The chain information below is complete — that part comes straight from the game files.
+          </p>
+        )}
+
+        {item.tags.length > 0 && (
+          <p class="tags">
+            {item.tags.map((tag) => <span class="tag mono">{tag}</span>)}
+          </p>
+        )}
+      </section>
+
+      <aside class="panel panel--spindown" aria-labelledby="spindown-title">
+        <h2 id="spindown-title" data-i18n="item.spindown">Spindown Dice</h2>
+
+        {item.spindown.blocked ? (
+          <p class="stop-box" data-i18n="item.blocked">
+            This item cannot be rerolled by any effect, so the chain ends here.
+          </p>
+        ) : targetItem ? (
+          <a class="hop hop--down" href={url(`/items/${targetItem.id}`)}>
+            <span class="hop__label" data-i18n="item.becomes">With a Spindown, becomes</span>
+            <span class="hop__body">
+              <img src={targetItem.icon} alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <span class="hop__name">{targetItem.name}</span>
+              <span class="hop__id mono">{formatId(targetItem.id)}</span>
+            </span>
+          </a>
+        ) : (
+          <p class="stop-box stop-box--calm" data-i18n="item.noTarget">
+            Nothing below this item: it is the first collectible, so a Spindown would destroy it.
+          </p>
+        )}
+
+        {sourceItem ? (
+          <a class="hop hop--up" href={url(`/items/${sourceItem.id}`)}>
+            <span class="hop__label" data-i18n="item.comesFrom">Spindowns into this</span>
+            <span class="hop__body">
+              <img src={sourceItem.icon} alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <span class="hop__name">{sourceItem.name}</span>
+              <span class="hop__id mono">{formatId(sourceItem.id)}</span>
+            </span>
+          </a>
+        ) : (
+          <p class="stop-box stop-box--calm" data-i18n="item.noSource">
+            Nothing Spindowns into this item.
+          </p>
+        )}
+      </aside>
+    </div>
+
+    <section class="context" aria-labelledby="chain-title">
+      <div class="context__head">
+        <h2 id="chain-title" data-i18n="item.chainContext">Chain context</h2>
+        <a class="context__all" href={url(`/chain?focus=${item.id}`)} data-i18n="item.seeChain">See the whole chain →</a>
+      </div>
+      <ChainLadder id={item.id} depth={6} />
+    </section>
+
+    <nav class="pager" aria-label="Previous and next item" data-i18n-aria="item.prevNextAria">
+      {prevByNumber ? (
+        <a class="pager__link" href={url(`/items/${prevByNumber}`)}>
+          <span class="pager__dir" data-i18n="item.prevLower">← lower ID</span>
+          <span>{byId.get(prevByNumber)?.name}</span>
+        </a>
+      ) : <span />}
+      {nextByNumber ? (
+        <a class="pager__link pager__link--next" href={url(`/items/${nextByNumber}`)}>
+          <span class="pager__dir" data-i18n="item.nextHigher">higher ID →</span>
+          <span>{byId.get(nextByNumber)?.name}</span>
+        </a>
+      ) : <span />}
+    </nav>
+
+    <p class="kbdhint faint">
+      <kbd>←</kbd> <kbd>→</kbd> move between items · <kbd>Esc</kbd> back to the index
+    </p>
+  </div>
+</Base>
+
+<script>
+  import { url } from '../../lib/urls';
+
+  const root = document.querySelector<HTMLElement>('[data-nav-prev]');
+  if (root) {
+    const prev = root.dataset.navPrev;
+    const next = root.dataset.navNext;
+    window.addEventListener('keydown', (e) => {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+
+      if (e.key === 'ArrowLeft' && prev) location.href = prev;
+      else if (e.key === 'ArrowRight' && next) location.href = next;
+      else if (e.key === 'Escape') location.href = url('/items');
+    });
+  }
+</script>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin-bottom: 1.25rem;
+  }
+  .crumbs a {
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--gold);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.75rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .hero__frame {
+    width: clamp(120px, 22vw, 168px);
+    aspect-ratio: 1;
+  }
+
+  .hero__frame img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero__id {
+    margin: 0 0 0.2rem;
+    font-size: 0.85rem;
+    color: var(--gold);
+  }
+
+  h1 {
+    margin-bottom: 0.6rem;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .aka {
+    margin: 0.9rem 0 0;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.9rem;
+  }
+
+  .aka__label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    align-self: center;
+    color: var(--ink-faint);
+  }
+
+  .aka__item b {
+    color: var(--gold-dim);
+    font-weight: 600;
+    margin-right: 0.2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .panel {
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    box-shadow: var(--shadow-warm);
+  }
+
+  .panel h2 {
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+
+  .description {
+    white-space: pre-line;
+    color: var(--ink);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0.8rem 0 0;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-faint);
+    border-radius: 2px;
+  }
+
+  .hop {
+    display: block;
+    padding: 0.7rem 0.8rem;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .hop + .hop {
+    margin-top: 0.6rem;
+  }
+
+  .hop:hover,
+  .hop:focus-visible {
+    border-color: var(--gold);
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--glow-gold);
+  }
+
+  .hop__label {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin-bottom: 0.35rem;
+  }
+
+  .hop__body {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .hop__body img {
+    image-rendering: pixelated;
+    background: #0d0808;
+    border: 1px solid var(--line);
+  }
+
+  .hop__name {
+    font-weight: 600;
+  }
+
+  .hop__id {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--gold-dim);
+  }
+
+  .stop-box {
+    margin: 0;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+    color: #e0a8a8;
+    border: 1px solid var(--blood-dim);
+    background: color-mix(in srgb, var(--blood) 10%, transparent);
+    border-radius: var(--radius);
+  }
+
+  .stop-box--calm {
+    color: var(--ink-dim);
+    border-color: var(--line-strong);
+    background: transparent;
+  }
+
+  .context {
+    background: color-mix(in srgb, var(--bg-raised) 70%, transparent);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .context__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .context__head h2 {
+    font-size: 1.05rem;
+    margin: 0;
+    color: var(--gold);
+  }
+
+  .context__all {
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+
+  .pager__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    text-decoration: none;
+    color: var(--ink-dim);
+    max-width: 45%;
+  }
+
+  .pager__link--next {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  .pager__link:hover {
+    color: var(--ink);
+  }
+
+  .pager__dir {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+
+  .kbdhint {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+
+  kbd {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    border: 1px solid var(--line-strong);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    padding: 0.05rem 0.3rem;
+    color: var(--ink-dim);
+  }
+
+  @media (max-width: 780px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

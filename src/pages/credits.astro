@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import { visibleItems, HIDDEN_IDS, EMPTY_IDS } from '../lib/chain';
+import { url } from '../lib/urls';
+
+const stats = [
+  { n: String(visibleItems.length), label: 'collectibles' },
+  { n: '20', label: 'languages indexed' },
+  { n: String(HIDDEN_IDS.length), label: 'hidden IDs skipped' },
+  { n: String(EMPTY_IDS.length), label: 'empty ID slots' },
+];
+---
+
+<Base title="Credits & legal — Spindown Codex" description="Sources, attribution and legal mentions for this unofficial fan project.">
+  <div class="wrap wrap--narrow prose">
+    <h1>Credits &amp; legal</h1>
+
+    <div class="stats">
+      {stats.map((s) => <div class="stat"><span class="stat__n mono">{s.n}</span><span class="stat__l">{s.label}</span></div>)}
+    </div>
+
+    <h2>The short version</h2>
+    <p class="callout">
+      <strong>Unofficial fan project, not affiliated with Edmund McMillen, Nicalis or Valve.</strong>
+    </p>
+    <p class="callout">
+      <strong>Site gratuit, sans publicité, sans monétisation.</strong> Free site — no ads, no monetization,
+      no accounts, no tracking, no third-party requests at runtime.
+    </p>
+
+    <h2>Sprites</h2>
+    <p>
+      Item sprites are from <em>The Binding of Isaac: Rebirth</em> © Edmund McMillen / Nicalis.
+      They are extracted from the game files, redistributed here for identification purposes only,
+      in a non-commercial fan context, and are never used in a way that suggests an official
+      affiliation. No game logo is used as branding, and the project name is not "official".
+    </p>
+
+    <h2>Data sources</h2>
+    <ul class="sources">
+      <li>
+        <strong>Game files</strong> — <span class="mono">Derugon/TBoIR-resources</span>, branch
+        <span class="mono">latest</span> (game version 1.9.7.15). Provides
+        <span class="mono">items.xml</span>, <span class="mono">items_metadata.xml</span>,
+        <span class="mono">itempools.xml</span> and the collectible sprites.
+      </li>
+      <li>
+        <strong>Descriptions &amp; translated names</strong> —
+        <span class="mono">wofsauge/External-Item-Descriptions</span>, a community mod.
+        Its descriptions are community-written; its name tables cover 20 languages and are used
+        here only as a <em>search index</em> — the site itself is written in English.
+      </li>
+      <li>
+        <strong>Mechanics verification</strong> — the Spindown Dice rule was cross-checked against
+        the community wiki and an independent item database before being implemented, then
+        validated against the game's own <span class="mono">items.xml</span>.
+      </li>
+    </ul>
+
+    <h2>Fonts</h2>
+    <p>
+      <em>Pixelify Sans</em> and <em>IBM Plex Sans</em>, both under the SIL Open Font License.
+      They are self-hosted: no request is made to Google Fonts at runtime.
+    </p>
+
+    <h2>Code</h2>
+    <p>
+      Built with Astro and TypeScript. No backend, no database, no authentication, no analytics.
+      The site is fully static after build.
+    </p>
+
+    <h2>What this site does not claim</h2>
+    <ul>
+      <li>Unlock conditions are not listed — the site is about the Spindown chain, not completion tracking.</li>
+      <li>
+        Chains assume every item is unlocked. In-game, Spindown Dice also skips items that are still
+        locked in your save, so a real run can be shorter than the theoretical path shown here.
+      </li>
+      <li>Trinkets, cards and pills are not part of the chain and are not listed in the encyclopedia yet.</li>
+    </ul>
+
+    <p class="faint back"><a href={url('/')}>← Back to the codex</a></p>
+  </div>
+</Base>
+
+<style>
+  .prose {
+    font-size: 0.98rem;
+  }
+
+  .prose h2 {
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin-top: 2rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.6rem;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7rem;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .stat__n {
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+
+  .stat__l {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+
+  .callout {
+    padding: 0.8rem 1rem;
+    border-left: 3px solid var(--gold-dim);
+    background: color-mix(in srgb, var(--gold) 6%, transparent);
+    font-size: 0.95rem;
+  }
+
+  .sources li,
+  .prose ul li {
+    margin-bottom: 0.6rem;
+    color: var(--ink-dim);
+  }
+
+  .sources strong {
+    color: var(--ink);
+  }
+
+  .mono {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85em;
+    color: var(--ink);
+  }
+
+  .back {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+  }
+</style>

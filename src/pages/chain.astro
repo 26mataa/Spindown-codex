@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import ChainGraph from '../components/ChainGraph.astro';
+import { HIDDEN_IDS, EMPTY_IDS, topSegment, visibleItems } from '../lib/chain';
+import { url } from '../lib/urls';
+
+const top = topSegment();
+const belowWall = visibleItems.length - top.length;
+const skippable = HIDDEN_IDS.length + EMPTY_IDS.length;
+---
+
+<Base
+  title="The whole chain — Spindown Codex"
+  description="Every collectible in Repentance+ in Spindown order: from Mom's Ring down through Dad's Note, and what lies below the wall."
+>
+  <div class="wrap">
+    <header class="head">
+      <h1 data-i18n="chain.title">The chain</h1>
+      <p class="muted" data-i18n="chain.lede" data-i18n-args={JSON.stringify({ n: visibleItems.length, skippable })}>
+        All {visibleItems.length} collectibles in internal ID order. Each row is exactly one Spindown
+        use below the one above it.
+      </p>
+      <p
+        class="muted"
+        data-i18n="chain.lede2"
+        data-i18n-args={JSON.stringify({ reachable: top.length, below: belowWall })}
+      >
+        Descending from Mom's Ring you reach {top.length} items — then you hit Dad's Note and the
+        chain stops. The {belowWall} items below that wall are still in the chain, but nothing above
+        can ever Spindown into them.
+      </p>
+      <ul class="legend">
+        <li>
+          <span class="dot dot--wall"></span>
+          <span data-i18n="chain.legendWall">the wall: Dad's Note (#668), immune to rerolls</span>
+        </li>
+        <li>
+          <span class="dot dot--dead"></span>
+          <span data-i18n="chain.legendDead">unreachable from above</span>
+        </li>
+        <li>
+          <span data-i18n="chain.legendSkip" data-i18n-args={JSON.stringify({ n: skippable })}>
+            {skippable} hidden or empty IDs are jumped over silently
+          </span>
+        </li>
+      </ul>
+    </header>
+
+    <ChainGraph />
+
+    <p class="foot faint">
+      <span data-i18n="chain.foot">Looking for something specific?</span>
+      <a href={url('/items')} data-i18n="chain.footBrowse" data-i18n-args={JSON.stringify({ n: visibleItems.length })}
+        >Browse all {visibleItems.length} items</a
+      >
+      <span data-i18n="chain.footOr">or</span>
+      <a href={url('/calculator')} data-i18n="chain.footCalc">compute a distance</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .head {
+    padding-block: 1rem 1.2rem;
+  }
+
+  .head p {
+    max-width: 64ch;
+    margin: 0 0 0.9rem;
+  }
+
+  .legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.3rem;
+    align-items: center;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .dot--wall {
+    background: var(--blood);
+  }
+
+  .dot--dead {
+    background: rgba(179, 58, 58, 0.28);
+    border: 1px solid var(--blood-dim);
+  }
+
+  .foot {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+  }
+</style>

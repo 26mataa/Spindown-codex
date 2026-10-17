@@ -1,0 +1,81 @@
+---
+import { formatId, type Item } from '../lib/chain';
+import { url } from '../lib/urls';
+
+export interface Props {
+  item: Item;
+  size?: number;
+  showId?: boolean;
+}
+
+const { item, size = 48, showId = true } = Astro.props;
+---
+
+<a class="item-card" href={url(`/items/${item.id}`)}>
+  <span class="item-card__icon">
+    <img src={item.icon} alt="" width={size} height={size} loading="lazy" decoding="async" />
+  </span>
+  <span class="item-card__text">
+    <span class="item-card__name">{item.name}</span>
+    <span class="item-card__meta mono">
+      {showId && <>{formatId(item.id)} · </>}{item.type}{item.quality !== null && <> · Q{item.quality}</>}
+    </span>
+  </span>
+</a>
+
+<style>
+  .item-card {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 0.7rem;
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .item-card:hover,
+  .item-card:focus-visible {
+    border-color: var(--gold-dim);
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+  }
+
+  .item-card__icon {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: none;
+    background: #0d0808;
+    border: 1px solid var(--line);
+  }
+
+  .item-card__icon img {
+    image-rendering: pixelated;
+    display: block;
+  }
+
+  .item-card__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .item-card__name {
+    font-size: 0.95rem;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .item-card__meta {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+</style>

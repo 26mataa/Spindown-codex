@@ -16,7 +16,7 @@
       "craneGame"
     ],
     "icon": "/icons/1.png",
-    "description": null,
+    "description": "↑ +0.7 Tears",
     "names": {
       "bul": "Тъжният лук",
       "cs_cz": "Smutná Cibulka",
@@ -59,7 +59,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/2.png",
-    "description": "Receive for the room:\n↑ +3 Range\nHoming tears",
+    "description": "↓ x0.51 Fire rate multiplier\nIsaac shoots 3 tears at once",
     "names": {
       "bul": "Трето око",
       "cs_cz": "Vnitřní Oko",
@@ -103,7 +103,7 @@
       "craneGame"
     ],
     "icon": "/icons/3.png",
-    "description": null,
+    "description": "Homing tears",
     "names": {
       "bul": "Огъната лъжица",
       "cs_cz": "Ohnutá Lžíce",
@@ -148,7 +148,7 @@
       "craneGame"
     ],
     "icon": "/icons/4.png",
-    "description": "Swaps Isaac's number of bombs and keys\nGolden bombs and keys are also swapped",
+    "description": "↑ +0.5 Damage\n↑ x1.5 Damage multiplier",
     "names": {
       "bul": "Главата на Крикет",
       "cs_cz": "Kriketova Hlava",
@@ -192,7 +192,7 @@
       "craneGame"
     ],
     "icon": "/icons/5.png",
-    "description": "2x chance for champion enemies\n50% chance for champion enemies to drop loot\nDoubles champion enemy loot",
+    "description": "↑ +1.5 Damage\n↑ +1.5 Range\n↑ x2 Range multiplier\n↑ x1.6 Shot speed multiplier\n↓ -1 Luck\nTears get a boomerang effect",
     "names": {
       "bul": "Моето отражение",
       "cs_cz": "Můj Odraz",
@@ -282,7 +282,7 @@
       "woodenChest"
     ],
     "icon": "/icons/7.png",
-    "description": "Higher chance to find The Bible in Shops and Libraries\nForces Devil Deals to be Angel Deals",
+    "description": "↑ +1 Damage",
     "names": {
       "bul": "Кръвта на мъченика",
       "cs_cz": "Krev Mučedníka",
@@ -328,7 +328,7 @@
       "babyShop"
     ],
     "icon": "/icons/8.png",
-    "description": null,
+    "description": "Shoots normal tears\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Брат Боби",
       "cs_cz": "Bráška Bobby",
@@ -373,7 +373,7 @@
       "shellGame"
     ],
     "icon": "/icons/9.png",
-    "description": null,
+    "description": "All fly enemies are friendly",
     "names": {
       "bul": "Скатол",
       "cs_cz": "Skatol",
@@ -418,7 +418,7 @@
       "babyShop"
     ],
     "icon": "/icons/10.png",
-    "description": "↑ +0.4 Tears\nSpectral tears\nIsaac's tears move in waves",
+    "description": "+2 Fly orbitals\nBlocks enemy projectiles",
     "names": {
       "bul": "Ореол от мухи",
       "cs_cz": "Kruh z Much",
@@ -462,7 +462,7 @@
       "greedSecret"
     ],
     "icon": "/icons/11.png",
-    "description": "Spawns a Slot Machine\n24% chance for it to be a Fortune Telling Machine\n1% chance for it to be a Crane Game",
+    "description": "↑ +1 Life\nIsaac respawns with full health on death",
     "names": {
       "bul": "1up!",
       "cs_cz": "1 Život!",
@@ -508,7 +508,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/12.png",
-    "description": "↓ -1 Range",
+    "description": "↑ +1 Health\n↑ +0.3 Speed\n↑ +0.3 Damage\n↑ x1.5 Damage multiplier\n↑ +2.5 Range\nSize up\nFull health",
     "names": {
       "bul": "Вълшебна гъба",
       "cs_cz": "Kouzelná Houba",
@@ -554,7 +554,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/13.png",
-    "description": "↑ +1.25 Range",
+    "description": "↑ +0.2 Speed\nTouching enemies poisons them\nIsaac deals 48 contact damage per second",
     "names": {
       "bul": "Вирус",
       "cs_cz": "Virus",
@@ -643,7 +643,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/15.png",
-    "description": "Destroying rocks has a 33% chance to spawn a coin",
+    "description": "↑ +1 Health\nFull health",
     "names": {
       "bul": "<3",
       "cs_cz": "<3",
@@ -686,7 +686,7 @@
       "greedSecret"
     ],
     "icon": "/icons/16.png",
-    "description": "Dropping the trinket in hostile rooms will cause Mom's Foot to stomp its location",
+    "description": "↑ +2 Health\nFull health",
     "names": {
       "bul": "Суров черен дроб",
       "cs_cz": "Syrová Játra",
@@ -732,7 +732,7 @@
       "greedSecret"
     ],
     "icon": "/icons/17.png",
-    "description": null,
+    "description": "+99 Keys",
     "names": {
       "bul": "Скелетен ключ",
       "cs_cz": "Kostlivcův Klíč",
@@ -772,7 +772,7 @@
     ],
     "pools": [],
     "icon": "/icons/18.png",
-    "description": "Teleports Isaac to the Treasure Room\nIf there is a Planetarium, it teleports there instead",
+    "description": "+100 Coins",
     "names": {
       "bul": "Долар",
       "cs_cz": "Dolar",
@@ -814,7 +814,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/19.png",
-    "description": null,
+    "description": "+10 Bombs",
     "names": {
       "bul": "Бум!",
       "cs_cz": "Bum!",
@@ -857,7 +857,7 @@
       "greedSecret"
     ],
     "icon": "/icons/20.png",
-    "description": "Teleports Isaac to a special room",
+    "description": "Flight",
     "names": {
       "bul": "Възнасяне",
       "cs_cz": "Transcendence",
@@ -903,7 +903,7 @@
       "craneGame"
     ],
     "icon": "/icons/21.png",
-    "description": "Spawns a Beggar\n33% chance for it to be a Devil Beggar\n5% chance for it to be a Key Master, Bomb Bum, Battery Bum, or Rotten Beggar",
+    "description": "Reveals icons on the map\nDoes not reveal the layout of the map",
     "names": {
       "bul": "Компас",
       "cs_cz": "Kompas",
@@ -948,7 +948,7 @@
       "greedBoss"
     ],
     "icon": "/icons/22.png",
-    "description": "Full mapping effect for the floor (except Super / Ultra Secret Room)",
+    "description": "↑ +1 Health\nHeals 1 heart",
     "names": {
       "bul": "Обяд",
       "cs_cz": "Oběd",
@@ -993,7 +993,7 @@
       "greedBoss"
     ],
     "icon": "/icons/23.png",
-    "description": "Respawn as The Lost on death\n33% chance to reveal Super Secret Room on new floor",
+    "description": "↑ +1 Health\nHeals 1 heart",
     "names": {
       "bul": "Вечеря",
       "cs_cz": "Večeře",
@@ -1038,7 +1038,7 @@
       "greedBoss"
     ],
     "icon": "/icons/24.png",
-    "description": "20% higher chance for coins to spawn from poop\nPicking up coins makes Isaac fart, which poisons and knocks back enemies and projectiles",
+    "description": "↑ +1 Health\nHeals 1 heart",
     "names": {
       "bul": "Десерт",
       "cs_cz": "Dezert",
@@ -1129,7 +1129,7 @@
       "rottenBeggar"
     ],
     "icon": "/icons/26.png",
-    "description": "Hides the floor map\nForgets all previously identified pills",
+    "description": "↑ +1 Health\nHeals 1 heart",
     "names": {
       "bul": "Развалено месо",
       "cs_cz": "Shnilé Maso",
@@ -1173,7 +1173,7 @@
       "woodenChest"
     ],
     "icon": "/icons/27.png",
-    "description": "Turns all pickups, chests and non-boss enemies into random bombs",
+    "description": "↑ +0.3 Speed",
     "names": {
       "bul": "Дървена лъжица",
       "cs_cz": "Vařečka",
@@ -1217,7 +1217,7 @@
       "greedBoss"
     ],
     "icon": "/icons/28.png",
-    "description": "Turns all pickups, chests and non-boss enemies into random coins",
+    "description": "↑ +0.3 Speed",
     "names": {
       "bul": "Коланът",
       "cs_cz": "Pásek",
@@ -1264,7 +1264,7 @@
       "oldChest"
     ],
     "icon": "/icons/29.png",
-    "description": "Full health\nReduces all damage taken to half a heart for the room",
+    "description": "↑ +2.5 Range\nSpawns 3-6 blue flies",
     "names": {
       "bul": "Бельото на мама",
       "cs_cz": "Mámino Spodní Prádlo",
@@ -1311,7 +1311,7 @@
       "oldChest"
     ],
     "icon": "/icons/30.png",
-    "description": "+1 Broken Heart\nIncreases all damage taken to a full heart for the room",
+    "description": "↑ +2.5 Range\nIsaac deals 24 contact damage per second",
     "names": {
       "bul": "Токчетата на мама",
       "cs_cz": "Máminy Podpatky",
@@ -1404,7 +1404,7 @@
       "craneGame"
     ],
     "icon": "/icons/32.png",
-    "description": "Curse of the Maze effect for the floor\nAdditional curses after multiple uses",
+    "description": "↑ +0.7 Tears",
     "names": {
       "bul": "Закачалка",
       "cs_cz": "Drátěný Věšák",
@@ -1450,7 +1450,7 @@
       "greedAngel"
     ],
     "icon": "/icons/33.png",
-    "description": "Having half a Red Heart or less grants Little Steven\nTaking damage has a high chance to spawn a Gemini familiar for the room",
+    "description": "Flight for the room\nKills Mom's Foot and Mom's Heart instantly\nKills Isaac when used on Satan",
     "names": {
       "bul": "Библията",
       "cs_cz": "Bible",
@@ -1496,7 +1496,7 @@
       "greedDevil"
     ],
     "icon": "/icons/34.png",
-    "description": "Spawns a trapdoor to the next floor\nSpawns a crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)",
+    "description": "+12.5% Devil/Angel Room chance while held\nReceive for the room:\n↑ +2 Damage",
     "names": {
       "bul": "Книгата на Белиал",
       "cs_cz": "Kniha Belialova",
@@ -1543,7 +1543,7 @@
       "greedSecret"
     ],
     "icon": "/icons/35.png",
-    "description": null,
+    "description": "Deals 40 damage to all enemies in the room",
     "names": {
       "bul": "Некрономикон",
       "cs_cz": "Necronomicon",
@@ -1586,7 +1586,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/36.png",
-    "description": null,
+    "description": "Spawns one poop and knocks back enemies\nCan be placed next to a pit and destroyed with a bomb to make a bridge",
     "names": {
       "bul": "Ако",
       "cs_cz": "Hovno",
@@ -1673,7 +1673,7 @@
       "craneGame"
     ],
     "icon": "/icons/38.png",
-    "description": "Summons 3 Abyss locusts for the room",
+    "description": "Shoots 10 tears in a circle around Isaac\nThe tears copy Isaac's tear effects, plus 25 damage",
     "names": {
       "bul": "Главата на Тами",
       "cs_cz": "Tammyho Hlava",
@@ -1718,7 +1718,7 @@
       "oldChest"
     ],
     "icon": "/icons/39.png",
-    "description": "Makes Isaac invincible for 20 seconds",
+    "description": "Petrifies all enemies in the room for 4 seconds",
     "names": {
       "bul": "Сутиенът на мама",
       "cs_cz": "Mámina Podprsenka",
@@ -1761,7 +1761,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/40.png",
-    "description": "Taking damage has a 20% chance to grant ↑ +1.8 damage for the room\n100% chance at 16 luck",
+    "description": "Causes a big explosion at Isaac's location\nDeals 185 damage",
     "names": {
       "bul": "Камикадзе!",
       "cs_cz": "Kamikaze!",
@@ -1851,7 +1851,7 @@
       "rottenBeggar"
     ],
     "icon": "/icons/42.png",
-    "description": "Slows Isaac and all enemies for the whole floor",
+    "description": "Using the item and firing in a direction throws the head\nThe head explodes where it lands and creates a poison cloud\nDeals Isaac's damage + 185",
     "names": {
       "bul": "Изгнилата глава на Боб",
       "cs_cz": "Bobova Shnilá Hlava",
@@ -1893,7 +1893,7 @@
       "craneGame"
     ],
     "icon": "/icons/44.png",
-    "description": "Consumes Isaac's trinket and grants its golden effect permanently",
+    "description": "Teleports Isaac into a random room, except I AM ERROR rooms",
     "names": {
       "bul": "Телепорт!",
       "cs_cz": "Teleport",
@@ -1936,7 +1936,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/45.png",
-    "description": null,
+    "description": "Heals 1 heart",
     "names": {
       "bul": "Вкусно сърце",
       "cs_cz": "Mňamka Srdce",
@@ -2024,7 +2024,7 @@
       "craneGame"
     ],
     "icon": "/icons/47.png",
-    "description": null,
+    "description": "On use, start aiming a crosshair\nA missile lands on the crosshair after 1.5 seconds\nIt deals 20x Isaac's damage",
     "names": {
       "bul": "Дистанционното на доктора",
       "cs_cz": "Doktorův Dálkový Ovladač",
@@ -2068,7 +2068,7 @@
       "craneGame"
     ],
     "icon": "/icons/48.png",
-    "description": "↓ -0.15 Shot speed",
+    "description": "Piercing tears",
     "names": {
       "bul": "Стрелата на Купидон",
       "cs_cz": "Amorův Šíp",
@@ -2112,7 +2112,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/49.png",
-    "description": "↑ +0.15 Shot speed",
+    "description": "The next shot is replaced with a beam\nIt deals 24x Isaac's damage over 0.83 seconds",
     "names": {
       "bul": "Шуп Да Хуп!",
       "cs_cz": "Shoop da Whoop!",
@@ -2154,7 +2154,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/50.png",
-    "description": "↑ Increases 1 random stat\n↓ Decreases 1 random stat",
+    "description": "↑ +1 Damage",
     "names": {
       "bul": "Стивън",
       "cs_cz": "Steven",
@@ -2206,7 +2206,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/51.png",
-    "description": "A one-use Holy Mantle shield (prevents damage once)",
+    "description": "↑ +1 Damage\n+10% Devil/Angel Room chance",
     "names": {
       "bul": "Пентаграм",
       "cs_cz": "Pentagram",
@@ -2249,7 +2249,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/52.png",
-    "description": "Receive for the room:\n↑ +7 Damage\n↑ +3 Range\nSize up\nAllows Isaac to destroy rocks by walking into them",
+    "description": "↓ x0.4 Fire rate multiplier\nIsaac shoots bombs instead of tears\nThose bombs deal 10x Isaac's tear damage\nIf that results in over 60 damage, they instead deal 5x damage +30",
     "names": {
       "bul": "Д-р Ембрион",
       "cs_cz": "Dr. Zárodek",
@@ -2291,7 +2291,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/53.png",
-    "description": "Heals 1 heart when entering a Boss Room\n-15% boss health\nOnce picked up, it can't be removed\nOnly removeable with Match Stick, A Lighter or gulping",
+    "description": "Pickups are attracted to Isaac\nOpens chests from 2 tiles away, ignoring damage of Spike Chests",
     "names": {
       "bul": "Магнит",
       "cs_cz": "Magneto",
@@ -2336,7 +2336,7 @@
       "beggar"
     ],
     "icon": "/icons/54.png",
-    "description": null,
+    "description": "Reveals the floor layout\nDoes not reveal room icons",
     "names": {
       "bul": "Карта на съкровище",
       "cs_cz": "Mapa Pokladů",
@@ -2382,7 +2382,7 @@
       "oldChest"
     ],
     "icon": "/icons/55.png",
-    "description": "Activates a random rune effect\nThe rune effect is weaker",
+    "description": "50% chance to shoot an extra tear backwards\n100% chance at 5 luck",
     "names": {
       "bul": "Окото на мама",
       "cs_cz": "Mámino Oko",
@@ -2471,7 +2471,7 @@
       "babyShop"
     ],
     "icon": "/icons/57.png",
-    "description": "Grants an aura that repels enemies and projectiles for 60 seconds",
+    "description": "Mid-range fly orbital\nDeals 75 contact damage per second",
     "names": {
       "bul": "Отдалечено възхищение",
       "cs_cz": "Vzdálený Obdiv",
@@ -2513,7 +2513,7 @@
       "library"
     ],
     "icon": "/icons/58.png",
-    "description": "Mom's Foot tries to stomp Isaac for 60 seconds",
+    "description": "Invincibility for 10 seconds",
     "names": {
       "bul": "Книга на сенките",
       "cs_cz": "Kniha Stínů",
@@ -2550,7 +2550,7 @@
     "tags": [],
     "pools": [],
     "icon": "/icons/59.png",
-    "description": "Receive for 60 seconds:\n↑ +2 Health\n↑ +1.5 Fire rate\n↓ -0.1 Speed",
+    "description": "+12.5% Devil/Angel Room chance while held\nReceive for the room:\n↑ +2 Damage",
     "names": {
       "bul": "000",
       "cs_cz": "Kniha Belialova",
@@ -2593,7 +2593,7 @@
       "woodenChest"
     ],
     "icon": "/icons/60.png",
-    "description": "Teleports Isaac to an extra Boss room that can be defeated for an item\nThe boss is chosen from two floors deeper than the current one",
+    "description": "Allows Isaac to cross 1-tile gaps",
     "names": {
       "bul": "Стълбата",
       "cs_cz": "Žebřík",
@@ -2637,7 +2637,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/62.png",
-    "description": "Spawns an item from the current room's item pool\nConverts 1 heart container or 2 Soul Hearts into a Broken Heart",
+    "description": "↑ +0.3 Damage\nKilling 13 enemies heals half a heart",
     "names": {
       "bul": "Чарът на вампира",
       "cs_cz": "Okouzlení Upíra",
@@ -2684,7 +2684,7 @@
       "craneGame"
     ],
     "icon": "/icons/63.png",
-    "description": "Receive for 10 seconds:\n↑ x4 Fire rate multiplier\nInvincible but can't move",
+    "description": "Active items can be overcharged to two full charges",
     "names": {
       "bul": "Батерията",
       "cs_cz": "Baterie",
@@ -2727,7 +2727,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/64.png",
-    "description": "Spawns 2-4 golden chests",
+    "description": "Shop items cost 50% less",
     "names": {
       "bul": "Разпродажба в Steam",
       "cs_cz": "Výprodej na Steamu",
@@ -2771,7 +2771,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/65.png",
-    "description": "Turns all pickups and items in the room into a number of coins equal to their Shop value\nIf there is nothing to turn, spawns a Penny instead",
+    "description": "Spawns 6 Troll Bombs near the center of the room",
     "names": {
       "bul": "Анархистична готварска книга",
       "cs_cz": "Anarchistická Kuchařka",
@@ -2814,7 +2814,7 @@
       "craneGame"
     ],
     "icon": "/icons/66.png",
-    "description": "↑ +0.5 Damage\n↓ -0.5 Shot speed",
+    "description": "Slows enemies down for 8 seconds",
     "names": {
       "bul": "Пясъчен часовник",
       "cs_cz": "Přesýpací Hodiny",
@@ -2862,7 +2862,7 @@
       "babyShop"
     ],
     "icon": "/icons/67.png",
-    "description": "Enemies in the room are slowed and take double damage for 30 seconds",
+    "description": "Shoots normal tears\nDeals 6 damage per tear",
     "names": {
       "bul": "Сестра Маги",
       "cs_cz": "Ségra Maggy",
@@ -2908,7 +2908,7 @@
       "craneGame"
     ],
     "icon": "/icons/68.png",
-    "description": "Receive for 30 seconds:\n↓ -0.1 Speed\nTriple shot\nKilled enemies drop coins",
+    "description": "Isaac shoots lasers instead of tears",
     "names": {
       "bul": "Технология",
       "cs_cz": "Technologie",
@@ -2951,7 +2951,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/69.png",
-    "description": "Activates Book of the Dead\nSpawns friendly Bone entities for each enemy killed in room",
+    "description": "Chargeable tears\nDamage scales with charge time, up to 4x",
     "names": {
       "bul": "Шоколадово мляко",
       "cs_cz": "Čokoládové Mléko",
@@ -2996,7 +2996,7 @@
       "greedBoss"
     ],
     "icon": "/icons/70.png",
-    "description": "Spawns a blue spider every 30 seconds in hostile rooms\nSpawns a blue spider on room clear",
+    "description": "↑ +0.2 Speed\n↑ +1 Damage",
     "names": {
       "bul": "Хормони за растеж",
       "cs_cz": "Růstové Hormony",
@@ -3040,7 +3040,7 @@
       "greedBoss"
     ],
     "icon": "/icons/71.png",
-    "description": "Receive for 30 seconds:\nActivates The Bible (flight)\nSeraphim familiar\nKills Mom's Foot and Mom's Heart instantly\nKills Isaac when used on Satan",
+    "description": "↑ +0.3 Speed\n↑ +2.5 Range\n↑ Size down",
     "names": {
       "bul": "Малка гъба",
       "cs_cz": "Mini Houbička",
@@ -3087,7 +3087,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/72.png",
-    "description": "Spawns 7 clusters of random rocks and obstacles\nClusters often contain Tinted Rocks",
+    "description": "↑ +0.5 Tears\n+3 Soul Hearts\nThe Bible is added to all item pools",
     "names": {
       "bul": "Молитвена броеница",
       "cs_cz": "Růženec",
@@ -3132,7 +3132,7 @@
       "babyShop"
     ],
     "icon": "/icons/73.png",
-    "description": "Removes Isaac's oldest collected passive item (ignoring starting items)\nSpawns 2 random items from the current room's item pool",
+    "description": "Lv1: Orbital\nLv2: Shooting orbital\nLv3: Meat Boy\nLv4: Super Meat Boy",
     "names": {
       "bul": "Куб от месо",
       "cs_cz": "Kostka Masa",
@@ -3176,7 +3176,7 @@
       "greedDevil"
     ],
     "icon": "/icons/74.png",
-    "description": "Teleports Isaac to the Ultra Secret Room\nPathway back will be made of red rooms",
+    "description": "+25 Coins",
     "names": {
       "bul": "Монета от 25 стотинки",
       "cs_cz": "Čtvrťák",
@@ -3221,7 +3221,7 @@
       "greedShop"
     ],
     "icon": "/icons/75.png",
-    "description": "Receive for the floor:\n↑ +1.5 Damage\nFlight and spectral tears\nConverts heart containers into Bone Hearts (reverts)\nCurse of Darkness",
+    "description": "Heals 2 hearts\nSpawns 1 pill\nChanges bad pills into good pills\nBlood Donation Machines give more coins",
     "names": {
       "bul": "Лиценз за лекар",
       "cs_cz": "PHD",
@@ -3264,7 +3264,7 @@
       "greedShop"
     ],
     "icon": "/icons/76.png",
-    "description": "↑ 50% chance for chests to spawn extra pickups\n↓ 50% chance for chests to contain a single fly\nIncreases payout odds of slots and other machines\nSwaps 0-2 quality items from chests with higher quality ones\nChest content can occasionally be items outside the golden chest item pool",
+    "description": "Opens all secret room entrances",
     "names": {
       "bul": "Рентгеново зрение",
       "cs_cz": "Rentgenové Vidění",
@@ -3307,7 +3307,7 @@
       "craneGame"
     ],
     "icon": "/icons/77.png",
-    "description": "Spawns a trapdoor to a crawlspace",
+    "description": "Receive for 6 seconds:\n↑ +0.28 Speed\nInvincibility\nIsaac can't shoot but deals 40 contact damage per second",
     "names": {
       "bul": "Моят малък еднорог",
       "cs_cz": "Můj Malý Jednorožec",
@@ -3354,7 +3354,7 @@
       "greedAngel"
     ],
     "icon": "/icons/78.png",
-    "description": "Single-use Red Key",
+    "description": "+1 Soul Heart\n+17.5% Devil/Angel Room chance while held\nUsing the item replaces the floor's boss with a horseman",
     "names": {
       "bul": "Книга на откровенията",
       "cs_cz": "Kniha Zjevení",
@@ -3402,7 +3402,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/79.png",
-    "description": "Spawns 1-20 Red Hearts",
+    "description": "↑ +1 Damage\n↑ +0.2 Speed\n+1 Black Heart",
     "names": {
       "bul": "Белегът",
       "cs_cz": "Značka",
@@ -3451,7 +3451,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/80.png",
-    "description": "Copies the effect of your most recently used pill, card, rune, soul stone or activated item",
+    "description": "↑ +0.7 Tears\n↑ +0.5 Damage\n+2 Black Hearts",
     "names": {
       "bul": "Пактът",
       "cs_cz": "Pakt",
@@ -3499,7 +3499,7 @@
       "greedDevil"
     ],
     "icon": "/icons/81.png",
-    "description": "Makes all item pedestals in the room cycle between two different items",
+    "description": "↑ +9 Lives\nIsaac respawns with 1 heart container on death\nSets Isaac's heart containers to 1 when picked up",
     "names": {
       "bul": "Мъртва котка",
       "cs_cz": "Mrtvá Kočka",
@@ -3545,7 +3545,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/82.png",
-    "description": "Effect lasts for the room:\nEnemies killed drop half Red Hearts that disappear after 2 seconds",
+    "description": "↑ +0.3 Speed\nFlight",
     "names": {
       "bul": "Властелинът на ямата",
       "cs_cz": "Lord Podzemí",
@@ -3588,7 +3588,7 @@
       "greedDevil"
     ],
     "icon": "/icons/83.png",
-    "description": "Opens all doors in the room\nCreates red rooms on every wall possible",
+    "description": "Upon use:\n+ Half Black Heart\nReceive for the room:\n↑ +2 Damage\n↓ -0.18 Speed\nIsaac deals 40 contact damage per second\nAllows Isaac to destroy rocks by walking into them",
     "names": {
       "bul": "Пиронът",
       "cs_cz": "Hřebík",
@@ -3632,7 +3632,7 @@
       "greedSecret"
     ],
     "icon": "/icons/84.png",
-    "description": "Activates Dark Arts with a 3 second duration\nTemporary ↑ damage up for every enemy/projectile hit",
+    "description": "Opens a trapdoor to the next floor\nOpens a crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)",
     "names": {
       "bul": "Трябва да идем по-дълбоко!",
       "cs_cz": "Musíme jít hlouběji!",
@@ -3678,7 +3678,7 @@
       "craneGame"
     ],
     "icon": "/icons/85.png",
-    "description": "Using any type of Donation Machine has a 33% chance to:\nHeal 1 heart (40%)\nGive 1 coin (40%)\nGrant +1 luck (15%)\nSpawn a Beggar (5%)\nDonation machines are less likely to jam\nAlso affects Beggar donations and Restock machines",
+    "description": "Spawns 1 card",
     "names": {
       "bul": "Тесте карти",
       "cs_cz": "Balíček Karet",
@@ -3720,7 +3720,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/86.png",
-    "description": "14 Dead Bird familiars fly in and attack enemies for the room",
+    "description": "Monstro falls on an enemy and deals 120 damage\nMonstro falls on Isaac if the room has no enemies",
     "names": {
       "bul": "Зъбът на Монстро",
       "cs_cz": "Monstrův Zub",
@@ -3764,7 +3764,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/87.png",
-    "description": "Activates Berserk! for 10 seconds\nEach kill increases the duration by 1 second",
+    "description": "25% chance to shoot in 4 directions\n100% chance at 15 luck",
     "names": {
       "bul": "Рогата на Локи",
       "cs_cz": "Lokiho Rohy",
@@ -3809,7 +3809,7 @@
       "babyShop"
     ],
     "icon": "/icons/88.png",
-    "description": "Fires a Mega Blast beam for 7.5 seconds",
+    "description": "Charges forward in the direction Isaac is shooting\nDeals 52.5 contact damage per second",
     "names": {
       "bul": "Малкият Чъби",
       "cs_cz": "Malý Tlouštík",
@@ -3854,7 +3854,7 @@
       "craneGame"
     ],
     "icon": "/icons/89.png",
-    "description": "Familiars stay closer to Isaac\n25% Increased familiar damage",
+    "description": "25% chance to shoot slowing tears\n100% chance at 15 luck",
     "names": {
       "bul": "Паякова захапка",
       "cs_cz": "Pavoučí Kousnutí",
@@ -3897,7 +3897,7 @@
       "craneGame"
     ],
     "icon": "/icons/90.png",
-    "description": "Rerolls item pedestals and pickups in the room\nThe rerolled items come from random item pools",
+    "description": "↑ +0.2 Tears\n↑ +1 Damage\n↓ -0.2 Speed",
     "names": {
       "bul": "Малкият камък",
       "cs_cz": "Malý Kamínek",
@@ -3941,7 +3941,7 @@
       "craneGame"
     ],
     "icon": "/icons/91.png",
-    "description": "Turns the player into The Lost for the room\nAllows taking one Devil Room item for free\nAllows entering the Mausoleum or Gehenna door for free",
+    "description": "Rooms on the map are revealed from further away\nCan also reveal Secret and Super Secret Rooms\nPrevents damage from falling projectiles",
     "names": {
       "bul": "Миньорска шапка",
       "cs_cz": "Horníkova Helma",
@@ -3985,7 +3985,7 @@
       "greedBoss"
     ],
     "icon": "/icons/92.png",
-    "description": "Permanently grants a random familiar",
+    "description": "↑ +1 Health\nHeals 1 heart\n+2 Soul Hearts",
     "names": {
       "bul": "Супер лепенка",
       "cs_cz": "Super Obvaz",
@@ -4028,7 +4028,7 @@
       "craneGame"
     ],
     "icon": "/icons/93.png",
-    "description": "33% chance per room for all fly enemies to become friendly\nSpawns 1 blue fly when entering a new room",
+    "description": "Receive for 6.5 seconds:\nInvincibility\nIsaac can't shoot but deals 40 contact damage per second\nKilling 2 enemies heals half a heart\nFears all enemies in the room",
     "names": {
       "bul": "Геймкид",
       "cs_cz": "Gamekid",
@@ -4072,7 +4072,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/94.png",
-    "description": "Spawns 15 random locusts",
+    "description": "Spawns a random coin every 2 rooms",
     "names": {
       "bul": "Кесия с монети",
       "cs_cz": "Pytel Peněz",
@@ -4120,7 +4120,7 @@
       "babyShop"
     ],
     "icon": "/icons/95.png",
-    "description": "Spawns The Forgotten as a secondary character for the room",
+    "description": "Shoots lasers\nDeals 3.5 damage per shot",
     "names": {
       "bul": "Робо-бебе",
       "cs_cz": "Robo-Děcko",
@@ -4166,7 +4166,7 @@
       "babyShop"
     ],
     "icon": "/icons/96.png",
-    "description": "Spawns 6 random Book of Virtues wisps",
+    "description": "Spawns a half Red Heart every 3 rooms",
     "names": {
       "bul": "Малък Ч.А.Д.",
       "cs_cz": "Malý C.H.A.D.",
@@ -4212,7 +4212,7 @@
       "greedDevil"
     ],
     "icon": "/icons/97.png",
-    "description": "Taking damage 6-12 times spawns a projectile blocking familiar\nDisappears after spawning 2 familiars",
+    "description": "Spawns 1 random pickup",
     "names": {
       "bul": "Книгата на греховете",
       "cs_cz": "Kniha Hříchu",
@@ -4258,7 +4258,7 @@
       "greedAngel"
     ],
     "icon": "/icons/98.png",
-    "description": "10% chance to shoot a sticky tear\n50% chance for it to be homing\nBoogers deal Isaac's damage once per second\nBoogers stick for 10 seconds",
+    "description": "Spawns 1 Soul Heart every 7-8 rooms",
     "names": {
       "bul": "Реликвата",
       "cs_cz": "Relikvie",
@@ -4303,7 +4303,7 @@
       "babyShop"
     ],
     "icon": "/icons/99.png",
-    "description": "10% chance to shoot bouncing tears\n100% chance at 18 luck",
+    "description": "Shoots slowing tears\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Малък Гиш",
       "cs_cz": "Malý Gish",
@@ -4349,7 +4349,7 @@
       "babyShop"
     ],
     "icon": "/icons/100.png",
-    "description": null,
+    "description": "Shoots homing tears\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Малък Стивън",
       "cs_cz": "Malý Steven",
@@ -4397,7 +4397,7 @@
       "greedAngel"
     ],
     "icon": "/icons/101.png",
-    "description": "Holding a completely uncharged active item grants:\n↑ +0.5 Speed\n↑ +0.5 Tears\n↑ +1.5 Damage\n↑ +1.5 Range\n↑ +0.3 Shot speed\n↑ +2 Luck",
+    "description": "↑ +1 Health\n↑ +0.3 Speed\n↑ +0.2 Tears\n↑ +0.3 Damage\n↑ +1.5 Range\nHeals 1 heart",
     "names": {
       "bul": "Ореолът",
       "cs_cz": "Svatozář",
@@ -4447,7 +4447,7 @@
       "oldChest"
     ],
     "icon": "/icons/102.png",
-    "description": null,
+    "description": "Spawns 1 pill",
     "names": {
       "bul": "Флаконът с хапчета на мама",
       "cs_cz": "Mámina Lahvička s Pilulky",
@@ -4490,7 +4490,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/103.png",
-    "description": "When Isaac's coin, bomb and key counts are equal:\n↑ +2 Fire rate",
+    "description": "25% chance to shoot poison tears\n100% chance at 12 luck",
     "names": {
       "bul": "Настинка",
       "cs_cz": "Běžná Chřipka",
@@ -4533,7 +4533,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/104.png",
-    "description": "5% chance to get destroyed and spawn a pedestal item when hit",
+    "description": "Tears split in two on contact\nSplit tears deal half damage",
     "names": {
       "bul": "Паразитът",
       "cs_cz": "Parazit",
@@ -4578,7 +4578,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/105.png",
-    "description": "5% chance to get destroyed and spawn Lunch when hit",
+    "description": "Rerolls pedestal items in the room",
     "names": {
       "bul": "D6",
       "cs_cz": "D6",
@@ -4663,7 +4663,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/107.png",
-    "description": "Taking damage depletes Red Hearts before Soul/Black Hearts\nTaking Red Heart damage will reduce Devil/Angel Room chance",
+    "description": "Receive for the room:\nFlight\nIsaac's body separates from his head and attacks enemies with 23.5 contact damage per second",
     "names": {
       "bul": "Шивашки ножици",
       "cs_cz": "Velké Nůžky",
@@ -4708,7 +4708,7 @@
       "greedAngel"
     ],
     "icon": "/icons/108.png",
-    "description": null,
+    "description": "Reduces most damage taken to half a heart",
     "names": {
       "bul": "Вафлата",
       "cs_cz": "Oplatka",
@@ -4753,7 +4753,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/109.png",
-    "description": null,
+    "description": "↑ +0.04 Damage for every coin Isaac has",
     "names": {
       "bul": "Пари = Сила",
       "cs_cz": "Peníze = Moc",
@@ -4800,7 +4800,7 @@
       "oldChest"
     ],
     "icon": "/icons/110.png",
-    "description": "Shops appear in the Womb and Corpse",
+    "description": "↑ +1.5 Range\n20% chance to shoot petrifying tears\n50% chance at 20 luck",
     "names": {
       "bul": "Лещите на мама",
       "cs_cz": "Mámina Kontaktní Čočka",
@@ -4843,7 +4843,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/111.png",
-    "description": "Treasure Rooms appear in the Womb and Corpse",
+    "description": "Deals 5 damage to enemies nearby and poisons them\nThe poison deals Isaac's damage 6 times",
     "names": {
       "bul": "Бобчето",
       "cs_cz": "Fazole",
@@ -4888,7 +4888,7 @@
       "babyShop"
     ],
     "icon": "/icons/112.png",
-    "description": null,
+    "description": "Orbital\nSpeeds up all other orbitals\nBlocks projectiles\nDeals 105 contact damage per second",
     "names": {
       "bul": "Ангел пазител",
       "cs_cz": "Anděl Strážný",
@@ -4936,7 +4936,7 @@
       "babyShop"
     ],
     "icon": "/icons/113.png",
-    "description": null,
+    "description": "Shoots enemies that get close to him\nDeals 3 damage per tear",
     "names": {
       "bul": "Бебе демон",
       "cs_cz": "Démoní Děcko",
@@ -5077,7 +5077,7 @@
       "craneGame"
     ],
     "icon": "/icons/116.png",
-    "description": null,
+    "description": "Automatically charges the first bar of active items\nFully recharges the active item on pickup",
     "names": {
       "bul": "9 волтова батерия",
       "cs_cz": "9-Voltovka",
@@ -5208,7 +5208,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/119.png",
-    "description": "Entering a new floor heals half of Isaac's empty Red/Bone Hearts\nHeals half a heart minimum",
+    "description": "↑ +1 Health\n↑ +0.3 Speed\nHeals 4 hearts",
     "names": {
       "bul": "Пакет с кръв",
       "cs_cz": "Sáček s Krví",
@@ -5256,7 +5256,7 @@
       "greedSecret"
     ],
     "icon": "/icons/120.png",
-    "description": null,
+    "description": "↑ +0.3 Speed\n↑ +1.7 Tears\n↓ x0.9 Damage multiplier\n↓ -0.4 Damage",
     "names": {
       "bul": "Странна гъба (тънка)",
       "cs_cz": "Zvláštní Houba (malá)",
@@ -5348,7 +5348,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/122.png",
-    "description": null,
+    "description": "When on half a Red Heart or less:\n↑ +0.3 Speed\n↑ +1.5 Damage",
     "names": {
       "bul": "Вавилонска блудница",
       "cs_cz": "Děvka Babylonská",
@@ -5438,7 +5438,7 @@
       "greedAngel"
     ],
     "icon": "/icons/124.png",
-    "description": null,
+    "description": "Triggers a random active item effect\nChooses the effect from a fixed list of items",
     "names": {
       "bul": "Свитъци от Мъртво море",
       "cs_cz": "Svitky od Mrtvého Moře",
@@ -5482,7 +5482,7 @@
       "bombBum"
     ],
     "icon": "/icons/125.png",
-    "description": null,
+    "description": "+5 Bombs\nHoming bombs",
     "names": {
       "bul": "Боби-Бомба",
       "cs_cz": "Polda-Bomba",
@@ -5575,7 +5575,7 @@
       "greedSecret"
     ],
     "icon": "/icons/127.png",
-    "description": null,
+    "description": "Rerolls and restarts the entire floor",
     "names": {
       "bul": "Забрави за мен",
       "cs_cz": "Zapomeň na Mě",
@@ -5622,7 +5622,7 @@
       "babyShop"
     ],
     "icon": "/icons/128.png",
-    "description": "Taking damage has a 4% chance to grant a Bone Heart",
+    "description": "Long range fly orbital\nDeals 30 contact damage per second",
     "names": {
       "bul": "Завинаги сам",
       "cs_cz": "Navždy Sám",
@@ -5664,7 +5664,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/129.png",
-    "description": "10% chance to shoot teeth that deal 3.2x Isaac's damage\n100% chance at 9 luck",
+    "description": "↑ +2 Health\n↓ -0.2 Speed",
     "names": {
       "bul": "Кофа с маз",
       "cs_cz": "Kbelík Sádla",
@@ -5703,7 +5703,7 @@
     ],
     "pools": [],
     "icon": "/icons/130.png",
-    "description": "10% chance to shoot slowing tears\n100% chance at 18 luck",
+    "description": "While held:\nSets your Speed to at least 1.5\nFlight\nUpon use, dashes in the direction of Isaac's movement",
     "names": {
       "bul": "Пони",
       "cs_cz": "Poník",
@@ -5747,7 +5747,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/131.png",
-    "description": "Picking up a coin has a 17% chance to spawn a half Soul Heart\nHigher chance from nickels and dimes",
+    "description": "Spawns 1 bomb pickup every 3 rooms",
     "names": {
       "bul": "Торба с бомби",
       "cs_cz": "Pytel Bomb",
@@ -5791,7 +5791,7 @@
       "greedDevil"
     ],
     "icon": "/icons/132.png",
-    "description": "25% chance to get a random syringe effect each room",
+    "description": "Tears deal more damage the further they travel",
     "names": {
       "bul": "Парче въглен",
       "cs_cz": "Hrouda Uhlí",
@@ -5838,7 +5838,7 @@
       "greedDevil"
     ],
     "icon": "/icons/133.png",
-    "description": "Isaac's bombs explode faster\nBombs deal 15% more damage",
+    "description": "Converts 1 heart container into 3 Soul Hearts",
     "names": {
       "bul": "Лапата на Гъпи",
       "cs_cz": "Guppyho Tlapka",
@@ -5886,7 +5886,7 @@
       "greedDevil"
     ],
     "icon": "/icons/134.png",
-    "description": "Increases fart size",
+    "description": "33% chance to replace the room clear reward with a chest\n22% chance to spawn no room clear reward",
     "names": {
       "bul": "Опашката на Гъпи",
       "cs_cz": "Guppyho Ocas",
@@ -5927,7 +5927,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/135.png",
-    "description": "Entering a room has a 20% chance to burn random enemies\nRemoves Tick",
+    "description": "Hurts Isaac for half a heart and spawns 1-2 coins\nRemoves Red Hearts first",
     "names": {
       "bul": "Кръвна банка",
       "cs_cz": "Infuzní vak",
@@ -5970,7 +5970,7 @@
       "craneGame"
     ],
     "icon": "/icons/136.png",
-    "description": "Doors, key blocks and golden chests can be opened with explosions\nExplosions can also open the \"Strange Door\" in \"Depths II\"",
+    "description": "Spawns a decoy Isaac that attracts enemies and explodes after 5 seconds",
     "names": {
       "bul": "Най-добър приятел",
       "cs_cz": "Nejlepší Kámoš",
@@ -6018,7 +6018,7 @@
       "bombBum"
     ],
     "icon": "/icons/137.png",
-    "description": "Entering a new floor spawns up to 4 uncollected pickups from the previous floor in the starting room",
+    "description": "+5 Bombs\nIsaac's bombs no longer explode automatically\nUpon use, detonates all of Isaac's bombs at once",
     "names": {
       "bul": "Детонатор",
       "cs_cz": "Dálková Rozbuška",
@@ -6064,7 +6064,7 @@
       "woodenChest"
     ],
     "icon": "/icons/138.png",
-    "description": "Using an active item rerolls it",
+    "description": "↑ +1 Health\n↑ +0.3 Damage\nHeals 1 heart",
     "names": {
       "bul": "Стигмата",
       "cs_cz": "Stigmata",
@@ -6111,7 +6111,7 @@
       "oldChest"
     ],
     "icon": "/icons/139.png",
-    "description": "+4 Luck towards luck-based tear effects",
+    "description": "Spawns 1 random trinket\nIsaac can hold 2 trinkets",
     "names": {
       "bul": "Чантата на мама",
       "cs_cz": "Mámina Kabelka",
@@ -6158,7 +6158,7 @@
       "rottenBeggar"
     ],
     "icon": "/icons/140.png",
-    "description": "Picking up Red Hearts have a 50% chance to convert them into blue spiders\nWorks even while at full health\nEffect may consume hearts needed for healing",
+    "description": "+5 Bombs\nIsaac's bombs create a cloud of poison\nPoison immunity",
     "names": {
       "bul": "Проклятието на Боб",
       "cs_cz": "Bobova Kletba",
@@ -6245,7 +6245,7 @@
       "greedAngel"
     ],
     "icon": "/icons/142.png",
-    "description": "Entering a new floor spawns 4 Book of Virtues wisps",
+    "description": "Isaac gains 1 Soul Heart when damaged down to half a heart\nCan only happen once per room\nExiting and re-entering the room allows the effect to trigger again\nDoesn't trigger from health donations",
     "names": {
       "bul": "Скапуляр",
       "cs_cz": "Škapulíř",
@@ -6291,7 +6291,7 @@
       "greedBoss"
     ],
     "icon": "/icons/143.png",
-    "description": "Prevents active item from charging by clearing a room\nClearing a room has a 20% chance to spawn a battery\n33% chance at 5 luck",
+    "description": "↑ +0.3 Speed\n↑ +0.2 Shot speed",
     "names": {
       "bul": "Спидбол",
       "cs_cz": "Rychlokoule",
@@ -6335,7 +6335,7 @@
       "babyShop"
     ],
     "icon": "/icons/144.png",
-    "description": "Tears turn 90 degrees to target enemies that they may have missed",
+    "description": "Picks up nearby coins\nSpawns random pickups every 3-4 coins",
     "names": {
       "bul": "Просяк-приятел",
       "cs_cz": "Žebrácký Kámoš",
@@ -6382,7 +6382,7 @@
       "greedDevil"
     ],
     "icon": "/icons/145.png",
-    "description": "↑ +10 Luck\nTaking damage destroys the trinket",
+    "description": "Spawns 2-4 blue flies",
     "names": {
       "bul": "Главата на Гъпи",
       "cs_cz": "Guppyho Hlava",
@@ -6426,7 +6426,7 @@
       "greedAngel"
     ],
     "icon": "/icons/146.png",
-    "description": "Treasure Room items are replaced with devil deals",
+    "description": "+1 Eternal Heart",
     "names": {
       "bul": "Молитвена карта",
       "cs_cz": "Modlitební Obrázek",
@@ -6470,7 +6470,7 @@
       "craneGame"
     ],
     "icon": "/icons/147.png",
-    "description": "Picking up a coin has a 17% chance to add 1 charge to the active item\nHigher chance from nickels and dimes",
+    "description": "Using the item makes Isaac hold the axe\nHolding the axe allows Isaac to break rocks, secret room entrances and damage enemies\nLanding a hit with the axe reduces its charge\nEntering a new floor fully recharges the axe",
     "names": {
       "bul": "Кирка",
       "cs_cz": "Notchův Krumpáč",
@@ -6514,7 +6514,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/148.png",
-    "description": "All familiars orbit around Isaac",
+    "description": "Taking damage spawns 2-6 blue flies",
     "names": {
       "bul": "Нашествие",
       "cs_cz": "Zamoření",
@@ -6558,7 +6558,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/149.png",
-    "description": "Right before taking damage, uses the active item if it is charged",
+    "description": "↑ +40 Damage\n↓ x0.33 Fire rate multiplier\n↓ x0.8 Range multiplier\n↓ x0.8 Shot speed multiplier\nIsaac's tears are fired in an arc\nThe tears explode and poison enemies where they land",
     "names": {
       "bul": "Буркан с отрова",
       "cs_cz": "Ipekak",
@@ -6601,7 +6601,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/150.png",
-    "description": "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them",
+    "description": "10% chance to shoot teeth that deal 3.2x Isaac's damage\n100% chance at 9 luck",
     "names": {
       "bul": "Трудна любов",
       "cs_cz": "Tvrdá Láska",
@@ -6645,7 +6645,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/151.png",
-    "description": "Retracts most spikes, rendering them harmless\nAlso affects Curse Room doors, mimics and any spike obstacle",
+    "description": "Tears have a 1/6 chance to spawn a blue fly when hitting an enemy",
     "names": {
       "bul": "Мълиганът",
       "cs_cz": "Mulligan",
@@ -6690,7 +6690,7 @@
       "craneGame"
     ],
     "icon": "/icons/152.png",
-    "description": "+9% Planetarium chance\nAdditional +15% chance if a Planetarium hasn't been entered yet\nPlanetariums can spawn in the Womb and Corpse",
+    "description": "↓ x0.67 Fire rate multiplier\nReplaces Isaac's right eye tears with a continuous laser\nThe laser deals 2x Isaac's damage per second",
     "names": {
       "bul": "Технология 2",
       "cs_cz": "Technologie 2",
@@ -6735,7 +6735,7 @@
       "craneGame"
     ],
     "icon": "/icons/153.png",
-    "description": "25% chance for a random Mom item effect each room",
+    "description": "↓ x0.42 Fire rate multiplier\nIsaac shoots 4 tears at once",
     "names": {
       "bul": "Паяк Мутант",
       "cs_cz": "Mutantní Pavouk",
@@ -6778,7 +6778,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/154.png",
-    "description": "50% chance per new room to grant a single use die consumable item\nThe die disappears when leaving\nThe die does not take up a pill/card slot",
+    "description": "↑ +2 Damage for the left eye",
     "names": {
       "bul": "Химическо Изгаряне",
       "cs_cz": "Chemické Oloupání",
@@ -6823,7 +6823,7 @@
       "babyShop"
     ],
     "icon": "/icons/155.png",
-    "description": "Spawns a Treasure Room and Shop in Cathedral",
+    "description": "↑ x1.35 Damage multiplier for the left eye\nFloats around the room\nDeals 17.1 contact damage per second",
     "names": {
       "bul": "Зъркелът",
       "cs_cz": "Kukadlo",
@@ -6868,7 +6868,7 @@
       "greedShop"
     ],
     "icon": "/icons/156.png",
-    "description": "+1 Heart container while held",
+    "description": "Taking damage adds 1 charge to the active item",
     "names": {
       "bul": "Калугерска одежда",
       "cs_cz": "Hábit",
@@ -6915,7 +6915,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/157.png",
-    "description": "Every 15 shots, Isaac shoots an Ipecac + My Reflection tear with a very high range value",
+    "description": "↑ Taking damage grants a damage up\nApplies up to 6 times per floor\nLasts for the whole floor",
     "names": {
       "bul": "Жажда за кръв",
       "cs_cz": "Krvavá Chtíč",
@@ -6956,7 +6956,7 @@
     ],
     "pools": [],
     "icon": "/icons/158.png",
-    "description": "Taking damage makes Isaac drop 2 of his coins, keys or bombs\nThe pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc.",
+    "description": "Spawns a Soul Heart, rune or card\nFull mapping effect for the floor (except Super/Ultra Secret Room)\nWhile held:\n+15% Planetarium chance\n+100% if a Treasure Room was skipped",
     "names": {
       "bul": "Кристална топка",
       "cs_cz": "Křišťálová Koule",
@@ -7002,7 +7002,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/159.png",
-    "description": "+1 Key on pickup\nReplaces all chests (except Old/Mega) with golden chests\nGolden chests can contain extra cards, pills or trinkets",
+    "description": "Spectral tears\nFlight",
     "names": {
       "bul": "Дух на нощта",
       "cs_cz": "Přízrak Soumraku",
@@ -7044,7 +7044,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/160.png",
-    "description": "Entering a new floor spawns a sack",
+    "description": "Spawns 5 beams of light near enemies\nEach beam deals 8x Isaac's damage + 160 over 0.8 seconds",
     "names": {
       "bul": "Удар от небето",
       "cs_cz": "Prolomení Oblohy",
@@ -7088,7 +7088,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/161.png",
-    "description": "Spawns a Treasure Room and Shop in Sheol",
+    "description": "Respawn as ??? (Blue Baby) on death",
     "names": {
       "bul": "Анкх",
       "cs_cz": "Ankh",
@@ -7134,7 +7134,7 @@
       "greedAngel"
     ],
     "icon": "/icons/162.png",
-    "description": "Clearing a room has a 33% chance to turn the player into Azazel\nEffect lasts until clearing and leaving another room",
+    "description": "Taking damage has a 20% chance to make Isaac temporarily invincible\n100% chance at 27 luck",
     "names": {
       "bul": "Келтски кръст",
       "cs_cz": "Keltský Kříž",
@@ -7181,7 +7181,7 @@
       "babyShop"
     ],
     "icon": "/icons/163.png",
-    "description": "All Dip (small poop) enemies are friendly\nClearing a room spawns 1 random Dip",
+    "description": "Shoots spectral tears\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Бебе дух",
       "cs_cz": "Duchařské dítě",
@@ -7223,7 +7223,7 @@
       "greedShop"
     ],
     "icon": "/icons/164.png",
-    "description": "Spawns 1 extra bomb for each bomb placed",
+    "description": "Throws a blue flame\nIt deals contact damage, blocks enemy tears, and despawns after 2 seconds",
     "names": {
       "bul": "Свещта",
       "cs_cz": "Modrá Svíčka",
@@ -7266,7 +7266,7 @@
       "greedBoss"
     ],
     "icon": "/icons/165.png",
-    "description": "On Womb and beyond, replaces all coin and key spawns with a bomb, heart, pill, card, trinket, battery, or enemy fly",
+    "description": "↑ +1 Damage\n↑ +0.23 Shot speed",
     "names": {
       "bul": "Котка с девет опашки",
       "cs_cz": "Devítiocasá Kočka",
@@ -7310,7 +7310,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/166.png",
-    "description": "50% chance to grant the effect of a random passive item each room",
+    "description": "Rerolls all pickups in the room",
     "names": {
       "bul": "D20",
       "cs_cz": "D20",
@@ -7357,7 +7357,7 @@
       "babyShop"
     ],
     "icon": "/icons/167.png",
-    "description": "Clearing a room has a 25% chance to spawn a friendly Bony",
+    "description": "Shoots two tears in a V-shaped pattern\nDeals 4 damage per tear",
     "names": {
       "bul": "Бебе Арлекин",
       "cs_cz": "Harlekýnské Dítě",
@@ -7402,7 +7402,7 @@
       "greedSecret"
     ],
     "icon": "/icons/168.png",
-    "description": "Entering a new floor grants +1 Bone Heart",
+    "description": "Instead of shooting tears, aim a crosshair\nA missile lands on the crosshair after 1.5 seconds\nMissiles deal 20x Isaac's damage",
     "names": {
       "bul": "Епичен Ембрион",
       "cs_cz": "Epický Zárodek",
@@ -7445,7 +7445,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/169.png",
-    "description": "Counts as 1 item towards the Guppy transformation while held",
+    "description": "↑ +4 Damage\n↑ x2 Damage multiplier\n↓ x0.42 Fire rate multiplier\nTears pierce killed enemies if there is leftover damage",
     "names": {
       "bul": "Полифем",
       "cs_cz": "Polyfémos",
@@ -7491,7 +7491,7 @@
       "babyShop"
     ],
     "icon": "/icons/170.png",
-    "description": "Clearing a room has a 33% chance to create a Red Key room\nLower chance to occur when in a red room",
+    "description": "Stomps on a nearby enemy every 4 seconds\nDeals 40 damage per second",
     "names": {
       "bul": "Татко Дълги Крака",
       "cs_cz": "Taťka Dlouhonožka",
@@ -7534,7 +7534,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/171.png",
-    "description": "50% chance for devil deals to cost coins instead of hearts",
+    "description": "Slows down enemies for 4 seconds\nDeals 10 damage to all enemies\nEnemies killed by the item spawn blue spiders",
     "names": {
       "bul": "Паяшки задник",
       "cs_cz": "Pavoučí Prdel",
@@ -7578,7 +7578,7 @@
       "greedDevil"
     ],
     "icon": "/icons/172.png",
-    "description": "Picking up a coin teleports Isaac to a random room\nCan teleport to secret rooms\nThe type of coin affects the selected room type",
+    "description": "Orbital\nBlocks enemy shots\nDeals 112.5 contact damage per second",
     "names": {
       "bul": "Жертвена кама",
       "cs_cz": "Obětní Dýka",
@@ -7621,7 +7621,7 @@
       "angel"
     ],
     "icon": "/icons/173.png",
-    "description": "Allows Isaac to take 1 Devil Room item for free\nThe free Devil deal still affects Angel Room chance",
+    "description": "33% chance that Red Hearts spawn as Soul Hearts instead",
     "names": {
       "bul": "Митра",
       "cs_cz": "Mitra",
@@ -7667,7 +7667,7 @@
       "babyShop"
     ],
     "icon": "/icons/174.png",
-    "description": "+10% Devil Room chance\nPrevents Krampus from appearing in Devil Rooms\nDevil Rooms are special variants with more deals, Black Hearts and enemies",
+    "description": "Shoots random tears\nDeals 3-5 damage per tear",
     "names": {
       "bul": "Бебе дъга",
       "cs_cz": "Duhové Dítě",
@@ -7711,7 +7711,7 @@
       "oldChest"
     ],
     "icon": "/icons/175.png",
-    "description": "Opens the door to the Hush floor regardless of the timer\nUsing Pandora's Box consumes the key and spawns 6 items from random pools",
+    "description": "Opens all doors in the room, including Secret Rooms, Challenge Rooms, and the Mega Satan door",
     "names": {
       "bul": "Ключа на тати",
       "cs_cz": "Tátův Klíč",
@@ -7755,7 +7755,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/176.png",
-    "description": "Spawns a blood clot that mimics Isaac's movement\nCopies Isaac's stats, tear effects and 35% of his damage\nRespawns each room",
+    "description": "↑ +1 Health\n↑ +0.16 Shot speed\nHeals 1 heart",
     "names": {
       "bul": "Стволови клетки",
       "cs_cz": "Kmenové Buňky",
@@ -7796,7 +7796,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/177.png",
-    "description": "Clearing a Challenge Room spawns a chest\nClearing a Boss Challenge Room spawns an item",
+    "description": "Spend 1 coin for a chance to spawn a pickup",
     "names": {
       "bul": "Преносим слот",
       "cs_cz": "Přenosný Automat",
@@ -7841,7 +7841,7 @@
       "greedAngel"
     ],
     "icon": "/icons/178.png",
-    "description": "Taking damage has a 50% chance for Isaac to explode\nDoesn't destroy Blood Donation Machines or Confessionals, while spawning pickups as if it did",
+    "description": "Launches itself in the direction Isaac shoots\nBreaks and deals 7 damage upon hitting an enemy\nLeaves a pool of petrifying + damaging creep",
     "names": {
       "bul": "Светена Вода",
       "cs_cz": "Svěcená Voda",
@@ -7883,7 +7883,7 @@
       "goldenChest"
     ],
     "icon": "/icons/179.png",
-    "description": "Familiars mimic Isaac's movement\nHold the drop button ( ) to keep the familiars in place",
+    "description": "+1 Eternal Heart\nFlight",
     "names": {
       "bul": "Съдба",
       "cs_cz": "Osud",
@@ -7927,7 +7927,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/180.png",
-    "description": "Follows Isaac's movement and shoots spectral tears\nCopies Isaac's stats, tear effects and 50% of his damage\nUses most active items when Isaac does\nDies in one hit\nRespawns each floor",
+    "description": "Isaac farts multiple times when damaged\nThe farts leave poison clouds and deflects projectiles",
     "names": {
       "bul": "Черен боб",
       "cs_cz": "Černá Fazole",
@@ -7966,7 +7966,7 @@
     ],
     "pools": [],
     "icon": "/icons/181.png",
-    "description": "Using an active item triggers the effect of an additional 1-2 charge active item",
+    "description": "Sets your Speed to at least 1.5\nFlight while held\nUsing the item dashes in the direction of Isaac's movement, leaving behind beams of light",
     "names": {
       "bul": "Бяло пони",
       "cs_cz": "Bílý Poník",
@@ -8011,7 +8011,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/182.png",
-    "description": "Entering an Angel Room spawns 5 wisps\nDonating to Beggars has a 25% chance to spawn a wisp",
+    "description": "↑ +1 Health\n↑ x2.3 Damage multiplier\n↑ +1 Damage\n↓ -0.4 Tears\n↓ -0.25 Shot speed\nFull health\nHoming tears",
     "names": {
       "bul": "Свещено сърце",
       "cs_cz": "Nejsvětější Srdce",
@@ -8056,7 +8056,7 @@
       "woodenChest"
     ],
     "icon": "/icons/183.png",
-    "description": "50% chance to duplicate a familiar each room\nGrants Brother Bobby or Sister Maggy if Isaac has no familiars",
+    "description": "↑ +0.7 Tears\n↑ +0.16 Shot speed",
     "names": {
       "bul": "Клечки за зъби",
       "cs_cz": "Párátka",
@@ -8100,7 +8100,7 @@
       "greedAngel"
     ],
     "icon": "/icons/184.png",
-    "description": "Shops sell familiars for 10 coins",
+    "description": "↑ +1 Health\nHeals 1 heart\nFlight",
     "names": {
       "bul": "Светия Граал",
       "cs_cz": "Svatý Grál",
@@ -8144,7 +8144,7 @@
       "greedAngel"
     ],
     "icon": "/icons/185.png",
-    "description": "Killing an enemy has a 17% chance to spawn a random locust",
+    "description": "Spectral tears\nFlight",
     "names": {
       "bul": "Мъртъв гълъб",
       "cs_cz": "Mrtvá Holubice",
@@ -8232,7 +8232,7 @@
       "greedDevil"
     ],
     "icon": "/icons/187.png",
-    "description": "50% chance of adding an extra blind item in Treasure Rooms\n50% chance to reveal the blind item in alt path Treasure Rooms",
+    "description": "Moving swings the hairball around\nThe ball grows when it kills an enemy\nIt deals more damage the bigger it is",
     "names": {
       "bul": "Топката косми на Гъпи",
       "cs_cz": "Guppyho Chlupatá Koule",
@@ -8278,7 +8278,7 @@
       "babyShop"
     ],
     "icon": "/icons/188.png",
-    "description": "Entering a room has a 20% chance to petrify random enemies\nKilling a petrified enemy freezes it",
+    "description": "Mirrors Isaac's movement\nShoots towards Isaac\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Авел",
       "cs_cz": "Ábel",
@@ -8323,7 +8323,7 @@
       "craneGame"
     ],
     "icon": "/icons/189.png",
-    "description": "Killing an enemy makes Isaac invincible for 1 second\nInvincibility stacks with successive enemy kills, up to 5 seconds",
+    "description": "↑ +0.2 Tears\n↑ +0.3 Damage\n↑ +0.2 Speed\n↑ +2.5 Range\n↑ +1 Health\nFull health",
     "names": {
       "bul": "Фен на Super Meat Boy",
       "cs_cz": "SMB Super Fanda",
@@ -8369,7 +8369,7 @@
       "bombBum"
     ],
     "icon": "/icons/190.png",
-    "description": null,
+    "description": "+99 Bombs",
     "names": {
       "bul": "Пиро",
       "cs_cz": "Pyro",
@@ -8412,7 +8412,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/191.png",
-    "description": null,
+    "description": "Isaac's tears get random effects every 2-3 seconds",
     "names": {
       "bul": "Тридоларова банкнота",
       "cs_cz": "3 Dolarová Bankovka",
@@ -8596,7 +8596,7 @@
       "oldChest"
     ],
     "icon": "/icons/195.png",
-    "description": null,
+    "description": "Spawns 4 pills",
     "names": {
       "bul": "Портмонето на мама",
       "cs_cz": "Mámina Peněženka",
@@ -8642,7 +8642,7 @@
       "craneGame"
     ],
     "icon": "/icons/196.png",
-    "description": null,
+    "description": "↑ +0.4 Tears\nSpawns 2 Soul Hearts",
     "names": {
       "bul": "Играчка за стискане",
       "cs_cz": "Mačkátko",
@@ -8730,7 +8730,7 @@
       "greedBoss"
     ],
     "icon": "/icons/198.png",
-    "description": null,
+    "description": "Spawns 1 pickup of each type",
     "names": {
       "bul": "Кутия",
       "cs_cz": "Krabice",
@@ -8777,7 +8777,7 @@
       "oldChest"
     ],
     "icon": "/icons/199.png",
-    "description": null,
+    "description": "+2 Keys\nChests contain more pickups",
     "names": {
       "bul": "Ключът на мама",
       "cs_cz": "Mámin Klíč",
@@ -8823,7 +8823,7 @@
       "oldChest"
     ],
     "icon": "/icons/200.png",
-    "description": null,
+    "description": "10% chance to shoot charming tears\n100% chance at 27 luck",
     "names": {
       "bul": "Сенките на мама",
       "cs_cz": "Máminy Oční Stíny",
@@ -8866,7 +8866,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/201.png",
-    "description": null,
+    "description": "↑ +0.3 Damage\n10% chance to shoot concussive tears\n100% chance at 27 luck",
     "names": {
       "bul": "Желязно кюлче",
       "cs_cz": "Železná Cihla",
@@ -8909,7 +8909,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/202.png",
-    "description": null,
+    "description": "Touching enemies petrifies them and turns them gold\nIsaac deals contact damage based on his coin count\nKilling a golden enemy spawns coins\nPoop spawned by Isaac has a high chance to be golden poop",
     "names": {
       "bul": "Докосването на Мидас",
       "cs_cz": "Midasův Dotek",
@@ -8997,7 +8997,7 @@
       "greedShop"
     ],
     "icon": "/icons/204.png",
-    "description": null,
+    "description": "Taking damage has a 50% chance to spawn a random pickup",
     "names": {
       "bul": "Раменна чанта",
       "cs_cz": "Ledvinka",
@@ -9129,7 +9129,7 @@
       "babyShop"
     ],
     "icon": "/icons/207.png",
-    "description": null,
+    "description": "Lv1: Orbital\nLv2: Orbital that shoots charmed tears\nLv3: Bandage Girl\nLv4: Super Bandage Girl",
     "names": {
       "bul": "Топка от лепенки",
       "cs_cz": "Koule z Obvazů",
@@ -9174,7 +9174,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/208.png",
-    "description": null,
+    "description": "↑ +1 Damage\nChampion enemy chance +15%\nDoesn't increase chance of champion bosses",
     "names": {
       "bul": "Шампионски пояс",
       "cs_cz": "Pás Šampionů",
@@ -9220,7 +9220,7 @@
       "bombBum"
     ],
     "icon": "/icons/209.png",
-    "description": null,
+    "description": "+5 Bombs\nExplosions concuss and damage every enemy in the room",
     "names": {
       "bul": "Бомби от задник",
       "cs_cz": "Prdelní Bomby",
@@ -9262,7 +9262,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/210.png",
-    "description": null,
+    "description": "After 1 second of inactivity, Isaac becomes invincible",
     "names": {
       "bul": "Изгризано листо",
       "cs_cz": "Ohlodaný List",
@@ -9352,7 +9352,7 @@
       "craneGame"
     ],
     "icon": "/icons/212.png",
-    "description": null,
+    "description": "50% chance to revive with half a heart on death",
     "names": {
       "bul": "Яката на Гъпи",
       "cs_cz": "Guppyho Obojek",
@@ -9397,7 +9397,7 @@
       "greedSecret"
     ],
     "icon": "/icons/213.png",
-    "description": null,
+    "description": "↓ -0.15 Shot speed\nIsaac's tears destroy enemy shots",
     "names": {
       "bul": "Изгубена контактна леща",
       "cs_cz": "Ztracená Čočka",
@@ -9486,7 +9486,7 @@
       "curse"
     ],
     "icon": "/icons/215.png",
-    "description": null,
+    "description": "100% Devil/Angel Room chance",
     "names": {
       "bul": "Козя глава",
       "cs_cz": "Kozí Hlava",
@@ -9532,7 +9532,7 @@
       "greedDevil"
     ],
     "icon": "/icons/216.png",
-    "description": null,
+    "description": "↑ +1 Damage\n+3 Black Hearts",
     "names": {
       "bul": "Церемониална роба",
       "cs_cz": "Obřadní Róba",
@@ -9578,7 +9578,7 @@
       "oldChest"
     ],
     "icon": "/icons/217.png",
-    "description": null,
+    "description": "Heals 1 heart\n5% chance to spawn a blue spider when shooting tears\n100% chance at 10 luck",
     "names": {
       "bul": "Перуката на мама",
       "cs_cz": "Maminčina Paruka",
@@ -9706,7 +9706,7 @@
       "bombBum"
     ],
     "icon": "/icons/220.png",
-    "description": null,
+    "description": "+5 Bombs\nIsaac's bombs shoot 10 tears in a circle when they explode",
     "names": {
       "bul": "Тъжни бомби",
       "cs_cz": "Smutné Bomby",
@@ -9749,7 +9749,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/221.png",
-    "description": null,
+    "description": "Isaac's tears bounce off enemies and obstacles",
     "names": {
       "bul": "Гумено лепило",
       "cs_cz": "Gumový Cement",
@@ -10016,7 +10016,7 @@
       "craneGame"
     ],
     "icon": "/icons/227.png",
-    "description": null,
+    "description": "+3 Coins\nTaking damage spawns 1-2 coins",
     "names": {
       "bul": "Прасе касичка",
       "cs_cz": "Prasátko",
@@ -10195,7 +10195,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/231.png",
-    "description": null,
+    "description": "10% chance to shoot slowing tears\n100% chance at 18 luck\nIsaac leaves a trail of slowing creep",
     "names": {
       "bul": "Топка смола",
       "cs_cz": "Koule Dehtu",
@@ -10325,7 +10325,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/234.png",
-    "description": null,
+    "description": "Killing an enemy spawns a blue spider",
     "names": {
       "bul": "Нашествие 2",
       "cs_cz": "Zamoření 2",
@@ -10369,7 +10369,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/236.png",
-    "description": null,
+    "description": "Touching an enemy turns it into poop",
     "names": {
       "bul": "Ешерихия коли",
       "cs_cz": "E. Coli",
@@ -10414,7 +10414,7 @@
       "greedDevil"
     ],
     "icon": "/icons/237.png",
-    "description": null,
+    "description": "↑ +1.5 Damage\n↑ x2 Tear size\n↓ -0.3 Tears\nPiercing tears",
     "names": {
       "bul": "Докосването на смъртта",
       "cs_cz": "Dotek Smrti",
@@ -10458,7 +10458,7 @@
     ],
     "pools": [],
     "icon": "/icons/238.png",
-    "description": null,
+    "description": "Getting both parts of the key opens a big golden door\n+25% Angel Room chance\n+2.5% chance for Eternal Hearts",
     "names": {
       "bul": "Парче от ключ 1",
       "cs_cz": "První Část Klíče",
@@ -10502,7 +10502,7 @@
     ],
     "pools": [],
     "icon": "/icons/239.png",
-    "description": null,
+    "description": "Getting both parts of the key opens a big golden door\n+25% Angel Room chance\n+2.5% chance for Eternal Hearts",
     "names": {
       "bul": "Парче от ключ 2",
       "cs_cz": "Druhá Část Klíče",
@@ -10547,7 +10547,7 @@
       "greedBoss"
     ],
     "icon": "/icons/240.png",
-    "description": null,
+    "description": "↑ Increases 4 random stats\n↓ Decreases 2 random stats",
     "names": {
       "bul": "Експериментално лечение",
       "cs_cz": "Experimentální Léčba",
@@ -10592,7 +10592,7 @@
       "curse"
     ],
     "icon": "/icons/241.png",
-    "description": null,
+    "description": "Doubles all room clear rewards\n33% chance for no room clear reward",
     "names": {
       "bul": "Споразумение с Подземния свят",
       "cs_cz": "Smlouva z Podzemí",
@@ -10636,7 +10636,7 @@
       "greedSecret"
     ],
     "icon": "/icons/242.png",
-    "description": null,
+    "description": "50% chance to block enemy shots",
     "names": {
       "bul": "Позор",
       "cs_cz": "Hanba",
@@ -10678,7 +10678,7 @@
       "greedAngel"
     ],
     "icon": "/icons/243.png",
-    "description": null,
+    "description": "Blocks enemy shots coming from the direction Isaac is shooting",
     "names": {
       "bul": "Щит на Троицата",
       "cs_cz": "Štít Nejsvětější Trojice",
@@ -10811,7 +10811,7 @@
       "greedShop"
     ],
     "icon": "/icons/246.png",
-    "description": null,
+    "description": "Reveals secret room locations on the map",
     "names": {
       "bul": "Синя карта",
       "cs_cz": "Modrá Mapa",
@@ -10855,7 +10855,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/247.png",
-    "description": null,
+    "description": "Familiars deal double damage",
     "names": {
       "bul": "Най-добри приятели завинаги!",
       "cs_cz": "NEJKY!",
@@ -10945,7 +10945,7 @@
       "shop"
     ],
     "icon": "/icons/249.png",
-    "description": null,
+    "description": "Allows Isaac to choose between 2 items after beating a boss",
     "names": {
       "bul": "Има опции",
       "cs_cz": "Jsou Tu Možnosti",
@@ -10989,7 +10989,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/250.png",
-    "description": null,
+    "description": "All bomb drops become double bombs",
     "names": {
       "bul": "Двойни бомби",
       "cs_cz": "1+1 Bomby",
@@ -11034,7 +11034,7 @@
       "craneGame"
     ],
     "icon": "/icons/251.png",
-    "description": null,
+    "description": "Spawns 1 card on pickup\nIsaac can carry 2 cards\nTurns all pills into cards",
     "names": {
       "bul": "Начално тесте",
       "cs_cz": "Začátečnický Balíček",
@@ -11078,7 +11078,7 @@
       "greedShop"
     ],
     "icon": "/icons/252.png",
-    "description": null,
+    "description": "Spawns 1 pill on pickup\nIsaac can carry 2 pills\nTurns all cards into pills",
     "names": {
       "bul": "Малка торбичка",
       "cs_cz": "Malý Pytlík",
@@ -11212,7 +11212,7 @@
       "craneGame"
     ],
     "icon": "/icons/255.png",
-    "description": null,
+    "description": "↑ +0.5 Tears\n↑ +0.2 Shot speed",
     "names": {
       "bul": "Винт",
       "cs_cz": "Šroub",
@@ -11299,7 +11299,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/257.png",
-    "description": null,
+    "description": "Isaac's tears light enemies on fire\n10% chance for tears to explode on enemy impact\n100% chance at 13 luck\nThe explosion can hurt Isaac",
     "names": {
       "bul": "Огнен ум",
       "cs_cz": "Ohnivá Mysl",
@@ -11344,7 +11344,7 @@
       "greedSecret"
     ],
     "icon": "/icons/258.png",
-    "description": null,
+    "description": "Rerolls all of Isaac's items and stats on pickup and at every new floor",
     "names": {
       "bul": "Изгубен №",
       "cs_cz": "Chybějící č.",
@@ -11388,7 +11388,7 @@
       "greedDevil"
     ],
     "icon": "/icons/259.png",
-    "description": null,
+    "description": "↑ +1 Damage\n33% chance to shoot fear tears\n100% chance at 20 luck",
     "names": {
       "bul": "Тъмна материя",
       "cs_cz": "Temná Hmota",
@@ -11434,7 +11434,7 @@
       "greedCurse"
     ],
     "icon": "/icons/260.png",
-    "description": null,
+    "description": "Immune to curses\n+1 Black Heart\n+15% Devil/Angel Room chance",
     "names": {
       "bul": "Черна свещ",
       "cs_cz": "Černá Svíčka",
@@ -11661,7 +11661,7 @@
       "babyShop"
     ],
     "icon": "/icons/265.png",
-    "description": null,
+    "description": "10% chance to damage all enemies in the room when it is hit by an enemy tear",
     "names": {
       "bul": "Сухо бебе",
       "cs_cz": "Vysušené Dítě",
@@ -11707,7 +11707,7 @@
       "babyShop"
     ],
     "icon": "/icons/266.png",
-    "description": null,
+    "description": "Leaves slowing creep\nSpawns 1-2 friendly spiders after clearing a room",
     "names": {
       "bul": "Сочен пашкул",
       "cs_cz": "Šťavnatý Kokon",
@@ -11755,7 +11755,7 @@
       "babyShop"
     ],
     "icon": "/icons/267.png",
-    "description": null,
+    "description": "Shoots lasers\nDeals 3.5 damage per shot\nMoves in the direction Isaac is shooting",
     "names": {
       "bul": "Робо-бебе 2.0",
       "cs_cz": "Robo-Děcko 2.0",
@@ -11804,7 +11804,7 @@
       "rottenBeggar"
     ],
     "icon": "/icons/268.png",
-    "description": null,
+    "description": "Spawns blue flies when Isaac shoots",
     "names": {
       "bul": "Гнило бебе",
       "cs_cz": "Shnilé Děcko",
@@ -11852,7 +11852,7 @@
       "babyShop"
     ],
     "icon": "/icons/269.png",
-    "description": null,
+    "description": "Leaves creep which deals 6 damage per second",
     "names": {
       "bul": "Бебе без глава",
       "cs_cz": "Bezhlavé Dítě",
@@ -11898,7 +11898,7 @@
       "babyShop"
     ],
     "icon": "/icons/270.png",
-    "description": null,
+    "description": "Chases enemies\nHeals Isaac for half a heart when it kills an enemy\nDeals 3.2 damage per second",
     "names": {
       "bul": "Пиявица",
       "cs_cz": "Pijavice",
@@ -11944,7 +11944,7 @@
       "greedSecret"
     ],
     "icon": "/icons/271.png",
-    "description": null,
+    "description": "Spawns a random pickup every 5-6 rooms",
     "names": {
       "bul": "Тайнствена торбичка",
       "cs_cz": "Tajemný Pytel",
@@ -12222,7 +12222,7 @@
       "babyShop"
     ],
     "icon": "/icons/277.png",
-    "description": null,
+    "description": "Chases and fears enemies\nDeals 4 contact damage per second",
     "names": {
       "bul": "Малкият призрак",
       "cs_cz": "Maličký Bubák",
@@ -12313,7 +12313,7 @@
       "babyShop"
     ],
     "icon": "/icons/279.png",
-    "description": null,
+    "description": "Large orbital\nDeals 30 contact damage per second",
     "names": {
       "bul": "Голям фен",
       "cs_cz": "Velký Fanda",
@@ -12447,7 +12447,7 @@
       "library"
     ],
     "icon": "/icons/282.png",
-    "description": null,
+    "description": "Allows Isaac to jump over gaps and obstacles",
     "names": {
       "bul": "Ръководство за скачане",
       "cs_cz": "Jak Skákat",
@@ -12535,7 +12535,7 @@
       "craneGame"
     ],
     "icon": "/icons/284.png",
-    "description": null,
+    "description": "Reroll all of Isaac's passive items",
     "names": {
       "bul": "D4",
       "cs_cz": "D4",
@@ -12796,7 +12796,7 @@
       "greedShop"
     ],
     "icon": "/icons/290.png",
-    "description": null,
+    "description": "Picking up Red Hearts while at full health stores up to 4 of them in the Jar\nUsing the item drops all stored hearts on the floor",
     "names": {
       "bul": "Бурканът",
       "cs_cz": "Sklenice",
@@ -13133,7 +13133,7 @@
       "treasure"
     ],
     "icon": "/icons/298.png",
-    "description": null,
+    "description": "Receive for 6 seconds:\n↑ +0.28 Speed\nInvincibility\nIsaac can't shoot (No contact damage)",
     "names": {
       "bul": "Копито от еднорог",
       "cs_cz": "Jednorožčí Kopyto",
@@ -13177,7 +13177,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/299.png",
-    "description": null,
+    "description": "↓ -0.3 Speed\n↑ Slowly gain speed while in hostile rooms\nAt 2 speed, Isaac becomes invincible and deals contact damage\nAfterwards, lose the Taurus speed boost for the room",
     "names": {
       "bul": "Телец",
       "cs_cz": "Býk",
@@ -13265,7 +13265,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/301.png",
-    "description": null,
+    "description": "+3 Soul Hearts\nTaking damage reduces all future damage in the room to half a heart",
     "names": {
       "bul": "Рак",
       "cs_cz": "Rak",
@@ -13308,7 +13308,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/302.png",
-    "description": null,
+    "description": "Size up\nIsaac can destroy rocks by walking into them",
     "names": {
       "bul": "Лъв",
       "cs_cz": "Lev",
@@ -13351,7 +13351,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/303.png",
-    "description": null,
+    "description": "Taking damage have a 25% chance to make Isaac temporarily invincible\n100% chance at 10 luck\nConverts negative pills into positive ones",
     "names": {
       "bul": "Дева",
       "cs_cz": "Panna",
@@ -13395,7 +13395,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/304.png",
-    "description": null,
+    "description": "+6 coins, bombs and keys\nBalances Isaac's stats\nFuture stat changes will be spread across all stats",
     "names": {
       "bul": "Везни",
       "cs_cz": "Váha",
@@ -13439,7 +13439,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/305.png",
-    "description": null,
+    "description": "Poison tears",
     "names": {
       "bul": "Скорпион",
       "cs_cz": "Štír",
@@ -13483,7 +13483,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/306.png",
-    "description": null,
+    "description": "↑ +0.2 Speed\nPiercing tears",
     "names": {
       "bul": "Стрелец",
       "cs_cz": "Střelec",
@@ -13704,7 +13704,7 @@
       "greedDevil"
     ],
     "icon": "/icons/311.png",
-    "description": null,
+    "description": "When dead, respawn as Dark Judas with a x2 damage multiplier",
     "names": {
       "bul": "Сянката на Юда",
       "cs_cz": "Jidášův Stín",
@@ -13791,7 +13791,7 @@
       "greedAngel"
     ],
     "icon": "/icons/313.png",
-    "description": null,
+    "description": "Negates the first hit taken once per room",
     "names": {
       "bul": "Свещена мантия",
       "cs_cz": "Svatý Plášť",
@@ -13966,7 +13966,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/317.png",
-    "description": null,
+    "description": "Isaac's tears leave creep\nThe creep deals 30 damage per second",
     "names": {
       "bul": "Мистериозна течност",
       "cs_cz": "Záhadná Kapalina",
@@ -14012,7 +14012,7 @@
       "babyShop"
     ],
     "icon": "/icons/318.png",
-    "description": null,
+    "description": "Close combat familiar\nDeals 6 contact damage per second",
     "names": {
       "bul": "Близнаци",
       "cs_cz": "Blíženec",
@@ -14146,7 +14146,7 @@
       "greedSecret"
     ],
     "icon": "/icons/321.png",
-    "description": null,
+    "description": "Draggable ball that can destroy rocks\nDeals 10.7 contact damage per second",
     "names": {
       "bul": "Веригите на Самсон",
       "cs_cz": "Samsonovy Řetězy",
@@ -14275,7 +14275,7 @@
       "treasure"
     ],
     "icon": "/icons/324.png",
-    "description": null,
+    "description": "Teleports Isaac to the Treasure, Secret, Super Secret or I AM ERROR Room",
     "names": {
       "bul": "Неопределено",
       "cs_cz": "Nedefinováno",
@@ -14402,7 +14402,7 @@
     ],
     "pools": [],
     "icon": "/icons/327.png",
-    "description": null,
+    "description": "Taking damage at half a Red Heart or none makes Isaac temporarily invincible for 5 seconds",
     "names": {
       "bul": "Полароид",
       "cs_cz": "Polaroid",
@@ -14621,7 +14621,7 @@
       "greedAngel"
     ],
     "icon": "/icons/332.png",
-    "description": null,
+    "description": "When dead, revive as Lazarus (Risen)",
     "names": {
       "bul": "Дрипите на Лазар",
       "cs_cz": "Lazarovy Hadry",
@@ -14667,7 +14667,7 @@
       "greedAngel"
     ],
     "icon": "/icons/333.png",
-    "description": null,
+    "description": "Full mapping effect",
     "names": {
       "bul": "Разум",
       "cs_cz": "Mysl",
@@ -14712,7 +14712,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/334.png",
-    "description": null,
+    "description": "↑ +3 Health",
     "names": {
       "bul": "Тяло",
       "cs_cz": "Tělo",
@@ -14756,7 +14756,7 @@
       "greedAngel"
     ],
     "icon": "/icons/335.png",
-    "description": null,
+    "description": "+2 Soul Hearts\nGrants an aura that repels enemies and projectiles",
     "names": {
       "bul": "Душа",
       "cs_cz": "Duše",
@@ -14844,7 +14844,7 @@
       "craneGame"
     ],
     "icon": "/icons/337.png",
-    "description": null,
+    "description": "Slows down every 4th room\n13% chance to speed up the room instead",
     "names": {
       "bul": "Счупен часовник",
       "cs_cz": "Rozbité Hodinky",
@@ -14887,7 +14887,7 @@
       "craneGame"
     ],
     "icon": "/icons/338.png",
-    "description": null,
+    "description": "Throwable boomerang\nPetrifies enemies and deals 2x Isaac's damage\nCan grab and bring back items",
     "names": {
       "bul": "Бумеранг",
       "cs_cz": "Bumerang",
@@ -14974,7 +14974,7 @@
       "greedBoss"
     ],
     "icon": "/icons/340.png",
-    "description": null,
+    "description": "↑ +0.3 Speed\n↑ Size down\nSpawns a random pill",
     "names": {
       "bul": "Кофеиново хапче",
       "cs_cz": "Kofeinová Pilulka",
@@ -15020,7 +15020,7 @@
       "oldChest"
     ],
     "icon": "/icons/341.png",
-    "description": null,
+    "description": "↑ +0.7 Tears\n↑ +0.16 Shot speed",
     "names": {
       "bul": "Разкъсана фотография",
       "cs_cz": "Roztrhaná Fotografie",
@@ -15110,7 +15110,7 @@
       "greedBoss"
     ],
     "icon": "/icons/343.png",
-    "description": null,
+    "description": "↑ +1 Luck\n+1 Soul Heart\nSpawns 2 keys",
     "names": {
       "bul": "Ключ за външна врата",
       "cs_cz": "Klíč od Petlice",
@@ -15283,7 +15283,7 @@
       "greedShop"
     ],
     "icon": "/icons/347.png",
-    "description": null,
+    "description": "Duplicates all item pedestals and pickups in the room",
     "names": {
       "bul": "Диплопия",
       "cs_cz": "Diplopie",
@@ -15328,7 +15328,7 @@
       "greedSecret"
     ],
     "icon": "/icons/348.png",
-    "description": null,
+    "description": "Triggers the effect of the pill Isaac holds without using it",
     "names": {
       "bul": "Плацебо",
       "cs_cz": "Placebo",
@@ -15413,7 +15413,7 @@
       "treasure"
     ],
     "icon": "/icons/350.png",
-    "description": null,
+    "description": "Entering a room poisons all enemies\nEnemies killed leave a puddle of creep\nThe creep deals 30 damage per second",
     "names": {
       "bul": "Токсичен шок",
       "cs_cz": "Toxický Šok",
@@ -15678,7 +15678,7 @@
       "greedShop"
     ],
     "icon": "/icons/356.png",
-    "description": null,
+    "description": "Using an active item triggers its effect twice",
     "names": {
       "bul": "Акумулаторна батерия",
       "cs_cz": "Autobaterie",
@@ -15721,7 +15721,7 @@
       "craneGame"
     ],
     "icon": "/icons/357.png",
-    "description": null,
+    "description": "Duplicates all your familiars for the room\nGrants a Demon Baby for the room if Isaac has no familiars",
     "names": {
       "bul": "Кутия с приятели",
       "cs_cz": "Krabice s Kamarády",
@@ -15764,7 +15764,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/358.png",
-    "description": null,
+    "description": "Spectral tears\nIsaac shoots 2 tears at once diagonally",
     "names": {
       "bul": "Вещер",
       "cs_cz": "Čaroděj",
@@ -15807,7 +15807,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/359.png",
-    "description": null,
+    "description": "↑ +1.5 Damage\nIncreases knockback",
     "names": {
       "bul": "8 инчови пирони",
       "cs_cz": "8 Palcové Hřebíky",
@@ -15898,7 +15898,7 @@
       "babyShop"
     ],
     "icon": "/icons/361.png",
-    "description": null,
+    "description": "Shoots tears with the same damage and effects as Isaac\nShoots at half the rate of other familiars",
     "names": {
       "bul": "Подарък от съдбата",
       "cs_cz": "Odměna Osudu",
@@ -15944,7 +15944,7 @@
       "woodenChest"
     ],
     "icon": "/icons/362.png",
-    "description": null,
+    "description": "35% chance to spawn a pickup every room",
     "names": {
       "bul": "Малък сандък",
       "cs_cz": "Maličká Truhla",
@@ -15989,7 +15989,7 @@
       "babyShop"
     ],
     "icon": "/icons/363.png",
-    "description": null,
+    "description": "Orbital\nDeals 105 contact damage per second\nBlocks and attracts enemy shots\nBlocking 10 shots in one room spawns an Eternal Heart",
     "names": {
       "bul": "Заклет протектор",
       "cs_cz": "Zapřísáhlý Ochránce",
@@ -16036,7 +16036,7 @@
       "babyShop"
     ],
     "icon": "/icons/364.png",
-    "description": null,
+    "description": "Midrange fly orbital\nDeals 45 contact damage per second",
     "names": {
       "bul": "Зона \"Дружба\"",
       "cs_cz": "Friend Zone",
@@ -16351,7 +16351,7 @@
       "greedCurse"
     ],
     "icon": "/icons/371.png",
-    "description": null,
+    "description": "Taking damage spawns 6 Troll Bombs\nThe Troll Bombs inherit Isaac's bomb effects",
     "names": {
       "bul": "Проклятието на кулата",
       "cs_cz": "Prokletí Věže",
@@ -16397,7 +16397,7 @@
       "babyShop"
     ],
     "icon": "/icons/372.png",
-    "description": null,
+    "description": "Every 30 seconds while in an uncleared room, the familiar can:\nSpawn a Battery (max 2 per room)\nAdd one charge to the active item (max 2 per room)\nPetrify all enemies in the room",
     "names": {
       "bul": "Заредено бебе",
       "cs_cz": "Nabité Dítě",
@@ -16441,7 +16441,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/373.png",
-    "description": null,
+    "description": "↑ Consecutive tear hits on enemies grant +25% damage (max +100%)\nMissing has a chance to reset the multiplier",
     "names": {
       "bul": "Мъртво око",
       "cs_cz": "Ostrostřelec",
@@ -16617,7 +16617,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/377.png",
-    "description": null,
+    "description": "Spider enemies no longer target or deal contact damage to Isaac",
     "names": {
       "bul": "Разкъсан пашкул",
       "cs_cz": "Prasklý Kokon",
@@ -16662,7 +16662,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/378.png",
-    "description": null,
+    "description": "Holding a fire button for 2.35 seconds spawns a lit Butt Bomb",
     "names": {
       "bul": "Номер 2",
       "cs_cz": "Číslo Dva",
@@ -16705,7 +16705,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/379.png",
-    "description": null,
+    "description": "↑ x2 Tear size\nSpectral tears",
     "names": {
       "bul": "Двойна визия",
       "cs_cz": "Duplexní Pupila",
@@ -16796,7 +16796,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/381.png",
-    "description": null,
+    "description": "↑ +0.7 Tears\nGrants a random item at the start of the next run",
     "names": {
       "bul": "Благословията на Едем",
       "cs_cz": "Edenovo Požehnání",
@@ -16883,7 +16883,7 @@
       "craneGame"
     ],
     "icon": "/icons/383.png",
-    "description": null,
+    "description": "Splits all of Isaac's tears currently on screen in a circle of 6 tears",
     "names": {
       "bul": "Детонатор за сълзи",
       "cs_cz": "Slzní Rozbuška",
@@ -16972,7 +16972,7 @@
       "babyShop"
     ],
     "icon": "/icons/385.png",
-    "description": null,
+    "description": "Picks up nearby coins\nLevels up after getting 6, 12, and 24 coins\nLv2: Chance to spawn item after room clears\nLv3: Shoots tears that can spawn coins on hit\nLv4: Chases enemies, occasionally dropping bombs, can spawn item on coin pickup",
     "names": {
       "bul": "Бъмбо",
       "cs_cz": "Bumbo",
@@ -17057,7 +17057,7 @@
       "greedAngel"
     ],
     "icon": "/icons/387.png",
-    "description": null,
+    "description": "Familiar surrounded by a huge aura of light that slows down enemies and projectiles in it",
     "names": {
       "bul": "Кадилница",
       "cs_cz": "Kadidelnice",
@@ -17102,7 +17102,7 @@
       "babyShop"
     ],
     "icon": "/icons/388.png",
-    "description": null,
+    "description": "Picks up nearby keys\nSpawns random chests in return",
     "names": {
       "bul": "Просяк за ключове",
       "cs_cz": "Klíčový Žebrák",
@@ -17197,7 +17197,7 @@
       "babyShop"
     ],
     "icon": "/icons/390.png",
-    "description": null,
+    "description": "Shoots Sacred Heart tears\nDeals 10 damage per tear",
     "names": {
       "bul": "Серафим",
       "cs_cz": "Serafim",
@@ -17286,7 +17286,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/392.png",
-    "description": null,
+    "description": "Grants a random zodiac item effect every floor",
     "names": {
       "bul": "Зодиак",
       "cs_cz": "Zvěrokruh",
@@ -17461,7 +17461,7 @@
       "shop"
     ],
     "icon": "/icons/396.png",
-    "description": null,
+    "description": "Creates up to two portals to travel between\nCan be placed in different rooms",
     "names": {
       "bul": "Камерен бръснач",
       "cs_cz": "Komorová Břitva",
@@ -17638,7 +17638,7 @@
       "greedAngel"
     ],
     "icon": "/icons/400.png",
-    "description": null,
+    "description": "Isaac holds a spear in front of him\nThe spear deals twice his damage and can fear enemies on contact",
     "names": {
       "bul": "Копието на съдбата",
       "cs_cz": "Kopí Osudu",
@@ -17727,7 +17727,7 @@
       "greedSecret"
     ],
     "icon": "/icons/402.png",
-    "description": null,
+    "description": "All items are chosen from random item pools\nSpawns 1-6 random pickups",
     "names": {
       "bul": "Хаос",
       "cs_cz": "Chaos",
@@ -17773,7 +17773,7 @@
       "babyShop"
     ],
     "icon": "/icons/403.png",
-    "description": null,
+    "description": "Displays tear damage and health bars of all enemies\nInflicts random status effects to enemies on contact\nRandomly spawns batteries or blue spiders",
     "names": {
       "bul": "Паячна модификация",
       "cs_cz": "Pavoučí Bot",
@@ -17906,7 +17906,7 @@
       "craneGame"
     ],
     "icon": "/icons/406.png",
-    "description": null,
+    "description": "Multiplies Isaac's damage, tears, range and speed stats by between x0.5 and x2\nThe multipliers are rerolled each use",
     "names": {
       "bul": "D8",
       "cs_cz": "D8",
@@ -18040,7 +18040,7 @@
       "greedDevil"
     ],
     "icon": "/icons/409.png",
-    "description": null,
+    "description": "+2 Black Hearts\nWhen Isaac has no Red Hearts:\nFlight\nEvery 40 seconds while in a hostile room, gain a shield for 10 seconds",
     "names": {
       "bul": "Празен съд",
       "cs_cz": "Prázdná Nádoba",
@@ -18083,7 +18083,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/410.png",
-    "description": null,
+    "description": "3.33% chance to shoot an eye\n10% chance at 20 luck\nThe eye moves in a straight line and shoots tears in the same direction as Isaac",
     "names": {
       "bul": "Зло око",
       "cs_cz": "Oko Zla",
@@ -18129,7 +18129,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/411.png",
-    "description": null,
+    "description": "↑ +0.5 Damage for each enemy killed in the room\nCaps at +5 Damage after 10 kills",
     "names": {
       "bul": "Жадуваща кръв",
       "cs_cz": "Chutná Krev",
@@ -18173,7 +18173,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/412.png",
-    "description": null,
+    "description": "Taking damage 15 times spawns a permanent demon familiar\nAfter two familiars, it takes 30 instead of 15\nCaps at 4 familiars",
     "names": {
       "bul": "Демонично зачатие",
       "cs_cz": "Početí Kambionu",
@@ -18216,7 +18216,7 @@
       "greedAngel"
     ],
     "icon": "/icons/413.png",
-    "description": null,
+    "description": "Picking up 15 hearts spawns a permanent angelic familiar and a Soul Heart\nCaps at 5 familiars",
     "names": {
       "bul": "Непорочно зачатие",
       "cs_cz": "Neposkvrněné Početí",
@@ -18261,7 +18261,7 @@
       "greedShop"
     ],
     "icon": "/icons/414.png",
-    "description": null,
+    "description": "Allows Isaac to choose between 2 items in treasure rooms",
     "names": {
       "bul": "Повече опции",
       "cs_cz": "Více Možností",
@@ -18437,7 +18437,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/418.png",
-    "description": null,
+    "description": "Each one of Isaac's tears gets a different effect",
     "names": {
       "bul": "Плодов пай",
       "cs_cz": "Ovocný Dort",
@@ -18652,7 +18652,7 @@
       "greedAngel"
     ],
     "icon": "/icons/423.png",
-    "description": null,
+    "description": "Surrounds Isaac with a large halo that deals his damage on contact per second\nChance to reflect enemy projectiles",
     "names": {
       "bul": "Кръг на защитата",
       "cs_cz": "Kruh Ochrany",
@@ -18696,7 +18696,7 @@
       "greedSecret"
     ],
     "icon": "/icons/424.png",
-    "description": null,
+    "description": "Pickups have a chance to be replaced with a sack:\n: 10%, : 20%\nSpawns a sack",
     "names": {
       "bul": "Торбичка за глава",
       "cs_cz": "Pytel na Hlavu",
@@ -18739,7 +18739,7 @@
       "craneGame"
     ],
     "icon": "/icons/425.png",
-    "description": null,
+    "description": "Spawns a slowing cone of light in front of Isaac\nRemoves Curse of Darkness for the current floor",
     "names": {
       "bul": "Фенерче",
       "cs_cz": "Noční Světlo",
@@ -18829,7 +18829,7 @@
       "craneGame"
     ],
     "icon": "/icons/427.png",
-    "description": null,
+    "description": "Spawns a pushable TNT barrel\nUsing the item a second time in the same room remotely detonates the barrel",
     "names": {
       "bul": "Миньор",
       "cs_cz": "Mine Crafťák",
@@ -18872,7 +18872,7 @@
       "greedBoss"
     ],
     "icon": "/icons/428.png",
-    "description": null,
+    "description": "Full health\n+4 Soul Hearts",
     "names": {
       "bul": "Пижама",
       "cs_cz": "Pyžamo",
@@ -18912,7 +18912,7 @@
     ],
     "pools": [],
     "icon": "/icons/429.png",
-    "description": null,
+    "description": "Hitting an enemy with a tear has a 5% chance to spawn a Penny",
     "names": {
       "bul": "Главата на Търговеца",
       "cs_cz": "Keeperova Hlava",
@@ -19139,7 +19139,7 @@
       "greedShop"
     ],
     "icon": "/icons/434.png",
-    "description": null,
+    "description": "Killing an enemy adds a blue fly to the jar, up to 20 flies\nUsing the item releases all the flies",
     "names": {
       "bul": "Буркан с мухи",
       "cs_cz": "Sklenice Much",
@@ -19186,7 +19186,7 @@
       "babyShop"
     ],
     "icon": "/icons/435.png",
-    "description": null,
+    "description": "Shoots 4 tears in a cross pattern\nDeals 3.5 damage per tear",
     "names": {
       "bul": "Малкият Локи",
       "cs_cz": "Maličký Loki",
@@ -19320,7 +19320,7 @@
       "craneGame"
     ],
     "icon": "/icons/438.png",
-    "description": null,
+    "description": "↑ +0.75 Tears\n↑ Size down\n+1 Soul Heart",
     "names": {
       "bul": "Биберон",
       "cs_cz": "Dudlík",
@@ -19367,7 +19367,7 @@
       "woodenChest"
     ],
     "icon": "/icons/439.png",
-    "description": null,
+    "description": "Spawns a random trinket\nWhile held:\n↑ +1 Luck\nDoubles trinket effects",
     "names": {
       "bul": "Кутията на мама",
       "cs_cz": "Mámina Krabička",
@@ -19452,7 +19452,7 @@
       "greedDevil"
     ],
     "icon": "/icons/441.png",
-    "description": null,
+    "description": "Fires a huge Mega Satan blood beam for 15 seconds\nThe beam persists between rooms and floors",
     "names": {
       "bul": "Мега Заряд",
       "cs_cz": "Mega Výstřel",
@@ -19543,7 +19543,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/443.png",
-    "description": null,
+    "description": "↑ +0.3 Tears\n6.66% chance to shoot razor blades that deal 4x Isaac's damage\n100% chance at 14 luck",
     "names": {
       "bul": "Ябълка!",
       "cs_cz": "Jablko!",
@@ -19631,7 +19631,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/445.png",
-    "description": null,
+    "description": "↑ +0.1 Speed\n↑ +0.3 Damage\nA wolf howls in rooms adjacent to a Secret/Super Secret Room\nA dog barks in rooms with a crawlspace under a rock",
     "names": {
       "bul": "Кучешки зъб",
       "cs_cz": "Psí Zub",
@@ -19674,7 +19674,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/446.png",
-    "description": null,
+    "description": "While firing, Isaac is surrounded by a green aura that poisons enemies",
     "names": {
       "bul": "Мъртъв зъб",
       "cs_cz": "Mrtvý Zub",
@@ -19803,7 +19803,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/449.png",
-    "description": null,
+    "description": "+1 Soul Heart\nEnemy bullets have a 25% chance to be reflected as concussive tears",
     "names": {
       "bul": "Метална пластина",
       "cs_cz": "Kovový Plát",
@@ -19938,7 +19938,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/452.png",
-    "description": null,
+    "description": "Taking damage shoots 10 tears in a circle around Isaac\nThe tears deal Isaac's damage + 25\n20% chance to activate the Anemic effect for 2 seconds",
     "names": {
       "bul": "Разширени вени",
       "cs_cz": "Křečové Žíly",
@@ -20024,7 +20024,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/454.png",
-    "description": null,
+    "description": "Spawns a rune, card or pill on pickup\nAllows Isaac to carry 2 runes/cards/pills",
     "names": {
       "bul": "Полидактилия",
       "cs_cz": "Polydaktylie",
@@ -20157,7 +20157,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/457.png",
-    "description": null,
+    "description": "+1 Soul Heart\n20% chance to negate damage taken",
     "names": {
       "bul": "Конична глава",
       "cs_cz": "Kuželová Hlava",
@@ -20200,7 +20200,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/458.png",
-    "description": null,
+    "description": "Allows Isaac to carry 2 trinkets\nSpawns a random trinket",
     "names": {
       "bul": "Пъп",
       "cs_cz": "Pupík",
@@ -20286,7 +20286,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/460.png",
-    "description": null,
+    "description": "5% chance to shoot concussive tears\nMakes the screen slightly darker",
     "names": {
       "bul": "Глаукома",
       "cs_cz": "Glaukom",
@@ -20331,7 +20331,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/461.png",
-    "description": null,
+    "description": "15% chance to shoot egg sacks\n50% chance at 5 luck\nEgg sacks spawn slowing creep and 1-2 blue spider or fly on hit",
     "names": {
       "bul": "Паразитоид",
       "cs_cz": "Parazitoid",
@@ -20418,7 +20418,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/463.png",
-    "description": null,
+    "description": "↑ +0.3 Damage\nIsaac's tears have a 25% chance to destroy rocks and open doors",
     "names": {
       "bul": "Сярна киселина",
       "cs_cz": "Kyselina Sírová",
@@ -20505,7 +20505,7 @@
       "craneGame"
     ],
     "icon": "/icons/465.png",
-    "description": null,
+    "description": "↑ +0.3 Tears\nAllows Isaac to shoot tears in any direction",
     "names": {
       "bul": "Аналогов стик",
       "cs_cz": "Analogová Páčka",
@@ -20549,7 +20549,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/466.png",
-    "description": null,
+    "description": "The first enemy killed in a room explodes and poisons all nearby enemies\nEnemies that die while poisoned also explode and poison nearby enemies",
     "names": {
       "bul": "Зараза",
       "cs_cz": "Nákaza",
@@ -20592,7 +20592,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/467.png",
-    "description": null,
+    "description": "Constantly deals 10% of Isaac's damage in the direction it points",
     "names": {
       "bul": "Палец!",
       "cs_cz": "Prst!",
@@ -20682,7 +20682,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/469.png",
-    "description": null,
+    "description": "Leaves a trail of creep\nThe creep deals 6 damage per second\nEnemies that touch the cloud can be hit by a holy light beam",
     "names": {
       "bul": "Депресия",
       "cs_cz": "Deprese",
@@ -20772,7 +20772,7 @@
       "babyShop"
     ],
     "icon": "/icons/471.png",
-    "description": null,
+    "description": "Charges a shotgun attack similar to Monstro's Lung\nEach tear deals 3.5 damage",
     "names": {
       "bul": "Малък Монстро",
       "cs_cz": "Maličký Monstro",
@@ -20862,7 +20862,7 @@
       "babyShop"
     ],
     "icon": "/icons/473.png",
-    "description": null,
+    "description": "Very slowly charges forwards\nBlocks shots\nDeals 40.5 contact damage per second",
     "names": {
       "bul": "Голям Чъби",
       "cs_cz": "Velký Tlouštík",
@@ -21079,7 +21079,7 @@
       "craneGame"
     ],
     "icon": "/icons/478.png",
-    "description": null,
+    "description": "Pauses all enemies in the room until Isaac shoots\nTouching a paused enemy still deals damage to Isaac\nEnemies unpause after 30 seconds",
     "names": {
       "bul": "Пауза",
       "cs_cz": "Pauza",
@@ -21121,7 +21121,7 @@
       "greedShop"
     ],
     "icon": "/icons/479.png",
-    "description": null,
+    "description": "Consumes Isaac's held trinkets and grants their effects permanently\nIncreases the spawn rate of trinkets",
     "names": {
       "bul": "Леярна",
       "cs_cz": "Tavící Pec",
@@ -21163,7 +21163,7 @@
       "rottenBeggar"
     ],
     "icon": "/icons/480.png",
-    "description": null,
+    "description": "Converts pickups into blue flies or spiders\nDoubles all blue flies and spiders\nSpawns 1 blue fly or spider if Isaac has none",
     "names": {
       "bul": "Компост",
       "cs_cz": "Kompost",
@@ -21292,7 +21292,7 @@
       "bombBum"
     ],
     "icon": "/icons/483.png",
-    "description": null,
+    "description": "Affects the whole floor\nExplodes all objects\nDeals 200 damage to all enemies\nOpens secret rooms\nOpens Boss Rush and Hush regardless of time",
     "names": {
       "bul": "Мама Мега!",
       "cs_cz": "Máma Mega!",
@@ -21331,7 +21331,7 @@
     ],
     "pools": [],
     "icon": "/icons/484.png",
-    "description": null,
+    "description": "Upon use, pushes enemies away and spawns a rock wave around Isaac\nThe rock wave can open rooms and break rocks",
     "names": {
       "bul": "Чакай, какво?",
       "cs_cz": "Počkat Co?",
@@ -21375,7 +21375,7 @@
       "greedShop"
     ],
     "icon": "/icons/485.png",
-    "description": null,
+    "description": "50% chance to double all items, pickups and chests in room\n50% chance to remove items / pickups in room and spawn 1 coin",
     "names": {
       "bul": "Изкривено пени",
       "cs_cz": "Pokřivená Mince",
@@ -21415,7 +21415,7 @@
       "greedShop"
     ],
     "icon": "/icons/486.png",
-    "description": null,
+    "description": "Hurts Isaac without removing health\nTriggers any on-hit item effects",
     "names": {
       "bul": "Тъп бръснач",
       "cs_cz": "Tupá Žiletka",
@@ -21502,7 +21502,7 @@
       "woodenChest"
     ],
     "icon": "/icons/488.png",
-    "description": null,
+    "description": "Grants a random item effect for the room",
     "names": {
       "bul": "Метроном",
       "cs_cz": "Metronom",
@@ -21587,7 +21587,7 @@
       "greedAngel"
     ],
     "icon": "/icons/490.png",
-    "description": null,
+    "description": "Spawns 2 random items depending on the current room's item pool\nStarts with no charges",
     "names": {
       "bul": "Душата на Едем",
       "cs_cz": "Edenova Duše",
@@ -21678,7 +21678,7 @@
       "babyShop"
     ],
     "icon": "/icons/492.png",
-    "description": null,
+    "description": "↑ +1 Luck\nHighlights the location of secret rooms, tinted rocks and crawlspaces",
     "names": {
       "bul": "ХЕЙ, СЛУШАЙ!",
       "cs_cz": "HEJ POSLOUCHEJ!",
@@ -21945,7 +21945,7 @@
       "angel"
     ],
     "icon": "/icons/498.png",
-    "description": null,
+    "description": "Spawns both a Devil and Angel Room if either would have spawned\nEntering one makes the other disappear",
     "names": {
       "bul": "Двойственост",
       "cs_cz": "Dualita",
@@ -21989,7 +21989,7 @@
       "greedAngel"
     ],
     "icon": "/icons/499.png",
-    "description": null,
+    "description": "100% chance for Angel Rooms to spawn",
     "names": {
       "bul": "Причастие",
       "cs_cz": "Eucharistie",
@@ -22119,7 +22119,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/502.png",
-    "description": null,
+    "description": "Firing occasionally shoots a white creep tear that deals double damage and slows enemies\nTaking damage shoots a white creep tear",
     "names": {
       "bul": "Голяма пъпка",
       "cs_cz": "Velký Jebák",
@@ -22255,7 +22255,7 @@
       "craneGame"
     ],
     "icon": "/icons/505.png",
-    "description": null,
+    "description": "Entering a hostile room has a 20% chance to spawn a friendly enemy",
     "names": {
       "bul": "Poke Go",
       "cs_cz": "Poké Go",
@@ -22522,7 +22522,7 @@
       "babyShop"
     ],
     "icon": "/icons/511.png",
-    "description": null,
+    "description": "Orbits a random enemy until that enemy dies\nDeals 30 contact damage per second to other enemies",
     "names": {
       "bul": "Ядосана муха",
       "cs_cz": "Naštvaná Moucha",
@@ -22565,7 +22565,7 @@
       "greedShop"
     ],
     "icon": "/icons/512.png",
-    "description": null,
+    "description": "Throwable black hole, which sucks in everything\nDeals 6 damage per second\nDestroys nearby rocks\nLasts 6 seconds",
     "names": {
       "bul": "Черна дупка",
       "cs_cz": "Černá Díra",
@@ -22608,7 +22608,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/513.png",
-    "description": null,
+    "description": "↑ +0.1 Damage\n+1 Soul Heart\nRandomly charms/fears enemies\nTaking damage has a 5% chance to spawn a Rainbow Poop",
     "names": {
       "bul": "Бозо",
       "cs_cz": "Klaun Bozo",
@@ -22695,7 +22695,7 @@
       "craneGame"
     ],
     "icon": "/icons/515.png",
-    "description": null,
+    "description": "Spawns a random item from the current room's item pool\nChance to spawn Lump of Coal or The Poop instead",
     "names": {
       "bul": "Тайнствен подарък",
       "cs_cz": "Tajemný Dárek",
@@ -22739,7 +22739,7 @@
       "craneGame"
     ],
     "icon": "/icons/516.png",
-    "description": null,
+    "description": "Spawns a Sprinkler that shoots the same tears as Isaac in a circle around itself",
     "names": {
       "bul": "Пръскачка",
       "cs_cz": "Rozstřikovač",
@@ -22831,7 +22831,7 @@
       "babyShop"
     ],
     "icon": "/icons/518.png",
-    "description": null,
+    "description": "Familiar which looks like a random co-op baby\nHas random tear effects\nEffects change every floor",
     "names": {
       "bul": "Приятел в кутия",
       "cs_cz": "Kamarád v Bedně",
@@ -22879,7 +22879,7 @@
       "babyShop"
     ],
     "icon": "/icons/519.png",
-    "description": null,
+    "description": "Transforms into a random familiar every 10 seconds",
     "names": {
       "bul": "Малката лудост",
       "cs_cz": "Maličký Delirium",
@@ -22924,7 +22924,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/520.png",
-    "description": null,
+    "description": "Killing 15 enemies adds 1 charge to the active item",
     "names": {
       "bul": "Кабели за стартов ток",
       "cs_cz": "Startovací Kabely",
@@ -22967,7 +22967,7 @@
       "greedShop"
     ],
     "icon": "/icons/521.png",
-    "description": null,
+    "description": "Makes one random item in the Shop or Devil Room free\nHolding the item guarantees one Shop item is on sale",
     "names": {
       "bul": "Купон",
       "cs_cz": "Kupón",
@@ -23185,7 +23185,7 @@
       "greedAngel"
     ],
     "icon": "/icons/526.png",
-    "description": null,
+    "description": "Spawns a small horseman familiar that spawns locusts\nThe horseman and its locust changes every 10 seconds",
     "names": {
       "bul": "7 печата",
       "cs_cz": "7 Pečetí",
@@ -23230,7 +23230,7 @@
       "woodenChest"
     ],
     "icon": "/icons/527.png",
-    "description": null,
+    "description": "Displays a movable cursor for a few seconds, then summons a ghost that will, depending on the cursor position:\nOpen doors or chests\nFetch an item\n50% chance to steal from the Shop / Devil\nAttack an enemy until it dies\nExplode walls, rocks, shopkeepers, angel statues, machines, beggars\nPresses the button",
     "names": {
       "bul": "Мистър МИ!",
       "cs_cz": "Pan JÁ!",
@@ -23273,7 +23273,7 @@
       "greedAngel"
     ],
     "icon": "/icons/528.png",
-    "description": null,
+    "description": "Orbital prism\nFriendly tears hitting it split into 4",
     "names": {
       "bul": "Ангелска призма",
       "cs_cz": "Andělský Hranol",
@@ -23316,7 +23316,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/529.png",
-    "description": null,
+    "description": "Isaac's tears bounce off each other and disappear when they stop moving",
     "names": {
       "bul": "Пук!",
       "cs_cz": "Plup!",
@@ -23359,7 +23359,7 @@
       "devil"
     ],
     "icon": "/icons/530.png",
-    "description": null,
+    "description": "Killing enemies in the order dictated by the mark above them grants a random pickup or stat increase",
     "names": {
       "bul": "Списък на смъртта",
       "cs_cz": "Seznam Smrti",
@@ -23489,7 +23489,7 @@
       "greedAngel"
     ],
     "icon": "/icons/533.png",
-    "description": null,
+    "description": "Replaces Isaac's tears with piercing beams of light\nThe beams deal 33% damage but can hit enemies multiple times",
     "names": {
       "bul": "Трисвятост",
       "cs_cz": "Trisagion",
@@ -23534,7 +23534,7 @@
       "greedShop"
     ],
     "icon": "/icons/534.png",
-    "description": null,
+    "description": "Allows Isaac to hold 2 active items\nThe items can be swapped using the Drop button ( )",
     "names": {
       "bul": "Ученическа раница",
       "cs_cz": "Školní Aktovka",
@@ -23576,7 +23576,7 @@
       "greedShop"
     ],
     "icon": "/icons/535.png",
-    "description": null,
+    "description": "Heals 1 heart\n+1 Soul Heart\nEntering a boss room grants a Holy Mantle shield (prevents damage once)",
     "names": {
       "bul": "Одеяло",
       "cs_cz": "Přikrývka",
@@ -23621,7 +23621,7 @@
       "greedDevil"
     ],
     "icon": "/icons/536.png",
-    "description": null,
+    "description": "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice\nTurns blue spiders/flies into coins",
     "names": {
       "bul": "Жертвен олтар",
       "cs_cz": "Obětní Oltář",
@@ -23666,7 +23666,7 @@
       "babyShop"
     ],
     "icon": "/icons/537.png",
-    "description": null,
+    "description": "Spawns a random pill on pickup\nFires a line of creep\nThe type of creep changes with each pill use",
     "names": {
       "bul": "Малкият плювач",
       "cs_cz": "Maličký Plivač",
@@ -23709,7 +23709,7 @@
       "craneGame"
     ],
     "icon": "/icons/538.png",
-    "description": null,
+    "description": "Spawns 3 random trinkets\nTaking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently",
     "names": {
       "bul": "Стъклени топчета",
       "cs_cz": "Kuličky",
@@ -23753,7 +23753,7 @@
       "babyShop"
     ],
     "icon": "/icons/539.png",
-    "description": null,
+    "description": "Taking damage spawns a friendly enemy\nSpawns stronger friends the more rooms are cleared without taking damage",
     "names": {
       "bul": "Тайнствено яйце",
       "cs_cz": "Tajemné Vejce",
@@ -23796,7 +23796,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/540.png",
-    "description": null,
+    "description": "Isaac's tears bounce off the floor and cause splash damage on every bounce",
     "names": {
       "bul": "Плосък камък",
       "cs_cz": "Plochý Kámen",
@@ -23839,7 +23839,7 @@
       "ultraSecret"
     ],
     "icon": "/icons/541.png",
-    "description": null,
+    "description": "Spawns 3 Red Hearts\n+1 Bone Heart",
     "names": {
       "bul": "Костен мозък",
       "cs_cz": "Kostní Dřeň",
@@ -23881,7 +23881,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/542.png",
-    "description": null,
+    "description": "Orbital\nReflects enemy projectiles",
     "names": {
       "bul": "Ставно ребро",
       "cs_cz": "Vyklouzlé Žebro",
@@ -23970,7 +23970,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/544.png",
-    "description": null,
+    "description": "Levitates in front of Isaac\nDeals 6x Isaac's damage per second",
     "names": {
       "bul": "Наточено ребро",
       "cs_cz": "Špičaté Žebro",
@@ -24016,7 +24016,7 @@
       "greedDevil"
     ],
     "icon": "/icons/545.png",
-    "description": null,
+    "description": "Spawns a bone orbital or friendly bony per enemy killed in the room (up to 8)",
     "names": {
       "bul": "Книга на мъртвите",
       "cs_cz": "Kniha Mrtvých",
@@ -24059,7 +24059,7 @@
       "oldChest"
     ],
     "icon": "/icons/546.png",
-    "description": null,
+    "description": "Grants an aura that petrifies enemies",
     "names": {
       "bul": "Пръстенът на татко",
       "cs_cz": "Tátův Prsten",
@@ -24104,7 +24104,7 @@
       "oldChest"
     ],
     "icon": "/icons/547.png",
-    "description": null,
+    "description": "↑ +0.7 Tears\n+1 Bone Heart\nSpawns the Mysterious Paper trinket",
     "names": {
       "bul": "Документи за развод",
       "cs_cz": "Rozvodové Papíry",
@@ -24147,7 +24147,7 @@
       "greedTreasure"
     ],
     "icon": "/icons/548.png",
-    "description": null,
+    "description": "Boomerang-like familiar\nDeals 7 contact damage\nCan grab and bring back pickups",
     "names": {
       "bul": "Челюстна кост",
       "cs_cz": "Čelistní Kost",
@@ -24232,7 +24232,7 @@
     ],
     "pools": [],
     "icon": "/icons/550.png",
-    "description": null,
+    "description": "Mom's Foot constantly tries to stomp Isaac\nUsing the item stops the stomping for the room (or one Boss Rush wave)\n(Try to beat Boss Rush with it!)",
     "names": {
       "bul": "Счупена лопата",
       "cs_cz": "Rozbitá Lopata",
@@ -24274,7 +24274,7 @@
     ],
     "pools": [],
     "icon": "/icons/551.png",
-    "description": null,
+    "description": "Completes Mom's Shovel\nUse the shovel on the mound of dirt in the \"Dark Room\"",
     "names": {
       "bul": "Счупена лопата",
       "cs_cz": "Rozbitá Lopata",

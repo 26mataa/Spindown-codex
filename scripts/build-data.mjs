@@ -16,6 +16,7 @@
 
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { parseEidDescriptions, sameItemName, unescapeLua } from './lib/eid.mjs';
 
 const ROOT = process.cwd();
 const SRC = path.join(ROOT, 'sources');
@@ -77,27 +78,6 @@ function parseEidNames(text) {
   return out;
 }
 
-function unescapeLua(s) {
-  return s
-    .replace(/\\n/g, '\n')
-    .replace(/\\t/g, '\t')
-    .replace(/\\"/g, '"')
-    .replace(/\\\\/g, '\\');
-}
-
-/** Parse les fichiers de description EID : [id] = {"id", "Name", "Desc"}. */
-function parseEidDescriptions(text) {
-  const out = new Map();
-  const re = /\[(\d{1,3})\]\s*=\s*\{\s*"(\d*)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*,\s*"((?:[^"\\]|\\.)*)"\s*\}/g;
-  let m;
-  while ((m = re.exec(text))) out.set(Number(m[1]), unescapeLua(m[4]));
-  return out;
-}
-
-/** Le mark-up EID : '#' = saut de ligne, '{{Icone}}' = icone inline.
- *  Les icones sont retirees : le texte qui les suit porte deja l'information
- *  (ex. "{{Tears}} +0.2 Tears" -> "+0.2 Tears"), les garder produisait des
- *  doublons du type "Slow Slows Isaac...". */
 function cleanEidText(s) {
   return s
     .replace(/\{\{[^}]*\}\}/g, ' ')
@@ -199,6 +179,7 @@ async function main() {
 
   // --- descriptions anglaises -------------------------------------------
   const descEn = new Map();
+  let descIgnored = 0;
   {
     const candidates = ['rep', 'ab+', 'rep+', 'rgon'];
     const perSet = [];
@@ -211,7 +192,25 @@ async function main() {
     for (const name of order) {
       const set = perSet.find((s) => s.dir === name);
       if (!set) continue;
-      for (const [id, d] of set.map) if (!descEn.has(id)) descEn.set(id, cleanEidText(d));
+      for (const [id, entry] of set.map) {
+        if (descEn.has(id)) continue;
+        const item = byId.get(id);
+        if (!item) continue;
+
+        // Garde-fou : le fichier EID donne le nom de l'item a cote de sa
+        // description. S'ils ne concordent pas, la description vient d'une
+        // autre table (trinket, carte, pilule) et on la jette.
+        const itemName = namesById.get(id)?.en_us ?? humanizeKey(item.nameKey);
+        if (!sameItemName(itemName, entry.name)) {
+          descIgnored++;
+          warn(
+            `description ignorée pour #${id} : EID dit « ${entry.name} », le jeu dit « ${itemName} »`
+          );
+          continue;
+        }
+
+        descEn.set(id, cleanEidText(entry.desc));
+      }
     }
   }
 
@@ -310,6 +309,7 @@ async function main() {
     ...langRows.map((r) => `${r.lang.padEnd(8)} ${String(r.n).padStart(4)}/${items.length}  (${r.pct} %)`),
     '',
     `Descriptions anglaises disponibles : ${items.filter((i) => i.description).length}/${items.length}`,
+    `Descriptions rejetées (nom EID ≠ nom du jeu) : ${descIgnored}`,
     'IDs sans description :',
     ...items.filter((i) => !i.description).map((i) => `  ${i.id} ${i.name}`),
     '',

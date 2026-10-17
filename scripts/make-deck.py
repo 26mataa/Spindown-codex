@@ -348,7 +348,7 @@ def build():
     paint_bg(s)
     header(s, "honnêteté", "Ce que le site ne fait pas")
     bullets(s, [
-        ("211 items sans description — le texte du jeu est dans un fichier binaire non fourni.", DIM),
+        ("Les 721 descriptions sont vérifiées une par une contre le nom de l'item.", DIM),
         ("Pas de trinkets, cartes ni pilules : ils ne sont pas dans la chaîne.", DIM),
         ("Pas de conditions de déblocage : le site parle de la chaîne, pas du 100 %.", DIM),
         ("Le SEO reste anglais : l'interface se traduit à l'exécution, pas les URLs.", DIM),

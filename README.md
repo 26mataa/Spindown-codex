@@ -123,7 +123,9 @@ Deux pièges rencontrés :
   (`bul, cs_cz, de, el_gr, en_us, fr, it, ja_jp, ko_kr, nl_nl, pl, pt, pt_br, ro_ro, ru, spa, tr_tr, uk_ua, vi, zh_cn`).
   Couverture : 100 % en `cs_cz` et `fr`, partielle en `bul` (~76 %).
 - `descriptions/<set>/<lang>.lua` → `[id] = {"id", "Nom", "Description"}`. Les sets sont **empilés** :
-  `ab+` → `rep` → `rep+` (deltas). Union en anglais : **520 items décrits**, dont 510 avec du texte après nettoyage.
+  `ab+` → `rep` → `rep+` (deltas). **Les 721 items sont décrits.** Attention : chaque fichier contient
+plusieurs tables indexées de 1 à N (collectibles, trinkets, cartes, pilules) ; ne parser que la table
+des collectibles, sinon les descriptions de trinkets écrasent celles des items 1 à 188.
 
 ### Récapitulatif des données
 
@@ -134,7 +136,7 @@ Deux pièges rencontrés :
 | Items `hidden` (sautés) | **4** : 59 (Book of Belial passif), 656 (Damocles passif), 714 (Recall), 715 (Hold) |
 | Items visibles | **717** |
 | Sprites | 720 (+ 1 orphelin pour l'ID vide 648) |
-| Descriptions anglaises | 510 / 721 |
+| Descriptions anglaises | 721 / 721 |
 | Langues indexées pour la recherche | 20 |
 
 ---
@@ -258,8 +260,8 @@ d'Astro ne s'appliquent pas à ces nœuds. Toutes les règles concernant du cont
 - [x] **Chaîne** : défilement natif, rail de position, Dad's Note signalée par un badge
 - [x] Interface en 5 langues (en, fr, de, es, it), détection + sélecteur + `?lang=`
 - [x] 38 tests unitaires, 0 erreur de typage
-- [ ] Descriptions manquantes pour **211 items** (EID ne les couvre pas ; le texte du jeu est dans un
-      `stringtable.sta` binaire non fourni). Piste : extraction depuis la wiki, à ajouter proprement.
+- [x] Descriptions des **721 items**, vérifiées : chaque entrée EID porte le nom de l'item, et le
+      build rejette celle qui ne correspond pas (garde-fou né d'un bug réel, cf. « Ce qui a coincé »).
 - [ ] Trinkets, cartes, pilules (hors chaîne, volontairement reportés)
 - [ ] Pas de conditions de déblocage (choix produit : le site parle de la chaîne, pas du 100 %)
 - [ ] Simuler une sauvegarde partiellement débloquée (le vrai levier : en jeu, les items verrouillés

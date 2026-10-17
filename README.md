@@ -4,8 +4,6 @@
 
 ### → [Open the site](https://26mataa.github.io/Spindown-codex/)
 
-*free · no ads · no account · no tracking*
-
 ![Home page](docs/shots/home.png)
 
 ---

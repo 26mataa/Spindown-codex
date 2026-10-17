@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
+# Le code vit sur la branche `source` ; `main` ne contient que la présentation.
+# C'est donc un push sur `source` qui reconstruit et republie le site.
 on:
   push:
-    branches: [main, master]
+    branches: [source]
   workflow_dispatch:
 
 permissions:

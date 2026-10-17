@@ -1,36 +1,36 @@
 # Spindown Codex
 
-**L'encyclopédie des items de *The Binding of Isaac: Repentance+*, construite autour d'une seule idée : ce que chaque item devient.**
+**An encyclopedia of *The Binding of Isaac: Repentance+* items, built around one idea: what each item becomes.**
 
-### → [Ouvrir le site](https://26mataa.github.io/Spindown-codex/)
+### → [Open the site](https://26mataa.github.io/Spindown-codex/)
 
-*gratuit · sans publicité · sans compte · sans pistage*
+*free · no ads · no account · no tracking*
 
-![Page d'accueil](docs/shots/home.png)
+![Home page](docs/shots/home.png)
 
 ---
 
-## Le principe
+## The idea
 
-Un Spindown Dice transforme un item en celui qui porte **l'ID juste en dessous**. La chaîne est linéaire : chaque item a exactement un avant et un après.
+A Spindown Dice turns an item into the one with **the next ID down**. The chain is linear: every item has exactly one before it and one after it.
 
-Les wikis vous disent ce qu'un item fait. Celui-ci vous dit aussi **où il mène** — et vous laisse descendre de marche en marche sans repasser par un index.
+Most wikis tell you what an item does. This one also tells you **where it leads** — and lets you walk down the chain, step by step, without going back to an index.
 
-![Fiche d'item](docs/shots/item-detail.png)
+![Item page](docs/shots/item-detail.png)
 
-## Ce qu'on y trouve
+## What's inside
 
-- **721 items** — sprite, qualité, pool, description
-- **La chaîne complète** — de Mom's Ring (#732) à The Sad Onion (#1), sauts d'ID et items non rerollables compris
-- **Un calculateur** — combien de Spindowns entre deux items, Car Battery incluse
-- **Une recherche en 20 langues** — « Oignon Triste » ou « 悲しみオニオン » mènent à la fiche anglaise
-- **Une interface en 5 langues** — français, anglais, allemand, espagnol, italien
+- **721 items** — sprite, quality, pool, description
+- **The whole chain** — from Mom's Ring (#732) down to The Sad Onion (#1), ID gaps and non-rerollable items included
+- **A distance calculator** — how many Spindowns between two items, Car Battery included
+- **Search in 20 languages** — “Oignon Triste” and “悲しみオニオン” both land on the English page
+- **Interface in 5 languages** — English, French, German, Spanish, Italian
 
-![La chaîne](docs/shots/chain.png)
+![The chain](docs/shots/chain.png)
 
-## Crédits
+## Credits
 
-Projet fan **non officiel**, non affilié à Edmund McMillen, Nicalis ou Valve.
-Sprites © Edmund McMillen / Nicalis. Noms traduits et descriptions issus du mod communautaire *External Item Descriptions*. Données extraites du dépôt `Derugon/TBoIR-resources`.
+Unofficial fan project, not affiliated with Edmund McMillen, Nicalis or Valve.
+Sprites © Edmund McMillen / Nicalis. Translated names and descriptions come from the community mod *External Item Descriptions*. Data extracted from the `Derugon/TBoIR-resources` repository.
 
-Le code source vit sur la branche [`source`](../../tree/source). Voir `LICENSE` : il couvre le code, pas les ressources du jeu.
+The source code lives on the [`source`](../../tree/source) branch. See `LICENSE` — it covers the code, not the game assets.

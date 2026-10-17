@@ -28,19 +28,6 @@ Les wikis vous disent ce qu'un item fait. Celui-ci vous dit aussi **où il mène
 
 ![La chaîne](docs/shots/chain.png)
 
-## Ce que la vérification a changé
-
-La règle du Spindown est souvent mal racontée. Croisée avec le wiki et les fichiers du jeu, elle donne ceci :
-
-| Ce qui se dit | Ce que disent les fichiers |
-|---|---|
-| Le pool décide de la cible | Non : seul l'état de déblocage compte |
-| Les non-collectibles sont sautés | 4 items `hidden`, et c'est tout |
-| Mom's Ring ne peut pas être reroll | Elle est inatteignable, pas bloquée |
-| ~720 items | 721, avec 11 IDs vides |
-
-**Dad's Note (#668) ne peut pas être rerollé** : tout ce qui est en dessous est hors d'atteinte d'un Spindown. C'est ce que le site montre, et ce qui le distingue des calculateurs existants.
-
 ## Crédits
 
 Projet fan **non officiel**, non affilié à Edmund McMillen, Nicalis ou Valve.

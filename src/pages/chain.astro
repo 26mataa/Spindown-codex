@@ -1,52 +1,110 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
-import ChainGraph from '../components/ChainGraph.astro';
-import { HIDDEN_IDS, EMPTY_IDS, topSegment, visibleItems } from '../lib/chain';
+import { formatId, HIDDEN_IDS, EMPTY_IDS, topSegment, visibleItems } from '../lib/chain';
 import { url } from '../lib/urls';
 
+const all = [...visibleItems].reverse();
+const wallIndex = all.findIndex((i) => i.spindown.blocked);
 const top = topSegment();
-const belowWall = visibleItems.length - top.length;
+const belowWall = all.length - top.length;
 const skippable = HIDDEN_IDS.length + EMPTY_IDS.length;
+
+type Row =
+  | { kind: 'item'; id: number; name: string; icon: string; wall: boolean; below: boolean }
+  | { kind: 'gap'; n: number };
+
+const rows: Row[] = [];
+all.forEach((item, index) => {
+  const prev = index > 0 ? all[index - 1] : null;
+  const gap = prev ? prev.id - item.id - 1 : 0;
+  if (gap > 0) rows.push({ kind: 'gap', n: gap });
+  rows.push({
+    kind: 'item',
+    id: item.id,
+    name: item.name,
+    icon: item.icon,
+    wall: Boolean(item.spindown.blocked),
+    below: wallIndex >= 0 && index > wallIndex,
+  });
+});
+
+const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
 ---
 
 <Base
-  title="The whole chain — Spindown Codex"
+  title="The whole chain â€” Spindown Codex"
   description="Every collectible in Repentance+ in Spindown order: from Mom's Ring down through Dad's Note, and what lies below the wall."
 >
-  <div class="wrap">
+  <div class="wrap chain-page">
     <header class="head">
       <h1 data-i18n="chain.title">The chain</h1>
       <p class="muted" data-i18n="chain.lede" data-i18n-args={JSON.stringify({ n: visibleItems.length, skippable })}>
-        All {visibleItems.length} collectibles in internal ID order. Each row is exactly one Spindown
-        use below the one above it.
+        All {visibleItems.length} collectibles in internal ID order.
       </p>
-      <p
-        class="muted"
-        data-i18n="chain.lede2"
-        data-i18n-args={JSON.stringify({ reachable: top.length, below: belowWall })}
-      >
-        Descending from Mom's Ring you reach {top.length} items — then you hit Dad's Note and the
-        chain stops. The {belowWall} items below that wall are still in the chain, but nothing above
-        can ever Spindown into them.
+      <p class="muted" data-i18n="chain.lede2" data-i18n-args={JSON.stringify({ reachable: top.length, below: belowWall })}>
+        Descending from Mom's Ring you reach {top.length} items â€” then the chain stops.
       </p>
-      <ul class="legend">
-        <li>
-          <span class="dot dot--wall"></span>
-          <span data-i18n="chain.legendWall">the wall: Dad's Note (#668), immune to rerolls</span>
-        </li>
-        <li>
-          <span class="dot dot--dead"></span>
-          <span data-i18n="chain.legendDead">unreachable from above</span>
-        </li>
-        <li>
-          <span data-i18n="chain.legendSkip" data-i18n-args={JSON.stringify({ n: skippable })}>
-            {skippable} hidden or empty IDs are jumped over silently
-          </span>
-        </li>
-      </ul>
     </header>
 
-    <ChainGraph />
+    <div class="chain-layout">
+      <ol class="steps" data-chain>
+        {
+          rows.map((row) =>
+            row.kind === 'gap' ? (
+              <li class="gap" aria-hidden="true">
+                <span class="gap__line" />
+                <span class="gap__label mono">+{row.n}</span>
+                <span class="gap__line" />
+              </li>
+            ) : (
+              <li
+                class:list={['step', { 'step--wall': row.wall, 'step--below': row.below }]}
+                data-id={row.id}
+              >
+                <a class="step__link" href={url(`/items/${row.id}`)}>
+                  <span class="step__dot" aria-hidden="true" />
+                  <span class="step__art">
+                    <img src={row.icon} alt="" width="44" height="44" loading="lazy" decoding="async" />
+                  </span>
+                  <span class="step__name">{row.name}</span>
+                  <span class="step__id mono">{formatId(row.id)}</span>
+                  {row.wall && <span class="step__flag">fin</span>}
+                </a>
+              </li>
+            )
+          )
+        }
+      </ol>
+
+      <aside class="rail" aria-label="Position in the chain">
+        <div class="rail__map">
+          <span class="rail__top mono">#732</span>
+          <div class="rail__track">
+            <span class="rail__fill rail__fill--top" style={`height:${wallPct}%`}></span>
+            <span class="rail__fill rail__fill--below" style={`top:${wallPct}%`}></span>
+            <span class="rail__wall" style={`top:${wallPct}%`}></span>
+            <span class="rail__marker" data-marker></span>
+          </div>
+          <span class="rail__bottom mono">#1</span>
+        </div>
+
+        <p class="rail__pos mono" data-pos>#732</p>
+
+        <div class="rail__jump">
+          <label class="visually-hidden" for="jump" data-i18n="graph.jumpAria">Jump to an item ID</label>
+          <input
+            id="jump"
+            type="number"
+            min="1"
+            max="732"
+            placeholder="IDâ€¦"
+            data-jump
+            data-i18n-placeholder="graph.jumpPlaceholder"
+          />
+          <button type="button" class="rail__go" data-jump-go data-i18n="graph.go">Go</button>
+        </div>
+      </aside>
+    </div>
 
     <p class="foot faint">
       <span data-i18n="chain.foot">Looking for something specific?</span>
@@ -59,47 +117,357 @@ const skippable = HIDDEN_IDS.length + EMPTY_IDS.length;
   </div>
 </Base>
 
+<script>
+  const list = document.querySelector<HTMLElement>('[data-chain]');
+  const marker = document.querySelector<HTMLElement>('[data-marker]');
+  const pos = document.querySelector<HTMLElement>('[data-pos]');
+  const jump = document.querySelector<HTMLInputElement>('[data-jump]');
+  const go = document.querySelector<HTMLButtonElement>('[data-jump-go]');
+
+  const steps = list ? [...list.querySelectorAll<HTMLElement>('.step')] : [];
+
+  const update = () => {
+    if (!list || !marker || !steps.length) return;
+
+    const rect = list.getBoundingClientRect();
+    const span = Math.max(rect.height - innerHeight * 0.4, 1);
+    const progress = Math.min(Math.max(-rect.top / span, 0), 1);
+
+    marker.style.top = `${progress * 100}%`;
+
+    const index = Math.min(Math.round(progress * (steps.length - 1)), steps.length - 1);
+    const id = steps[index]?.dataset.id;
+    if (pos && id) pos.textContent = `#${String(Number(id)).padStart(3, '0')}`;
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
+
+  const scrollToId = (id: number) => {
+    if (!Number.isFinite(id) || id <= 0) return;
+    const target = list?.querySelector<HTMLElement>(`[data-id="${id}"]`);
+    if (target) target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+
+  go?.addEventListener('click', () => scrollToId(Number(jump?.value)));
+
+  jump?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      scrollToId(Number(jump.value));
+    }
+  });
+
+  const focus = Number(new URLSearchParams(location.search).get('focus'));
+  if (Number.isFinite(focus) && focus > 0) {
+    window.addEventListener('load', () => scrollToId(focus));
+  }
+
+  update();
+</script>
+
 <style>
   .head {
-    padding-block: 1rem 1.2rem;
+    padding-block: 0.5rem 1.6rem;
+    max-width: 62ch;
   }
 
   .head p {
-    max-width: 64ch;
-    margin: 0 0 0.9rem;
+    margin: 0 0 0.5rem;
   }
 
-  .legend {
+  .chain-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 640px) auto;
+    gap: 2rem;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  /* --- la liste : dÃ©filement natif, aucun piÃ¨ge Ã  molette --- */
+
+  .steps {
     list-style: none;
     margin: 0;
-    padding: 0;
-    font-size: 0.78rem;
-    color: var(--ink-faint);
+    padding: 0 0 0 1.55rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 1.4rem;
+    bottom: 1.4rem;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(
+      to bottom,
+      rgba(79, 216, 232, 0.55),
+      rgba(79, 216, 232, 0.35) 55%,
+      rgba(208, 69, 60, 0.45) 58%,
+      rgba(208, 69, 60, 0.3)
+    );
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step__link {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.3rem;
     align-items: center;
+    gap: 0.75rem;
+    height: 3.1rem;
+    padding: 0 0.7rem 0 0.2rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    color: var(--ink-dim);
+    text-decoration: none;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
   }
 
-  .dot {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    margin-right: 0.4rem;
-    vertical-align: middle;
+  .step__dot {
+    position: absolute;
+    left: -1.05rem;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -3.5px;
+    border-radius: 50%;
+    background: #7fe6f4;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 10px rgba(79, 216, 232, 0.8);
   }
 
-  .dot--wall {
-    background: var(--blood);
+  .step__art {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    flex: none;
+    border-radius: 9px;
+    background: radial-gradient(circle at 50% 32%, #10404e, #04141c 78%);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(190, 240, 250, 0.1);
   }
 
-  .dot--dead {
-    background: rgba(179, 58, 58, 0.28);
-    border: 1px solid var(--blood-dim);
+  .step__art img {
+    image-rendering: pixelated;
+    width: 32px;
+    height: 32px;
+  }
+
+  .step__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .step__id {
+    margin-left: auto;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  .step__link:hover,
+  .step__link:focus-visible {
+    background: linear-gradient(180deg, rgba(190, 240, 250, 0.13), rgba(190, 240, 250, 0.04));
+    border-color: var(--edge-soft);
+    color: var(--ink);
+  }
+
+  .step__flag {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffb2ac;
+    border: 1px solid rgba(208, 69, 60, 0.55);
+    background: rgba(208, 69, 60, 0.16);
+    border-radius: 999px;
+    padding: 0.05rem 0.4rem;
+  }
+
+  .step--wall .step__dot {
+    background: #ff6a5e;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 16px rgba(208, 69, 60, 0.95);
+  }
+
+  .step--wall .step__link {
+    background: linear-gradient(180deg, rgba(208, 69, 60, 0.18), rgba(208, 69, 60, 0.05));
+    border-color: rgba(208, 69, 60, 0.4);
+    color: var(--ink);
+  }
+
+  .step--below {
+    opacity: 0.52;
+  }
+
+  .step--below .step__dot {
+    background: #7a5b58;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9);
+  }
+
+  .step--below:hover {
+    opacity: 0.85;
+  }
+
+  .gap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    height: 1.5rem;
+    padding-left: 0.2rem;
+  }
+
+  .gap__line {
+    width: 14px;
+    height: 1px;
+    background: rgba(190, 240, 250, 0.25);
+  }
+
+  .gap__label {
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+
+  /* --- rail de position --- */
+
+  .rail {
+    justify-self: end;
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 0.5rem;
+    border-radius: var(--r);
+    background: linear-gradient(180deg, rgba(190, 240, 250, 0.09), rgba(190, 240, 250, 0.02));
+    border: 1px solid var(--edge-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 16px 34px -22px #000;
+  }
+
+  .rail__map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+  }
+
+  .rail__top,
+  .rail__bottom {
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+  }
+
+  .rail__track {
+    position: relative;
+    width: 10px;
+    height: clamp(280px, 52vh, 460px);
+    border-radius: 999px;
+    background: rgba(2, 14, 20, 0.55);
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(190, 240, 250, 0.1);
+  }
+
+  .rail__fill {
+    position: absolute;
+    left: 1px;
+    width: 8px;
+    border-radius: 999px;
+  }
+
+  .rail__fill--top {
+    top: 0;
+    background: linear-gradient(180deg, #7fe6f4, #2aa8c4);
+  }
+
+  .rail__fill--below {
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(208, 69, 60, 0.55), rgba(208, 69, 60, 0.25));
+  }
+
+  .rail__wall {
+    position: absolute;
+    left: -5px;
+    width: 20px;
+    height: 2px;
+    background: #ff6a5e;
+    box-shadow: 0 0 10px rgba(208, 69, 60, 0.9);
+  }
+
+  .rail__marker {
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+    transition: top 120ms linear;
+  }
+
+  .rail__pos {
+    margin: 0;
+    font-size: 0.72rem;
+    color: var(--aqua);
+  }
+
+  .rail__jump {
+    display: flex;
+    gap: 0.25rem;
+    width: 100%;
+  }
+
+  .rail__jump input {
+    width: 100%;
+    min-width: 0;
+    font: inherit;
+    font-size: 0.72rem;
+    padding: 0.25rem 0.35rem;
+    border-radius: 7px;
+    color: var(--ink);
+    background: rgba(2, 14, 20, 0.6);
+    border: 1px solid var(--edge-soft);
+    font-family: ui-monospace, monospace;
+  }
+
+  .rail__go {
+    font: inherit;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.45rem;
+    border-radius: 7px;
+    cursor: pointer;
+    color: #04212b;
+    background: linear-gradient(180deg, #c8f7ff, #55cfe4);
+    border: 1px solid #a9f0f9;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .foot {
-    margin-top: 1.2rem;
+    margin-top: 2rem;
     font-size: 0.85rem;
+  }
+
+  @media (max-width: 780px) {
+    .chain-layout {
+      grid-template-columns: 1fr;
+    }
+    .rail {
+      display: none;
+    }
   }
 </style>

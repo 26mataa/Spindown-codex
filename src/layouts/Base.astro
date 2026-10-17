@@ -107,39 +107,42 @@ const fonts = `
   .lang {
     display: flex;
     align-items: center;
-    margin-left: 0.3rem;
   }
 
   .lang select {
     font: inherit;
-    font-size: 0.78rem;
-    padding: 0.22rem 0.35rem;
+    font-size: 0.76rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--r-pill);
     color: var(--ink-dim);
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(190, 240, 250, 0.14), rgba(190, 240, 250, 0.04));
+    border: 1px solid var(--edge-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
     cursor: pointer;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
   }
 
   .lang select:hover {
     color: var(--ink);
-    border-color: var(--line-strong);
+    border-color: var(--edge);
   }
 
   .lang select:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--aqua);
     outline-offset: 2px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .site-header__inner {
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.45rem;
+      padding-bottom: 0.55rem;
     }
     .nav {
       order: 3;
       width: 100%;
       margin-left: 0;
+      justify-content: space-between;
     }
   }
 </style>

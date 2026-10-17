@@ -17,15 +17,15 @@ ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "docs" / "shots"
 OUT = ROOT / "docs" / "Spindown-Codex.pptx"
 
-BG = RGBColor(0x12, 0x0C, 0x0C)
-CARD = RGBColor(0x1E, 0x14, 0x13)
-INK = RGBColor(0xE8, 0xD8, 0xB0)
-DIM = RGBColor(0xB6, 0xA4, 0x87)
-FAINT = RGBColor(0x84, 0x76, 0x60)
-GOLD = RGBColor(0xD4, 0xAF, 0x37)
-GOLDDIM = RGBColor(0x8F, 0x75, 0x24)
-BLOOD = RGBColor(0xB3, 0x3A, 0x3A)
-OLIVE = RGBColor(0x6B, 0x8E, 0x23)
+BG = RGBColor(0x04, 0x12, 0x1A)
+CARD = RGBColor(0x0A, 0x2A, 0x36)
+INK = RGBColor(0xE9, 0xF7, 0xFB)
+DIM = RGBColor(0xA9, 0xC9, 0xD4)
+FAINT = RGBColor(0x6D, 0x94, 0xA2)
+GOLD = RGBColor(0x4F, 0xD8, 0xE8)
+GOLDDIM = RGBColor(0x2A, 0xA8, 0xC4)
+BLOOD = RGBColor(0xD0, 0x45, 0x3C)
+OLIVE = RGBColor(0x9B, 0xE3, 0x56)
 
 TITLE_FONT = "Bahnschrift"
 BODY_FONT = "Arial"
@@ -240,8 +240,8 @@ def build():
     # --------------------------------------------------- 4. la chaîne
     picture_slide(prs, 4, "l'écran central", "La chaîne entière, mur compris",
                   SHOTS / "chain.png",
-                  "Colonne zoomable, sprites chargés à la demande. Le mur de Dad's Note est dessiné "
-                  "en travers : tout ce qui est en dessous est inatteignable depuis le haut.")
+                  "La chaîne défile comme une page normale, avec un rail de position à droite. "
+                  "Le mur de Dad's Note coupe la liste : en dessous, plus rien n'est atteignable.")
 
     # --------------------------------------------------- 5. la fiche
     picture_slide(prs, 5, "le cœur du site", "La fiche est une marche",
@@ -283,7 +283,7 @@ def build():
             cell = table.cell(r, c)
             cell.fill.solid()
             cell.fill.fore_color.rgb = CARD if r else BG
-            set_cell_border(cell, "3A2B26")
+            set_cell_border(cell, "1E5666")
             cell.margin_left = Inches(0.14)
             cell.margin_top = Inches(0.08)
             cell.margin_bottom = Inches(0.08)

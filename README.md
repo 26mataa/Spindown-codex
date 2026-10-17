@@ -219,10 +219,9 @@ src/
   lib/distance.ts   moteur pur de la distance (aucune dépendance, testable seul)
   lib/chain.ts      accès typé aux données, voisins, segments, formatage
   layouts/Base.astro
+  i18n/             dictionnaires (5 langues) + application côté client
   components/
-    ItemCard.astro    vignette d'item
     ChainLadder.astro échelle focus + contexte d'une fiche
-    ChainGraph.astro  graphe D3 de la chaîne complète (zoom, pan, clic)
   pages/
     index.astro       accueil + recherche multilingue
     items/index.astro grille filtrable (type, qualité, pool, tri)
@@ -239,10 +238,9 @@ src/
   Conséquence : 722 pages au lieu de 7 200. L'interface, elle, se traduit à l'exécution
   (voir « Langues de l'interface »), sans dupliquer une seule page.
 - **Zéro dépendance de framework côté client.** Les îlots (recherche, filtres, calculateur, graphe)
-  sont en TypeScript natif ; les pages sont du HTML statique. Seul `d3` est embarqué, et uniquement
-  sur `/chain`.
-- **Le graphe n'est pas une simulation de forces.** La relation Spindown est linéaire : une colonne
-  avec zoom/pan et recentrage au clic, pas de force-directed.
+  sont en TypeScript natif ; les pages sont du HTML statique. Aucune librairie de graphe.
+- **La chaîne se lit au défilement natif.** Une liste verticale, sans zoom ni capture de la molette :
+  on descend, c'est tout. Un rail latéral indique la position et le mur de Dad's Note.
 - **Polices auto-hébergées** : aucune requête vers un tiers au chargement.
 
 **Détail technique utile** : les îlots injectent du HTML via `innerHTML`, et les styles scopés
@@ -257,7 +255,7 @@ d'Astro ne s'appliquent pas à ces nœuds. Toutes les règles concernant du cont
 - [x] Données, sprites, rapports, validation (`check-data`, `check-links`, `astro check`)
 - [x] Fiches item complètes avec descente de chaîne et navigation clavier
 - [x] Accueil, index filtrable, chaîne complète, calculateur, crédits
-- [x] **Graphe D3** : colonne zoomable, sprites en chargement paresseux, mur de Dad's Note matérialisé
+- [x] **Chaîne** : défilement natif, rail de position, mur de Dad's Note matérialisé
 - [x] Interface en 5 langues (en, fr, de, es, it), détection + sélecteur + `?lang=`
 - [x] 38 tests unitaires, 0 erreur de typage
 - [ ] Descriptions manquantes pour **211 items** (EID ne les couvre pas ; le texte du jeu est dans un

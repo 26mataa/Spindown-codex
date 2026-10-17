@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { parseEidDescriptions, sameItemName } from '../scripts/lib/eid.mjs';
 
 /**
@@ -105,7 +105,11 @@ test('tous les items ont une description issue de la bonne table', () => {
   assert.equal(withDesc.length, items.length, 'chaque item doit avoir une description');
 });
 
-test('chaque description provient d’une entrée au bon nom', () => {
+const hasRawSources = existsSync('sources/eid/desc');
+
+// Les fichiers EID bruts ne sont pas versionnés (npm run fetch:assets les
+// récupère) : en intégration continue, ce test n'a rien à lire et se saute.
+test('chaque description provient d’une entrée au bon nom', { skip: !hasRawSources && 'sources EID absentes' }, () => {
   // Le vrai garde-fou : chaque item doit avoir, dans au moins un fichier EID,
   // une entrée dont le nom correspond. C'est ce qui manquait quand les
   // descriptions de trinkets écrasaient celles des collectibles.

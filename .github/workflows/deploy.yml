@@ -38,8 +38,13 @@ jobs:
 
       # `site` et `base` sont deduits de GITHUB_REPOSITORY par astro.config.mjs :
       # rien a configurer, que le depot soit un site utilisateur ou un projet.
+      # `sources/` n'est pas versionné (npm run fetch:assets le récupère) :
+      # en CI on valide les données déjà générées, pas la régénération.
+      - name: Type check
+        run: npm run check
+
       - name: Validate data
-        run: npm run check-data
+        run: npm test
 
       - name: Build
         run: npm run build

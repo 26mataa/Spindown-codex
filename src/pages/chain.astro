@@ -54,7 +54,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
                 <span class="gap__line" />
               </li>
             ) : (
-              <li class="step" data-id={row.id}>
+              <li class:list={['step', { 'step--blocked': row.blocked }]} data-id={row.id}>
                 <a class="step__link" href={url(`/items/${row.id}`)}>
                   <span class="step__dot" aria-hidden="true" />
                   <span class="step__art">
@@ -443,5 +443,18 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     .rail {
       display: none;
     }
+  }
+  .step--blocked .step__link {
+    background: linear-gradient(180deg, rgba(208, 69, 60, 0.14), rgba(208, 69, 60, 0.04));
+    color: var(--ink);
+  }
+
+  .step--blocked .step__name {
+    color: #ffc9c3;
+  }
+
+  .step--blocked .step__dot {
+    background: #ff6a5e;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 14px rgba(208, 69, 60, 0.9);
   }
 </style>

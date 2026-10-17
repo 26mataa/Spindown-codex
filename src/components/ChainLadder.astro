@@ -61,7 +61,11 @@ const down = descendantsOf(id, depth);
           const it = byId.get(nid)!;
           const blocked = Boolean(it.spindown.blocked);
           return (
-            <li class="ladder__row" style={`--dist:${i + 1}`} data-id={it.id}>
+            <li
+              class:list={['ladder__row', { 'ladder__row--blocked': blocked }]}
+              style={`--dist:${i + 1}`}
+              data-id={it.id}
+            >
               <a href={url(`/items/${it.id}`)} class="ladder__link">
                 <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
                 <span class="ladder__name">{it.name}</span>
@@ -97,10 +101,26 @@ const down = descendantsOf(id, depth);
 
   const BATCH = 40;
 
+  /**
+   * Astro scope ses styles avec un attribut data-astro-cid-*. Les elements
+   * crees en JS naissent sans cet attribut : sans cette copie, les lignes
+   * ajoutees au defilement s'affichent sans style (texte colle, pas de badge).
+   */
+  const scopeFrom = (source: Element | null): ((el: Element) => void) => {
+    const attrs = source
+      ? Array.from(source.attributes).filter((a) => a.name.startsWith('data-astro-cid-'))
+      : [];
+    return (el: Element) => {
+      for (const attr of attrs) el.setAttribute(attr.name, attr.value);
+    };
+  };
+
   for (const box of document.querySelectorAll<HTMLElement>('[data-ladder-scroll]')) {
     const list = box.querySelector<HTMLOListElement>('[data-ladder-list]');
     const id = Number(box.dataset.ladderId);
     if (!list || !Number.isFinite(id)) continue;
+
+    const scoped = scopeFrom(list.querySelector('.ladder__row'));
 
     let chain: ChainRow[] | null = null;
     let baseIndex = -1;
@@ -115,9 +135,10 @@ const down = descendantsOf(id, depth);
       distance: number
     ): HTMLLIElement => {
       const li = document.createElement('li');
-      li.className = 'ladder__row';
+      li.className = blocked ? 'ladder__row ladder__row--blocked' : 'ladder__row';
       li.dataset.id = String(itemId);
       li.style.setProperty('--dist', String(Math.min(distance, 60)));
+      scoped(li);
 
       const a = document.createElement('a');
       a.className = 'ladder__link';
@@ -135,18 +156,23 @@ const down = descendantsOf(id, depth);
       label.className = 'ladder__name';
       label.textContent = name;
 
+      scoped(a);
+      scoped(img);
+      scoped(label);
       a.append(img, label);
 
       if (blocked) {
         const flag = document.createElement('span');
         flag.className = 'ladder__flag';
         flag.textContent = flagLabel;
+        scoped(flag);
         a.append(flag);
       }
 
       const code = document.createElement('span');
       code.className = 'ladder__id mono';
       code.textContent = `#${String(itemId).padStart(3, '0')}`;
+      scoped(code);
       a.append(code);
 
       li.append(a);
@@ -411,5 +437,19 @@ const down = descendantsOf(id, depth);
     color: var(--ink);
     font-weight: 600;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px -14px rgba(79, 216, 232, 0.9);
+  }
+  /* Dad's Note : le seul item qui ne peut pas etre reroll. */
+  .ladder__row--blocked .ladder__link {
+    background: linear-gradient(180deg, rgba(208, 69, 60, 0.16), rgba(208, 69, 60, 0.05));
+    border-color: rgba(208, 69, 60, 0.45);
+  }
+
+  .ladder__row--blocked .ladder__name {
+    color: #ffc9c3;
+  }
+
+  .ladder__row--blocked::after {
+    background: #ff6a5e;
+    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 12px rgba(208, 69, 60, 0.9);
   }
 </style>

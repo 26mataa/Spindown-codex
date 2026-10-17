@@ -1,16 +1,14 @@
-﻿---
+---
 import Base from '../layouts/Base.astro';
-import { formatId, HIDDEN_IDS, EMPTY_IDS, topSegment, visibleItems } from '../lib/chain';
+import { formatId, HIDDEN_IDS, EMPTY_IDS, visibleItems } from '../lib/chain';
 import { url } from '../lib/urls';
 
 const all = [...visibleItems].reverse();
-const wallIndex = all.findIndex((i) => i.spindown.blocked);
-const top = topSegment();
-const belowWall = all.length - top.length;
+const dadIndex = all.findIndex((i) => i.spindown.blocked);
 const skippable = HIDDEN_IDS.length + EMPTY_IDS.length;
 
 type Row =
-  | { kind: 'item'; id: number; name: string; icon: string; wall: boolean; below: boolean }
+  | { kind: 'item'; id: number; name: string; icon: string; blocked: boolean }
   | { kind: 'gap'; n: number };
 
 const rows: Row[] = [];
@@ -23,17 +21,16 @@ all.forEach((item, index) => {
     id: item.id,
     name: item.name,
     icon: item.icon,
-    wall: Boolean(item.spindown.blocked),
-    below: wallIndex >= 0 && index > wallIndex,
+    blocked: Boolean(item.spindown.blocked),
   });
 });
 
-const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
+const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
 ---
 
 <Base
   title="The whole chain â€” Spindown Codex"
-  description="Every collectible in Repentance+ in Spindown order: from Mom's Ring down through Dad's Note, and what lies below the wall."
+  description="Every collectible in Repentance+ in Spindown order, from Mom's Ring down to The Sad Onion."
 >
   <div class="wrap chain-page">
     <header class="head">
@@ -41,8 +38,8 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
       <p class="muted" data-i18n="chain.lede" data-i18n-args={JSON.stringify({ n: visibleItems.length, skippable })}>
         All {visibleItems.length} collectibles in internal ID order.
       </p>
-      <p class="muted" data-i18n="chain.lede2" data-i18n-args={JSON.stringify({ reachable: top.length, below: belowWall })}>
-        Descending from Mom's Ring you reach {top.length} items â€” then the chain stops.
+      <p class="muted" data-i18n="chain.lede2">
+        Dad's Note (#668) is immune to rerolls â€” you can reach it, but nothing can come out of it.
       </p>
     </header>
 
@@ -57,18 +54,17 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
                 <span class="gap__line" />
               </li>
             ) : (
-              <li
-                class:list={['step', { 'step--wall': row.wall, 'step--below': row.below }]}
-                data-id={row.id}
-              >
+              <li class="step" data-id={row.id}>
                 <a class="step__link" href={url(`/items/${row.id}`)}>
                   <span class="step__dot" aria-hidden="true" />
                   <span class="step__art">
                     <img src={row.icon} alt="" width="44" height="44" loading="lazy" decoding="async" />
                   </span>
                   <span class="step__name">{row.name}</span>
+                  {row.blocked && (
+                    <span class="step__flag" data-i18n="item.noReroll">cannot be rerolled</span>
+                  )}
                   <span class="step__id mono">{formatId(row.id)}</span>
-                  {row.wall && <span class="step__flag">fin</span>}
                 </a>
               </li>
             )
@@ -80,9 +76,8 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
         <div class="rail__map">
           <span class="rail__top mono">#732</span>
           <div class="rail__track">
-            <span class="rail__fill rail__fill--top" style={`height:${wallPct}%`}></span>
-            <span class="rail__fill rail__fill--below" style={`top:${wallPct}%`}></span>
-            <span class="rail__wall" style={`top:${wallPct}%`}></span>
+            <span class="rail__fill"></span>
+            <span class="rail__notch" style={`top:${notchPct}%`} title="Dad's Note (#668)"></span>
             <span class="rail__marker" data-marker></span>
           </div>
           <span class="rail__bottom mono">#1</span>
@@ -169,9 +164,17 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
     }
   });
 
+  // Arriver sur la page avec ?focus=N doit amener directement sur la ligne,
+  // sans animation : un défilement fluide depuis le haut serait désorientant.
   const focus = Number(new URLSearchParams(location.search).get('focus'));
-  if (Number.isFinite(focus) && focus > 0) {
-    window.addEventListener('load', () => scrollToId(focus));
+  if (Number.isFinite(focus) && focus > 0 && list) {
+    const target = list.querySelector<HTMLElement>(`[data-id="${focus}"]`);
+    if (target) {
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ block: 'center', behavior: 'auto' });
+        update();
+      });
+    }
   }
 
   update();
@@ -214,10 +217,10 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
     border-radius: 2px;
     background: linear-gradient(
       to bottom,
-      rgba(79, 216, 232, 0.55),
-      rgba(79, 216, 232, 0.35) 55%,
-      rgba(208, 69, 60, 0.45) 58%,
-      rgba(208, 69, 60, 0.3)
+      transparent,
+      rgba(79, 216, 232, 0.45) 8%,
+      rgba(79, 216, 232, 0.3) 92%,
+      transparent
     );
   }
 
@@ -287,39 +290,18 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
     color: var(--ink);
   }
 
+  /* Le seul item qui ne peut pas Ãªtre rerollÃ© : un badge, pas une frontiÃ¨re. */
   .step__flag {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
+    margin-left: 0.2rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #ffb2ac;
-    border: 1px solid rgba(208, 69, 60, 0.55);
+    border: 1px solid rgba(208, 69, 60, 0.5);
     background: rgba(208, 69, 60, 0.16);
     border-radius: 999px;
-    padding: 0.05rem 0.4rem;
-  }
-
-  .step--wall .step__dot {
-    background: #ff6a5e;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 16px rgba(208, 69, 60, 0.95);
-  }
-
-  .step--wall .step__link {
-    background: linear-gradient(180deg, rgba(208, 69, 60, 0.18), rgba(208, 69, 60, 0.05));
-    border-color: rgba(208, 69, 60, 0.4);
-    color: var(--ink);
-  }
-
-  .step--below {
-    opacity: 0.52;
-  }
-
-  .step--below .step__dot {
-    background: #7a5b58;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9);
-  }
-
-  .step--below:hover {
-    opacity: 0.85;
+    padding: 0.05rem 0.42rem;
+    white-space: nowrap;
   }
 
   .gap {
@@ -384,28 +366,20 @@ const wallPct = (wallIndex / Math.max(all.length - 1, 1)) * 100;
 
   .rail__fill {
     position: absolute;
+    inset: 0;
     left: 1px;
-    width: 8px;
+    right: 1px;
     border-radius: 999px;
+    background: linear-gradient(180deg, #7fe6f4, #2aa8c4 55%, rgba(42, 168, 196, 0.35));
   }
 
-  .rail__fill--top {
-    top: 0;
-    background: linear-gradient(180deg, #7fe6f4, #2aa8c4);
-  }
-
-  .rail__fill--below {
-    bottom: 0;
-    background: linear-gradient(180deg, rgba(208, 69, 60, 0.55), rgba(208, 69, 60, 0.25));
-  }
-
-  .rail__wall {
+  /* repÃ¨re discret de Dad's Note sur la carte, pas un mur */
+  .rail__notch {
     position: absolute;
-    left: -5px;
-    width: 20px;
-    height: 2px;
-    background: #ff6a5e;
-    box-shadow: 0 0 10px rgba(208, 69, 60, 0.9);
+    left: -3px;
+    width: 16px;
+    height: 1px;
+    background: rgba(233, 247, 251, 0.55);
   }
 
   .rail__marker {

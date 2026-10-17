@@ -66,7 +66,7 @@ BASE_PATH=/mon-depot/ npm run build
 | | |
 |---|---|
 | ![Accueil](docs/shots/home.png) | ![La chaîne](docs/shots/chain.png) |
-| Accueil : recherche dans 20 langues | La chaîne complète, zoomable, avec le mur de Dad's Note |
+| Accueil : recherche dans 20 langues | La chaîne complète, d'un bout à l'autre, avec le rail de position |
 | ![Fiche](docs/shots/item-dads-note.png) | ![Index](docs/shots/items.png) |
 | Fiche item : ce que ça devient, ce qui y mène, contexte | Encyclopédie filtrable (717 items) |
 | ![Recherche](docs/shots/search.png) | ![Calculateur](docs/shots/calculator.png) |
@@ -226,7 +226,7 @@ src/
     index.astro       accueil + recherche multilingue
     items/index.astro grille filtrable (type, qualité, pool, tri)
     items/[id].astro  717 fiches statiques
-    chain.astro       la chaîne complète, avec le mur de Dad's Note visible
+    chain.astro       la chaîne complète, avec rail de position
     calculator.astro  distance entre deux items, Car Battery inclus
     credits.astro     mentions légales
 ```
@@ -240,7 +240,7 @@ src/
 - **Zéro dépendance de framework côté client.** Les îlots (recherche, filtres, calculateur, graphe)
   sont en TypeScript natif ; les pages sont du HTML statique. Aucune librairie de graphe.
 - **La chaîne se lit au défilement natif.** Une liste verticale, sans zoom ni capture de la molette :
-  on descend, c'est tout. Un rail latéral indique la position et le mur de Dad's Note.
+  on descend, c'est tout. Un rail latéral indique la position, et Dad's Note y est repérée.
 - **Polices auto-hébergées** : aucune requête vers un tiers au chargement.
 
 **Détail technique utile** : les îlots injectent du HTML via `innerHTML`, et les styles scopés
@@ -255,7 +255,7 @@ d'Astro ne s'appliquent pas à ces nœuds. Toutes les règles concernant du cont
 - [x] Données, sprites, rapports, validation (`check-data`, `check-links`, `astro check`)
 - [x] Fiches item complètes avec descente de chaîne et navigation clavier
 - [x] Accueil, index filtrable, chaîne complète, calculateur, crédits
-- [x] **Chaîne** : défilement natif, rail de position, mur de Dad's Note matérialisé
+- [x] **Chaîne** : défilement natif, rail de position, Dad's Note signalée par un badge
 - [x] Interface en 5 langues (en, fr, de, es, it), détection + sélecteur + `?lang=`
 - [x] 38 tests unitaires, 0 erreur de typage
 - [ ] Descriptions manquantes pour **211 items** (EID ne les couvre pas ; le texte du jeu est dans un

@@ -93,7 +93,7 @@ const en: Record<string, string> = {
   'chain.lede':
     '{n} collectibles in internal ID order. Each row is exactly one Spindown use below the one above it — except where the ID jumps, because {skippable} IDs are hidden or empty.',
   'chain.lede2':
-    "Descending from Mom's Ring you reach {reachable} items — then you hit Dad's Note and the chain stops. The {below} items below that wall are still in the chain, but nothing above can ever Spindown into them.",
+    "Dad's Note (#668) is immune to rerolls — you can reach it, but nothing can come out of it.",
   'chain.legendWall': "the wall: Dad's Note (#668), immune to rerolls",
   'chain.legendDead': 'unreachable from above',
   'chain.legendSkip': '{n} hidden or empty IDs are jumped over silently',
@@ -200,7 +200,7 @@ const fr: Record<string, string> = {
   'chain.lede':
     "{n} collectibles en ordre d'ID interne. Chaque ligne est exactement une utilisation de Spindown sous celle du dessus — sauf quand l'ID saute, parce que {skippable} IDs sont cachés ou vides.",
   'chain.lede2':
-    "En partant de Mom's Ring vous atteignez {reachable} items — puis vous heurtez Dad's Note et la chaîne s'arrête. Les {below} items sous ce mur sont dans la chaîne, mais rien au-dessus ne peut jamais les atteindre.",
+    "Dad's Note (#668) est immunisé au reroll : on peut l'atteindre, mais rien ne peut en sortir.",
   'chain.legendWall': "le mur : Dad's Note (#668), immunisé au reroll",
   'chain.legendDead': 'inatteignable depuis le haut',
   'chain.legendSkip': '{n} IDs cachés ou vides sont sautés en silence',
@@ -308,7 +308,7 @@ const de: Record<string, string> = {
   'chain.lede':
     '{n} Collectibles in interner ID-Reihenfolge. Jede Zeile ist genau ein Spindown unter der darüber — außer wo die ID springt, weil {skippable} IDs versteckt oder leer sind.',
   'chain.lede2':
-    "Von Mom's Ring aus erreicht man {reachable} Items — dann trifft man auf Dad's Note und die Kette endet. Die {below} Items unter dieser Wand sind in der Kette, aber nichts darüber kann sie je erreichen.",
+    "Dad's Note (#668) ist immun gegen Rerolls — man kann es erreichen, aber nichts kann daraus entstehen.",
   'chain.legendWall': "die Wand: Dad's Note (#668), immun gegen Rerolls",
   'chain.legendDead': 'von oben unerreichbar',
   'chain.legendSkip': '{n} versteckte oder leere IDs werden still übersprungen',
@@ -416,7 +416,7 @@ const es: Record<string, string> = {
   'chain.lede':
     '{n} coleccionables en orden de ID interno. Cada fila es exactamente un uso de Spindown por debajo de la anterior — salvo cuando el ID salta, porque {skippable} IDs están ocultos o vacíos.',
   'chain.lede2':
-    "Desde Mom's Ring alcanzas {reachable} objetos — y entonces chocas con Dad's Note y la cadena se detiene. Los {below} objetos bajo ese muro siguen en la cadena, pero nada por encima puede alcanzarlos jamás.",
+    "Dad's Note (#668) es inmune a los rerolls: se puede alcanzar, pero nada puede salir de él.",
   'chain.legendWall': "el muro: Dad's Note (#668), inmune a los rerolls",
   'chain.legendDead': 'inalcanzable desde arriba',
   'chain.legendSkip': '{n} IDs ocultos o vacíos se saltan en silencio',
@@ -523,7 +523,7 @@ const it: Record<string, string> = {
   'chain.lede':
     "{n} collezionabili in ordine di ID interno. Ogni riga è esattamente un uso di Spindown sotto quella sopra — tranne dove l'ID salta, perché {skippable} ID sono nascosti o vuoti.",
   'chain.lede2':
-    "Partendo da Mom's Ring raggiungi {reachable} oggetti — poi incontri Dad's Note e la catena si ferma. I {below} oggetti sotto quel muro sono nella catena, ma nulla sopra può raggiungerli.",
+    "Dad's Note (#668) è immune ai reroll: si può raggiungere, ma non se ne può uscire.",
   'chain.legendWall': "il muro: Dad's Note (#668), immune ai reroll",
   'chain.legendDead': "irraggiungibile dall'alto",
   'chain.legendSkip': '{n} ID nascosti o vuoti vengono saltati in silenzio',

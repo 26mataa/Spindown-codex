@@ -238,10 +238,10 @@ def build():
                   "et la règle expliquée en trois temps.")
 
     # --------------------------------------------------- 4. la chaîne
-    picture_slide(prs, 4, "l'écran central", "La chaîne entière, mur compris",
+    picture_slide(prs, 4, "l'écran central", "La chaîne entière, d'un bout à l'autre",
                   SHOTS / "chain.png",
-                  "La chaîne défile comme une page normale, avec un rail de position à droite. "
-                  "Le mur de Dad's Note coupe la liste : en dessous, plus rien n'est atteignable.")
+                  "Toute la chaîne d'un seul tenant, avec un rail de position à droite. "
+                  "Dad's Note y est signalée par un badge : elle ne peut pas être rerollée.")
 
     # --------------------------------------------------- 5. la fiche
     picture_slide(prs, 5, "le cœur du site", "La fiche est une marche",

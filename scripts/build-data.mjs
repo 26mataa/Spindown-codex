@@ -275,6 +275,14 @@ async function main() {
   await mkdir(path.join(ROOT, 'public'), { recursive: true });
   await writeFile(path.join(ROOT, 'public', 'search.json'), JSON.stringify(searchRows) + '\n');
 
+  // Ordre de la chaine, du plus haut ID au plus bas : sert au defilement
+  // progressif du bloc "contexte" des fiches (/chain.json, ~18 Ko).
+  const chainRows = [...items]
+    .filter((i) => !i.hidden)
+    .sort((a, b) => b.id - a.id)
+    .map((i) => [i.id, i.name, i.spindown.blocked ? 1 : 0]);
+  await writeFile(path.join(ROOT, 'public', 'chain.json'), JSON.stringify(chainRows) + '\n');
+
   // --- rapports ----------------------------------------------------------
   const iconFiles = new Set(
     (await readdir(ICONS).catch(() => []))

@@ -245,7 +245,7 @@ def build():
 
     # --------------------------------------------------- 5. la fiche
     picture_slide(prs, 5, "le cœur du site", "La fiche est une marche",
-                  SHOTS / "item-dads-note.png",
+                  SHOTS / "item-detail.png",
                   "Ce que l'item devient, ce qui mène à lui, et le contexte autour. On continue à "
                   "descendre sans repasser par un index.")
 

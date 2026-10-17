@@ -71,20 +71,6 @@ export function spindownSources(id: number): number[] {
   return src === undefined ? [] : [src];
 }
 
-/** Remonte la chaine : les IDs superieurs, du plus proche au plus loin. */
-export function ancestorsOf(id: number, count: number): number[] {
-  const out: number[] = [];
-  let cur = id;
-  for (let i = 0; i < count; i++) {
-    const [src] = spindownSources(cur);
-    if (src === undefined) break;
-    out.push(src);
-    cur = src;
-  }
-  return out;
-}
-
-/** Descend la chaine : les IDs inferieurs, du plus proche au plus loin. */
 export function descendantsOf(id: number, count: number): number[] {
   const out: number[] = [];
   let cur: number | null = id;

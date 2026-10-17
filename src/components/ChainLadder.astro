@@ -1,30 +1,33 @@
 ---
-import { ancestorsOf, byId, descendantsOf, formatId, spindownTarget } from '../lib/chain';
+/**
+ * Contexte de chaîne d'une fiche : la descente uniquement.
+ *
+ * On part de l'item courant et on descend jusqu'à The Sad Onion. Les items
+ * affichés au-dessus (IDs supérieurs) ne servaient à rien : un Spindown ne va
+ * que vers le bas, on ne peut pas les atteindre depuis ici. L'item qui mène à
+ * celui-ci est déjà indiqué dans le panneau « Spindown Dice ».
+ *
+ * La suite de la descente est chargée à la demande depuis /chain.json, pour ne
+ * pas embarquer 700 lignes dans chacune des 717 fiches.
+ */
+import { byId, descendantsOf, formatId } from '../lib/chain';
 import { url } from '../lib/urls';
 
 export interface Props {
   id: number;
-  /** Nombre de voisins rendus de chaque côté (le bloc défile). */
+  /** Nombre de descendants rendus côté serveur. */
   depth?: number;
 }
 
-const { id, depth = 30 } = Astro.props;
-
-const up = ancestorsOf(id, depth).reverse(); // du plus éloigné au plus proche
-const down = descendantsOf(id, depth);
+const { id, depth = 24 } = Astro.props;
 
 const current = byId.get(id)!;
-const next = spindownTarget(id);
-const chainEndsHere = next === null && !!current.spindown.blocked;
-const isTop = up.length === 0;
-
-const rows = [
-  ...up.map((nid, i) => ({ nid, distance: up.length - i, dir: 'up' as const })),
-  ...down.map((nid, i) => ({ nid, distance: i + 1, dir: 'down' as const })),
-];
+const down = descendantsOf(id, depth);
 ---
 
 <div class="ladder">
+  <span class="visually-hidden" data-ladder-flag data-i18n="item.noReroll">cannot be rerolled</span>
+
   <p class="ladder__legend">
     <span class="ladder__arrow" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -36,25 +39,15 @@ const rows = [
     <span class="ladder__hint mono" aria-hidden="true">↕</span>
   </p>
 
-  <div class="ladder__scroll" data-ladder-scroll tabindex="0" role="group" aria-label="Spindown chain">
-    <ol class="ladder__list">
-      {
-        rows
-          .filter((r) => r.dir === 'up')
-          .map((r) => {
-            const it = byId.get(r.nid)!;
-            return (
-              <li class="ladder__row" style={`--dist:${r.distance}`} data-id={it.id}>
-                <a href={url(`/items/${it.id}`)} class="ladder__link">
-                  <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
-                  <span class="ladder__name">{it.name}</span>
-                  <span class="ladder__id mono">{formatId(it.id)}</span>
-                </a>
-              </li>
-            );
-          })
-      }
-
+  <div
+    class="ladder__scroll"
+    data-ladder-scroll
+    data-ladder-id={id}
+    tabindex="0"
+    role="group"
+    aria-label="Spindown descent"
+  >
+    <ol class="ladder__list" data-ladder-list>
       <li class="ladder__row ladder__row--current" aria-current="true" data-current>
         <span class="ladder__link ladder__link--current">
           <img src={current.icon} alt="" width="30" height="30" decoding="async" />
@@ -64,56 +57,168 @@ const rows = [
       </li>
 
       {
-        rows
-          .filter((r) => r.dir === 'down')
-          .map((r) => {
-            const it = byId.get(r.nid)!;
-            return (
-              <li class="ladder__row" style={`--dist:${r.distance}`} data-id={it.id}>
-                <a href={url(`/items/${it.id}`)} class="ladder__link">
-                  <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
-                  <span class="ladder__name">{it.name}</span>
-                  <span class="ladder__id mono">{formatId(it.id)}</span>
-                </a>
-              </li>
-            );
-          })
+        down.map((nid, i) => {
+          const it = byId.get(nid)!;
+          const blocked = Boolean(it.spindown.blocked);
+          return (
+            <li class="ladder__row" style={`--dist:${i + 1}`} data-id={it.id}>
+              <a href={url(`/items/${it.id}`)} class="ladder__link">
+                <img src={it.icon} alt="" width="30" height="30" loading="lazy" decoding="async" />
+                <span class="ladder__name">{it.name}</span>
+                {blocked && (
+                  <span class="ladder__flag" data-i18n="item.noReroll">
+                    cannot be rerolled
+                  </span>
+                )}
+                <span class="ladder__id mono">{formatId(it.id)}</span>
+              </a>
+            </li>
+          );
+        })
       }
     </ol>
   </div>
-
-  {
-    chainEndsHere && (
-      <p class="ladder__stop">
-        <span aria-hidden="true">✖</span>{' '}
-        <span
-          data-i18n="item.chainStops"
-          data-i18n-args={JSON.stringify({ name: current.name })}>The chain stops here — {current.name} cannot be rerolled.</span
-        >
-      </p>
-    )
-  }
-
-  {
-    isTop && !chainEndsHere && (
-      <p
-        class="ladder__stop ladder__stop--calm"
-        data-i18n="item.chainTop"
-        data-i18n-args={JSON.stringify({ id: formatId(current.id) })}
-      >
-        Top of the chain: nothing can Spindown into {formatId(current.id)}.
-      </p>
-    )
-  }
 </div>
 
 <script>
-  // Centre le bloc sur l'item courant : sans cela, une fiche du bas de la
-  // chaîne s'ouvrirait sur une liste défilée n'importe où.
+  import { url } from '../lib/urls';
+
+  /** [id, nom, bloque] — voir scripts/build-data.mjs. */
+  type ChainRow = [number, string, number];
+
+  let chainPromise: Promise<ChainRow[]> | null = null;
+  const loadChain = (): Promise<ChainRow[]> => {
+    chainPromise ??= fetch(url('/chain.json')).then((r) => r.json() as Promise<ChainRow[]>);
+    return chainPromise;
+  };
+
+  const flagLabel =
+    document.querySelector('[data-ladder-flag]')?.textContent?.trim() ?? 'cannot be rerolled';
+
+  const BATCH = 40;
+
   for (const box of document.querySelectorAll<HTMLElement>('[data-ladder-scroll]')) {
-    const current = box.querySelector<HTMLElement>('[data-current]');
-    if (!current) continue;
-    box.scrollTop = current.offsetTop - box.clientHeight / 2 + current.offsetHeight / 2;
+    const list = box.querySelector<HTMLOListElement>('[data-ladder-list]');
+    const id = Number(box.dataset.ladderId);
+    if (!list || !Number.isFinite(id)) continue;
+
+    let chain: ChainRow[] | null = null;
+    let baseIndex = -1;
+    let cursor = -1;
+    let done = false;
+    let loading = false;
+
+    const makeRow = (
+      itemId: number,
+      name: string,
+      blocked: boolean,
+      distance: number
+    ): HTMLLIElement => {
+      const li = document.createElement('li');
+      li.className = 'ladder__row';
+      li.dataset.id = String(itemId);
+      li.style.setProperty('--dist', String(Math.min(distance, 60)));
+
+      const a = document.createElement('a');
+      a.className = 'ladder__link';
+      a.href = url(`/items/${itemId}`);
+
+      const img = document.createElement('img');
+      img.src = url(`/icons/${itemId}.png`);
+      img.alt = '';
+      img.width = 30;
+      img.height = 30;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      const label = document.createElement('span');
+      label.className = 'ladder__name';
+      label.textContent = name;
+
+      a.append(img, label);
+
+      if (blocked) {
+        const flag = document.createElement('span');
+        flag.className = 'ladder__flag';
+        flag.textContent = flagLabel;
+        a.append(flag);
+      }
+
+      const code = document.createElement('span');
+      code.className = 'ladder__id mono';
+      code.textContent = `#${String(itemId).padStart(3, '0')}`;
+      a.append(code);
+
+      li.append(a);
+      return li;
+    };
+
+    const appendNext = () => {
+      if (!chain || done) return;
+      const start = cursor + 1;
+      const slice = chain.slice(start, start + BATCH);
+      if (!slice.length) {
+        done = true;
+        return;
+      }
+
+      const frag = document.createDocumentFragment();
+      let appended = 0;
+
+      for (let i = 0; i < slice.length; i++) {
+        const [itemId, name, blocked] = slice[i];
+        frag.appendChild(makeRow(itemId, name, Boolean(blocked), start + i - baseIndex));
+        appended++;
+
+        // La descente s'arrête sur un item non rerollable : exactement comme
+        // côté serveur, on ne va pas plus loin.
+        if (blocked) {
+          done = true;
+          break;
+        }
+      }
+
+      list.appendChild(frag);
+      cursor = start + appended - 1;
+      if (cursor >= chain.length - 1) done = true;
+    };
+
+    const ensureChain = async () => {
+      if (chain || loading) return;
+      loading = true;
+      chain = await loadChain();
+      baseIndex = chain.findIndex(([itemId]) => itemId === id);
+
+      if (baseIndex < 0) {
+        done = true;
+        loading = false;
+        return;
+      }
+
+      // Le serveur a déjà rendu les premiers descendants : on cale le curseur
+      // sur le dernier d'entre eux.
+      cursor = baseIndex + list.querySelectorAll('.ladder__row').length - 1;
+
+      // Le dernier item rendu est déjà bloquant : il n'y a rien après.
+      if (chain[cursor]?.[2]) done = true;
+      loading = false;
+    };
+
+    const maybeLoad = () => {
+      if (done || loading) return;
+      if (box.scrollTop + box.clientHeight >= box.scrollHeight - 240) {
+        if (chain) appendNext();
+        else void ensureChain().then(appendNext);
+      }
+    };
+
+    box.addEventListener('scroll', maybeLoad, { passive: true });
+
+    // Si le contenu rendu est déjà plus court que le cadre, aucun scroll n'est
+    // possible : on complète immédiatement.
+    if (box.scrollHeight <= box.clientHeight + 8) {
+      void ensureChain().then(appendNext);
+    }
   }
 </script>
 
@@ -152,7 +257,7 @@ const rows = [
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 12px rgba(79, 216, 232, 0.5);
   }
 
-  /* La fenêtre sur la chaîne : elle défile, la page non. */
+  /* La fenêtre sur la descente : elle défile, la page non. */
   .ladder__scroll {
     position: relative;
     max-height: 21rem;
@@ -189,17 +294,15 @@ const rows = [
     border-radius: 2px;
     background: linear-gradient(
       to bottom,
-      rgba(79, 216, 232, 0.1),
-      rgba(79, 216, 232, 0.55) 22%,
-      rgba(79, 216, 232, 0.7) 50%,
-      rgba(79, 216, 232, 0.55) 78%,
-      rgba(79, 216, 232, 0.1)
+      rgba(79, 216, 232, 0.7),
+      rgba(79, 216, 232, 0.45) 50%,
+      rgba(79, 216, 232, 0.2)
     );
   }
 
   .ladder__row {
     position: relative;
-    opacity: max(0.42, calc(1 - (var(--dist, 0) * 0.035)));
+    opacity: max(0.55, calc(1 - (var(--dist, 0) * 0.012)));
   }
 
   .ladder__row::before {
@@ -259,15 +362,32 @@ const rows = [
     white-space: nowrap;
   }
 
+  .ladder__flag {
+    flex: none;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffb2ac;
+    border: 1px solid rgba(208, 69, 60, 0.5);
+    background: rgba(208, 69, 60, 0.16);
+    border-radius: 999px;
+    padding: 0.05rem 0.4rem;
+    white-space: nowrap;
+  }
+
   .ladder__id {
     margin-left: auto;
     font-size: 0.7rem;
     color: var(--ink-faint);
   }
 
-  /* l'item courant : le point d'ancrage du bloc */
+  /* le point de départ, épinglé en haut du cadre */
   .ladder__row--current {
     opacity: 1;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, #0b2b36, #092531);
   }
 
   .ladder__row--current::before {
@@ -286,26 +406,10 @@ const rows = [
 
   .ladder__link--current {
     height: 2.7rem;
-    background: linear-gradient(180deg, rgba(79, 216, 232, 0.22), rgba(79, 216, 232, 0.05));
+    background: linear-gradient(180deg, #0f3542, #082430);
     border-color: rgba(79, 216, 232, 0.6);
     color: var(--ink);
     font-weight: 600;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px -14px rgba(79, 216, 232, 0.9);
-  }
-
-  .ladder__stop {
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.82rem;
-    border-radius: 10px;
-    color: #ffc9c3;
-    border: 1px solid rgba(208, 69, 60, 0.45);
-    background: linear-gradient(180deg, rgba(208, 69, 60, 0.18), rgba(208, 69, 60, 0.05));
-  }
-
-  .ladder__stop--calm {
-    color: var(--ink-dim);
-    border-color: var(--edge-soft);
-    background: rgba(0, 0, 0, 0.2);
   }
 </style>

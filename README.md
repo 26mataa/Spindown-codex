@@ -67,7 +67,7 @@ BASE_PATH=/mon-depot/ npm run build
 |---|---|
 | ![Accueil](docs/shots/home.png) | ![La chaîne](docs/shots/chain.png) |
 | Accueil : recherche dans 20 langues | La chaîne complète, d'un bout à l'autre, avec le rail de position |
-| ![Fiche](docs/shots/item-dads-note.png) | ![Index](docs/shots/items.png) |
+| ![Fiche](docs/shots/item-detail.png) | ![Index](docs/shots/items.png) |
 | Fiche item : ce que ça devient, ce qui y mène, contexte | Encyclopédie filtrable (717 items) |
 | ![Recherche](docs/shots/search.png) | ![Calculateur](docs/shots/calculator.png) |
 | Recherche en japonais « 悲しみオニオン » → fiche anglaise | Calculateur de distance, Car Battery inclus |

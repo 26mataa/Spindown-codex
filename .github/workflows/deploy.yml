@@ -31,6 +31,14 @@ jobs:
       - name: Install
         run: npm ci
 
+      # Active GitHub Pages au premier passage, et publie l'URL de base.
+      # Sans cela, un dépôt neuf échoue au déploiement tant que Pages n'est pas
+      # réglé à la main sur « GitHub Actions ».
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       # `site` et `base` sont deduits de GITHUB_REPOSITORY par astro.config.mjs :
       # rien a configurer, que le depot soit un site utilisateur ou un projet.
       - name: Validate data

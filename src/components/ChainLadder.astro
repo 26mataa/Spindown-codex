@@ -267,7 +267,7 @@ const down = descendantsOf(id, depth);
   .ladder__hint {
     margin-left: auto;
     font-size: 0.85rem;
-    color: rgba(79, 216, 232, 0.8);
+    color: rgba(227, 155, 84, 0.8);
     letter-spacing: -0.05em;
   }
 
@@ -278,9 +278,9 @@ const down = descendantsOf(id, depth);
     height: 1.35rem;
     flex: none;
     border-radius: 50%;
-    color: #04212b;
-    background: linear-gradient(180deg, #c8f7ff, #55cfe4);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 12px rgba(79, 216, 232, 0.5);
+    color: #2a1705;
+    background: linear-gradient(180deg, #fde3ca, #e09c59);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 0 12px rgba(227, 155, 84, 0.5);
   }
 
   /* La fenêtre sur la descente : elle défile, la page non. */
@@ -291,14 +291,14 @@ const down = descendantsOf(id, depth);
     overscroll-behavior: contain;
     padding: 0.35rem 0;
     border-radius: 12px;
-    background: linear-gradient(180deg, rgba(2, 14, 20, 0.45), rgba(2, 14, 20, 0.2));
-    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(190, 240, 250, 0.08);
+    background: linear-gradient(180deg, rgba(19, 11, 3, 0.45), rgba(19, 11, 3, 0.2));
+    box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(248, 220, 192, 0.08);
     scrollbar-width: thin;
-    scrollbar-color: rgba(79, 216, 232, 0.75) rgba(255, 255, 255, 0.07);
+    scrollbar-color: rgba(227, 155, 84, 0.75) rgba(255, 255, 255, 0.07);
   }
 
   .ladder__scroll:focus-visible {
-    outline: 2px solid var(--aqua);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
@@ -320,9 +320,9 @@ const down = descendantsOf(id, depth);
     border-radius: 2px;
     background: linear-gradient(
       to bottom,
-      rgba(79, 216, 232, 0.7),
-      rgba(79, 216, 232, 0.45) 50%,
-      rgba(79, 216, 232, 0.2)
+      rgba(227, 155, 84, 0.7),
+      rgba(227, 155, 84, 0.45) 50%,
+      rgba(227, 155, 84, 0.2)
     );
   }
 
@@ -338,7 +338,7 @@ const down = descendantsOf(id, depth);
     top: 50%;
     width: 0.72rem;
     height: 1px;
-    background: rgba(79, 216, 232, 0.28);
+    background: rgba(227, 155, 84, 0.28);
   }
 
   .ladder__row::after {
@@ -350,8 +350,8 @@ const down = descendantsOf(id, depth);
     height: 6px;
     margin-top: -3px;
     border-radius: 50%;
-    background: #7fe6f4;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 8px rgba(79, 216, 232, 0.7);
+    background: #f0b983;
+    box-shadow: 0 0 0 2px rgba(25, 15, 5, 0.9), 0 0 8px rgba(227, 155, 84, 0.7);
   }
 
   .ladder__link {
@@ -372,12 +372,12 @@ const down = descendantsOf(id, depth);
     image-rendering: pixelated;
     flex: none;
     border-radius: 5px;
-    background: radial-gradient(circle at 50% 32%, #10404e, #04141c 78%);
+    background: radial-gradient(circle at 50% 32%, #4c2f12, #1b1005 78%);
   }
 
   .ladder__link:hover,
   .ladder__link:focus-visible {
-    background: rgba(190, 240, 250, 0.1);
+    background: rgba(248, 220, 192, 0.1);
     border-color: var(--edge-soft);
     color: var(--ink);
   }
@@ -413,11 +413,11 @@ const down = descendantsOf(id, depth);
     position: sticky;
     top: 0;
     z-index: 2;
-    background: linear-gradient(180deg, #0b2b36, #092531);
+    background: linear-gradient(180deg, #35200c, #301d0a);
   }
 
   .ladder__row--current::before {
-    background: rgba(79, 216, 232, 0.85);
+    background: rgba(227, 155, 84, 0.85);
     width: 0.85rem;
   }
 
@@ -427,16 +427,16 @@ const down = descendantsOf(id, depth);
     margin-top: -4.5px;
     left: -1.13rem;
     background: #ffffff;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.95), 0 0 14px rgba(79, 216, 232, 1);
+    box-shadow: 0 0 0 2px rgba(25, 15, 5, 0.95), 0 0 14px rgba(227, 155, 84, 1);
   }
 
   .ladder__link--current {
     height: 2.7rem;
-    background: linear-gradient(180deg, #0f3542, #082430);
-    border-color: rgba(79, 216, 232, 0.6);
+    background: linear-gradient(180deg, #402811, #2f1c09);
+    border-color: rgba(227, 155, 84, 0.6);
     color: var(--ink);
     font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px -14px rgba(79, 216, 232, 0.9);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 20px -14px rgba(227, 155, 84, 0.9);
   }
   /* Dad's Note : le seul item qui ne peut pas etre reroll. */
   .ladder__row--blocked .ladder__link {
@@ -450,6 +450,6 @@ const down = descendantsOf(id, depth);
 
   .ladder__row--blocked::after {
     background: #ff6a5e;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 12px rgba(208, 69, 60, 0.9);
+    box-shadow: 0 0 0 2px rgba(25, 15, 5, 0.9), 0 0 12px rgba(208, 69, 60, 0.9);
   }
 </style>

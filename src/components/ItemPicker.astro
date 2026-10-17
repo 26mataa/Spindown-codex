@@ -71,15 +71,15 @@ const { id, labelKey, initialId, initialName, initialIcon } = Astro.props;
     gap: 0.5rem;
     padding: 0.3rem 0.55rem;
     border-radius: 9px;
-    background: linear-gradient(180deg, rgba(2, 14, 20, 0.72), rgba(2, 14, 20, 0.5));
+    background: linear-gradient(180deg, rgba(19, 11, 3, 0.72), rgba(19, 11, 3, 0.5));
     border: 1px solid var(--edge-soft);
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45);
     transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   }
 
   .picker__field:focus-within {
-    border-color: rgba(79, 216, 232, 0.65);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(79, 216, 232, 0.35);
+    border-color: rgba(227, 155, 84, 0.65);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(227, 155, 84, 0.35);
   }
 
   .picker__icon {
@@ -117,7 +117,7 @@ const { id, labelKey, initialId, initialName, initialIcon } = Astro.props;
     max-height: 17rem;
     overflow-y: auto;
     border-radius: 10px;
-    background: linear-gradient(180deg, rgba(11, 47, 60, 0.99), rgba(4, 20, 27, 0.99));
+    background: linear-gradient(180deg, rgba(59, 35, 12, 0.99), rgba(26, 15, 5, 0.99));
     border: 1px solid var(--edge);
     box-shadow: 0 24px 48px -20px #000, inset 0 1px 0 var(--spec);
   }
@@ -152,8 +152,8 @@ const { id, labelKey, initialId, initialName, initialIcon } = Astro.props;
 
   .picker__list li[aria-selected='true'],
   .picker__list li:hover {
-    background: rgba(79, 216, 232, 0.16);
+    background: rgba(227, 155, 84, 0.16);
     color: var(--ink);
-    box-shadow: inset 0 0 0 1px rgba(79, 216, 232, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(227, 155, 84, 0.35);
   }
 </style>

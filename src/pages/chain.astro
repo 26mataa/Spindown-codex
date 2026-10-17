@@ -39,7 +39,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
         All {visibleItems.length} collectibles in internal ID order.
       </p>
       <p class="muted" data-i18n="chain.lede2">
-        Dad's Note (#668) is immune to rerolls â€” you can reach it, but nothing can come out of it.
+        Dad's Note (#877767) is immune to rerolls â€” you can reach it, but nothing can come out of it.
       </p>
     </header>
 
@@ -77,7 +77,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
           <span class="rail__top mono">#732</span>
           <div class="rail__track">
             <span class="rail__fill"></span>
-            <span class="rail__notch" style={`top:${notchPct}%`} title="Dad's Note (#668)"></span>
+            <span class="rail__notch" style={`top:${notchPct}%`} title="Dad's Note (#877767)"></span>
             <span class="rail__marker" data-marker></span>
           </div>
           <span class="rail__bottom mono">#1</span>
@@ -218,8 +218,8 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     background: linear-gradient(
       to bottom,
       transparent,
-      rgba(79, 216, 232, 0.45) 8%,
-      rgba(79, 216, 232, 0.3) 92%,
+      rgba(227, 155, 84, 0.45) 8%,
+      rgba(227, 155, 84, 0.3) 92%,
       transparent
     );
   }
@@ -250,8 +250,8 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     height: 7px;
     margin-top: -3.5px;
     border-radius: 50%;
-    background: #7fe6f4;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 10px rgba(79, 216, 232, 0.8);
+    background: #f0b983;
+    box-shadow: 0 0 0 2px rgba(25, 15, 5, 0.9), 0 0 10px rgba(227, 155, 84, 0.8);
   }
 
   .step__art {
@@ -261,8 +261,8 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     height: 2.4rem;
     flex: none;
     border-radius: 9px;
-    background: radial-gradient(circle at 50% 32%, #10404e, #04141c 78%);
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(190, 240, 250, 0.1);
+    background: radial-gradient(circle at 50% 32%, #4c2f12, #1b1005 78%);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(248, 220, 192, 0.1);
   }
 
   .step__art img {
@@ -285,7 +285,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
 
   .step__link:hover,
   .step__link:focus-visible {
-    background: linear-gradient(180deg, rgba(190, 240, 250, 0.13), rgba(190, 240, 250, 0.04));
+    background: linear-gradient(180deg, rgba(248, 220, 192, 0.13), rgba(248, 220, 192, 0.04));
     border-color: var(--edge-soft);
     color: var(--ink);
   }
@@ -315,7 +315,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
   .gap__line {
     width: 14px;
     height: 1px;
-    background: rgba(190, 240, 250, 0.25);
+    background: rgba(248, 220, 192, 0.25);
   }
 
   .gap__label {
@@ -336,7 +336,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     gap: 0.8rem;
     padding: 0.9rem 0.5rem;
     border-radius: var(--r);
-    background: linear-gradient(180deg, rgba(190, 240, 250, 0.09), rgba(190, 240, 250, 0.02));
+    background: linear-gradient(180deg, rgba(248, 220, 192, 0.09), rgba(248, 220, 192, 0.02));
     border: 1px solid var(--edge-soft);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 16px 34px -22px #000;
   }
@@ -360,8 +360,8 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     width: 10px;
     height: clamp(280px, 52vh, 460px);
     border-radius: 999px;
-    background: rgba(2, 14, 20, 0.55);
-    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(190, 240, 250, 0.1);
+    background: rgba(19, 11, 3, 0.55);
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(248, 220, 192, 0.1);
   }
 
   .rail__fill {
@@ -370,7 +370,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     left: 1px;
     right: 1px;
     border-radius: 999px;
-    background: linear-gradient(180deg, #7fe6f4, #2aa8c4 55%, rgba(42, 168, 196, 0.35));
+    background: linear-gradient(180deg, #f0b983, #bf772f 55%, rgba(191, 119, 47, 0.35));
   }
 
   /* repÃ¨re discret de Dad's Note sur la carte, pas un mur */
@@ -379,7 +379,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     left: -3px;
     width: 16px;
     height: 1px;
-    background: rgba(233, 247, 251, 0.55);
+    background: rgba(250, 242, 234, 0.55);
   }
 
   .rail__marker {
@@ -397,7 +397,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
   .rail__pos {
     margin: 0;
     font-size: 0.72rem;
-    color: var(--aqua);
+    color: var(--accent);
   }
 
   .rail__jump {
@@ -414,7 +414,7 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     padding: 0.25rem 0.35rem;
     border-radius: 7px;
     color: var(--ink);
-    background: rgba(2, 14, 20, 0.6);
+    background: rgba(19, 11, 3, 0.6);
     border: 1px solid var(--edge-soft);
     font-family: ui-monospace, monospace;
   }
@@ -425,9 +425,9 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
     padding: 0.25rem 0.45rem;
     border-radius: 7px;
     cursor: pointer;
-    color: #04212b;
-    background: linear-gradient(180deg, #c8f7ff, #55cfe4);
-    border: 1px solid #a9f0f9;
+    color: #2a1705;
+    background: linear-gradient(180deg, #fde3ca, #e09c59);
+    border: 1px solid #f7d1ab;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
@@ -455,6 +455,6 @@ const notchPct = (dadIndex / Math.max(all.length - 1, 1)) * 100;
 
   .step--blocked .step__dot {
     background: #ff6a5e;
-    box-shadow: 0 0 0 2px rgba(4, 18, 26, 0.9), 0 0 14px rgba(208, 69, 60, 0.9);
+    box-shadow: 0 0 0 2px rgba(25, 15, 5, 0.9), 0 0 14px rgba(208, 69, 60, 0.9);
   }
 </style>
